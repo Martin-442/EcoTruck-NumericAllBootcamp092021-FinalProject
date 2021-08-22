@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DistanceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// http://127.0.0.1:8000/tmp/locations
+Route::get('/tmp/locations', [DistanceController::class, 'getAllLocations'])->name('location.getalllocations');
+
+// http://127.0.0.1:8000/tmp/locations/single
+Route::get('/tmp/locations/single', [DistanceController::class, 'getAllLocationsSingle'])->name('location.getalllocationssingle');
