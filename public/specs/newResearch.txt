@@ -1,0 +1,91 @@
+"Lorentzscheuer (Ferme de)","Neiluerenzscheierhaff" 
+"Neiluerenzscheierhaff","Lorentzscheuer (Ferme de)"
+
+http://www.getamap.net/maps/luxembourg/luxembourg/_lorentzscheuer/
+ 49°35'15" N  6°1'35" E  ~308m asl 
+Lorentzscheuer is also known as Ferme Lorenscheuer, Ferme Lurenzscheier, Lorentzscheuer.
+
+https://www.lod.lu/?NEILUERENZSCHEIERHAFF1
+
+
+"Colmar-Berg-Halte","Colmar-Pont" 
+"Colmar-Pont","Colmar-Berg-Halte" 
+
+"Fischbacherhaff","Fréngerhaff" 
+"Fréngerhaff","Fischbacherhaff" 
+
+"Dalheim","Heidscheuer" 
+"Heidscheuer","Dalheim" 
+
+"Lehrhof","Léerhaff" 
+"Léerhaff","Lehrhof" 
+
+"Levelange","Lévelange" 
+"Lévelange","Levelange" 
+
+"Bockmillen","Maulusmuehle" 
+"Maulusmuehle","Bockmillen" 
+
+"Nagem (Ferme de)","Nagemerberg" 
+"Nagemerberg","Nagem (Ferme de)" 
+
+"Neiluerenzscheierhaff","Niedert (Ferme de)" 
+"Niedert (Ferme de)","Neiluerenzscheierhaff" 
+
+"Beringen","Reifeschbierg" 
+"Reifeschbierg","Beringen" 
+
+"Birtrange","Schieren-Moulin" 
+"Schieren-Moulin","Birtrange" 
+
+"Mühlenbach (Luxembourg)","Siwemuergen" 
+"Siwemuergen","Mühlenbach (Luxembourg)" 
+
+"Les Rochers","Syrdallschlass" 
+"Syrdallschlass","Les Rochers" 
+
+"Neirodeschhaff","Theinshaff" 
+"Theinshaff","Neirodeschhaff" 
+
+"Clemenshaff","Tschiddeschmillen" 
+"Tschiddeschmillen","Clemenshaff
+
+"Ringbaach","Wahl" 
+"Wahl","Ringbaach" 
+
+"Emerange","Weidemillen" 
+"Weidemillen","Emerange" 
+
+"Gillenshaff","Reineschhaff" 
+"Reineschhaff","Gillenshaff" 
+
+"Ferme rouge (Rodange)","Fond de Gras" 
+"Fond de Gras","Ferme rouge (Rodange)" 
+
+"Lorentzscheuer (Ferme de)","Niedert (Ferme de)" 
+"Niedert (Ferme de)","Lorentzscheuer (Ferme de)" 
+
+"Almillen","Boevange" 
+"Boevange","Almillen" 
+
+"Bettborn","PREIZERDAUL (Commune de)" 
+"PREIZERDAUL (Commune de)","Bettborn" 
+
+"Brüchermühle (Moutfort)","Buchholzerhaff (Dalheim)" 
+"Buchholzerhaff (Dalheim)","Brüchermühle (Moutfort)" 
+
+"Calmus","Calmus-Moulin" 
+"Calmus-Moulin","Calmus" 
+
+"Goebelsmuehle","Goebelsmühle" 
+"Goebelsmühle","Goebelsmuehle" 
+
+"Kaesfurt","Käsfurt (Beiler)" 
+"Käsfurt (Beiler)","Kaesfurt" 
+
+"Këppenhaff","Köppenhaff" 
+"Köppenhaff","Këppenhaff" 
+
+"Wormeldange","Wormeldange-Haut" 
+"Wormeldange-Haut","Wormeldange" 
+
