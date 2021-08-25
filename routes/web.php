@@ -19,11 +19,11 @@ Steps to Migrate on your local system
         composer install
 3. make sure ".env" has correct settings to connect DB
 4. create database in phpmyadmin, if needed
-5. generate Laravel key: 
+5. generate Laravel key:
         php artisan key:generate
 6. deploy DB data:
         php artisan migrate:fresh --seed
-7. launch Laravel project: 
+7. launch Laravel project:
         php artesan serve
 
 
@@ -40,4 +40,7 @@ Route::get('/tmp/locations', [DistanceController::class, 'getAllLocations'])->na
 
 // http://127.0.0.1:8000/tmp/locations/single
 Route::get('/tmp/locations/single', [DistanceController::class, 'getAllLocationsSingle'])->name('location.getalllocationssingle');
+
+Route::get('/tmp/locations/id', [DistanceController::class, 'getAllLocationIds'])->name('location.getalllocationIds');
+
 // END: Temporary path to develop/test services
