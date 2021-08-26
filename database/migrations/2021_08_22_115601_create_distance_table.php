@@ -14,12 +14,12 @@ class CreateDistanceTable extends Migration
     public function up()
     {
         Schema::create('distance', function (Blueprint $table) {
-            $table->id();
             $table->integer('from_stop_id');
             $table->integer('to_stop_id');
-            $table->integer('straight');
-            $table->integer('length');
-            $table->timestamps();
+            $table->string('from');
+            $table->string('to');
+            $table->float('straight',3,1);
+            $table->float('length',3,1);
         });
     }
 

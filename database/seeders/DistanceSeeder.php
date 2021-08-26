@@ -13,6 +13,13 @@ class DistanceSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $distances_lu = array(
+        );
+
+
+        DB::table('distance')->insert($distances_lu);
+
+        // php artisan migrate:fresh --seed
+
     }
 }
