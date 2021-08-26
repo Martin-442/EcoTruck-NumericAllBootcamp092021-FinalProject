@@ -41,6 +41,7 @@ Route::get('/tmp/locations', [DistanceController::class, 'getAllLocations'])->na
 // http://127.0.0.1:8000/tmp/locations/single
 Route::get('/tmp/locations/single', [DistanceController::class, 'getAllLocationsSingle'])->name('location.getalllocationssingle');
 
+// http://127.0.0.1:8000/tmp/locations/id
 Route::get('/tmp/locations/id', [DistanceController::class, 'getAllLocationIds'])->name('location.getalllocationIds');
 
 // END: Temporary path to develop/test services

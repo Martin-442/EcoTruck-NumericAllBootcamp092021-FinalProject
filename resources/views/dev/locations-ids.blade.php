@@ -1,4 +1,4 @@
-$locations_lu = array(<br>
-@foreach ($locations as $stop1)array("id" => {{$loop->iteration}}, "stop_org" => "{{$stop1['name']}}", "stop" => "{{$stop1['name']}}")@if (!$loop->last),@endif<br>
+@foreach ($locations as $stop1)@foreach ($locations as $stop2)@if($stop1['name']<>$stop2['name']){{$loop->parent->iteration}},{{$loop->iteration}},"{{$stop1['name']}}","{{$stop2['name']}}"<br>
+@endif
 @endforeach
-);
+@endforeach
