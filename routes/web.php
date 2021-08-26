@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\DistanceController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\ContractorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,32 +14,30 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-
-Steps to Migrate on your local system
-1. launch Terminal in VSCode
-2. Create "verdor" folder and dependencies
-        composer install
-3. make sure ".env" has correct settings to connect DB
-4. create database in phpmyadmin, if needed
-5. generate Laravel key: 
-        php artisan key:generate
-6. deploy DB data:
-        php artisan migrate:fresh --seed
-7. launch Laravel project: 
-        php artesan serve
-
-
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/home');
+});
+
+Route::middleware('isAdmin')->group(function () {
+    // http://127.0.0.1:8000/dashboard/admin
+    Route::get('dashboard/admin', [AdminController::class, 'index'])->name('dashbord_admin');
+});
+
+Route::middleware('isProvider')->group(function () {
+    // http://127.0.0.1:8000/dashboard/provider
+    Route::get('/dashboard/provider', [ProviderController::class, 'index'])->name('dashbord_provider');
+});
+
+Route::middleware('isContractor')->group(function () {
+    // http://127.0.0.1:8000/dashboard/contractor
+    Route::get('/dashboard/contractor', [ContractorController::class, 'index'])->name('dashbord_contractor');
 });
 
 
-// START: Temporary path to develop/test services
-// http://127.0.0.1:8000/tmp/locations
-Route::get('/tmp/locations', [DistanceController::class, 'getAllLocations'])->name('location.getalllocations');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-// http://127.0.0.1:8000/tmp/locations/single
-Route::get('/tmp/locations/single', [DistanceController::class, 'getAllLocationsSingle'])->name('location.getalllocationssingle');
-// END: Temporary path to develop/test services
+require __DIR__.'/auth.php';
