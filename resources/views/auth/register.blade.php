@@ -12,11 +12,37 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <!-- Name -->
+            <!-- First and Last Name -->
             <div>
-                <x-label for="name" :value="__('Name')" />
+                <x-label for="first_name" :value="__('First Name')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus />
+            </div>
+            <div>
+                <x-label for="last_name" :value="__('Last Name')" />
+
+                <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus />
+            </div>
+
+            <!-- Address -->
+            <div>
+                <x-label for="city" :value="__('City')" />
+
+                <x-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" required autofocus />
+            </div>
+            <div>
+                <x-label for="postal_code" :value="__('Postal Code')" />
+
+                <x-input id="postal_code" class="block mt-1 w-full" type="text" name="postal_code" :value="old('postal_code')" required autofocus />
+            </div>
+
+            <!-- Role -->
+            <div>
+                <x-label for="role" :value="__('Role')" />
+
+                <!-- <input type="hidden" name="role" value="0"> -->
+
+                <x-input id="role" class="block mt-1 w-full" type="enum" name="role" :value="old('role')" autofocus />
             </div>
 
             <!-- Email Address -->

@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\ContractorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +17,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/home');
+});
+
+Route::middleware('isAdmin')->group(function () {
+    // http://127.0.0.1:8000/dashboard/admin
+    Route::get('dashboard/admin', [AdminController::class, 'index'])->name('dashboard_admin');
+});
+
+Route::middleware('isProvider')->group(function () {
+    // http://127.0.0.1:8000/dashboard/provider
+    Route::get('/dashboard/provider', [ProviderController::class, 'index'])->name('dashboard_provider');
+
+    // Show the form to create equipment
+    Route::get('/equipment-new', [TruckController::class, 'create']);
+    Route::post('/equipment-show', [TruckController::class, 'store']);
+});
+
+Route::middleware('isContractor')->group(function () {
+    // http://127.0.0.1:8000/dashboard/contractor
+    Route::get('/dashboard/contractor', [ContractorController::class, 'index'])->name('dashboard_contractor');
 });
 
 Route::get('/dashboard', function () {
@@ -22,3 +44,4 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
