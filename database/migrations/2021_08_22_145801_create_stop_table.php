@@ -17,7 +17,6 @@ class CreateStopTable extends Migration
             $table->id();
             $table->string('stop_org');
             $table->string('stop');
-            $table->timestamps();
         });
     }
 
