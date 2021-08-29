@@ -44,4 +44,19 @@ Route::get('/tmp/locations/single', [DistanceController::class, 'getAllLocations
 // http://127.0.0.1:8000/tmp/locations/id
 Route::get('/tmp/locations/id', [DistanceController::class, 'getAllLocationIds'])->name('location.getalllocationIds');
 
+// http://127.0.0.1:8000/tmp/makefile/1
+Route::get('/tmp/makefile/{id}', [DistanceController::class, 'createFilesLoaclly'])->name('location.createfileslocally');
+
+// http://127.0.0.1:8000/tmp/makefilebatch/985
+Route::get('/tmp/makefilebatch/{id}', [DistanceController::class, 'createFileLoacllyBatch'])->name('location.createfilebatch');
+
+// http://127.0.0.1:8000/tmp/stopstojson/1
+Route::get('/tmp/stopstojson/{id}', [DistanceController::class, 'addJsonToStop'])->name('location.createfilebatch');
+
+// http://127.0.0.1:8000/tmp/readlength/1:2
+Route::get('/tmp/readlength/{from}:{to}', [DistanceController::class, 'readFromJson'])->name('location.createfilebatch');
+
+// http://127.0.0.1:8000/tmp/testlogic/5
+Route::get('/tmp/testlogic/{id}', [DistanceController::class, 'testLogic'])->name('location.testlogic');
+
 // END: Temporary path to develop/test services

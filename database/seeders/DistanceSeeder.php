@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Distance;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,15 +16,16 @@ class DistanceSeeder extends Seeder
     public function run()
     {
 
-        require_once('distance-data_1.php');
-        DB::table('distance')->insert($distance);
+        // total amount locations for LU: 985 (see stop DB)
+        for ($i=1; $i <= 985; $i++) {
+            // https://kaixersoft.wordpress.com/2015/05/19/how-to-use-laravel-eloquent-orm-to-do-a-replace-into/
+            $distance = Distance::firstOrNew( ['id' => $i] );
+            $distance->id = $i;
+            $file = 'database/seeders/data/distance'.sprintf('%03d', $i).'.json';
+            $distance->lengths_json = file_get_contents($file);
+            $distance->save();
+        }
 
-/*         require_once('distance-data_2.php');
-        DB::table('distance')->insert($distance);
-
-        require_once('distance-data_3.php');
-        DB::table('distance')->insert($distance);
- */
         // php artisan migrate:fresh --seed
 
     }
