@@ -12,7 +12,7 @@ class Booking extends Model
         'equipment_id',
         'construction_site',
         'dump_site',
-        'date',
+        'booking_date',
         'meter_reading',
         'fuel_reading',
         'rent_rate'

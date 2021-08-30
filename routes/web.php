@@ -38,7 +38,7 @@ Route::middleware('isProvider')->group(function () {
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard-contractor');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
@@ -50,5 +50,10 @@ Route::middleware('isContractor')->group(function () {
 
 Route::middleware('isContractor')->group(function () {
     
-    Route::get('/add-booking', [BookingController::class, 'create']);
+    Route::get('/add-booking', [BookingController::class, 'create'])->name('add.booking');
+});
+
+Route::middleware('isContractor')->group(function () {
+    
+    Route::post('/add-booking', [BookingController::class, 'findAvailableTrucks']);
 });
