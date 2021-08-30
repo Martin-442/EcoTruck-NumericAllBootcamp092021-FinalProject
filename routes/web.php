@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ContractorController;
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +35,7 @@ Route::middleware('isProvider')->group(function () {
     Route::post('/equipment-show', [TruckController::class, 'store']);
 });
 
-Route::middleware('isContractor')->group(function () {
-    // http://127.0.0.1:8000/dashboard/contractor
-    Route::get('/dashboard/contractor', [ContractorController::class, 'index'])->name('dashboard_contractor');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -45,3 +43,12 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::middleware('isContractor')->group(function () {
+    
+    Route::get('/dashboard-contractor', [BookingController::class, 'index']);
+});
+
+Route::middleware('isContractor')->group(function () {
+    
+    Route::get('/add-booking', [BookingController::class, 'create']);
+});
