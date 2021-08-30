@@ -5,6 +5,7 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\Environment\Console;
 
 class BookingController extends Controller
 {
@@ -14,10 +15,12 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $bookings = Booking::all();
+    {   $contractor_id= auth()->user()->id ;
+        $bookingList = DB::table('bookings')                 
+        ->where('contractor_id', '=', $contractor_id)
+        ->get();
 
-        return view('dashboard-contractor', ['bookings' => $bookings]);
+        return view('dashboard-contractor', ['bookings' => $bookingList]);
     }
 
     /**
@@ -61,17 +64,16 @@ class BookingController extends Controller
         // Message
         if ($validations->fails())
             return response()->json(['errors' => $validations->errors()->all()]);
-        
+    
+            $bookedTruck=DB::table('bookings')->select('equipment_id')->where('booking_date', '=', $request->date);
 
-
-            $availableTruck = DB::table('trucks')                 
-            ->select('truck_type')
-            ->whereNotIn('id', DB::table('bookings')->select('equipment_id')->where('date', '<>', $request->date)->get()->toArray())
-            ->where('truck_location ', '=', $request->location)
+            $availableTruck =  DB::table('trucks')                 
+            ->select('*')
+            ->whereNotIn('id',$bookedTruck)
+            ->where('truck_location', '=', $request->location)
             ->limit(1)
             ->get();
-            //return view('dashboard-contractor', ['trucks' => $trucks[0]]);
-        return response()->json(['success' => ['trucks' => $availableTruck]]);
+            return response()->json(['success' => $availableTruck]);
     }
 
     /**

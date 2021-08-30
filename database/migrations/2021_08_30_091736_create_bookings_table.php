@@ -21,7 +21,8 @@ class CreateBookingsTable extends Migration
             $table->foreign('equipment_id')->references('id')->on('trucks')->onUpdate('cascade')->onDelete('cascade');
             $table->string('construction_site');
             $table->string('dump_site');
-            $table->date('date');
+            $table->date('booking_date');
+            $table->date('time');
             $table->integer('meter_reading');
             $table->integer('fuel_reading');
             $table->integer('rent_rate');

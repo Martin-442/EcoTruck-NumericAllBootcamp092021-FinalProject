@@ -19,11 +19,11 @@ class CreateTrucksTable extends Migration
             $table->string('brand');
             $table->string('model');
             $table->integer('year');
-            $table->enum('fuel',['Diesel','Petrol','Electric '])->nullable();
-            $table->integer('mileage');
-            $table->string('truck_location',);
+            $table->enum('fuel',['Diesel','Petrol','Electric ']);
+            $table->integer('mileage')->nullable();
+            $table->string('truck_location');
             $table->string('city');
-            $table->integer('postal_code');
+            $table->integer('postal_code')->nullable();
             $table->string('specification')->nullable();
             $table->timestamps();
         });

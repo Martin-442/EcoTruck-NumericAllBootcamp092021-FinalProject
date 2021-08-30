@@ -3,7 +3,8 @@
 @section('title', 'All trucks')
 
 @section('content')
-    <form action="">
+    <form id="myForm" action="" method="post">
+    @csrf
         <label for="">Location</label>
         <input type="text" name="location" > <br>
         <label for="">Description</label>
@@ -16,7 +17,10 @@
         <input type="submit" value="Show available truck">
         
     </form>
-    <div id="results"></div>
+    <div id="results">
+        
+    </div>
+    
 @endsection
 
 @section('scripts')
@@ -26,7 +30,7 @@
     <script>
         /* Wait for the page to be loaded/ready */
         $(function() {
-            $('form').submit(function(e) {
+            $('#myForm').submit(function(e) {
                 e.preventDefault();
                 let formData = new FormData(this);
                 // Ajax call
@@ -46,7 +50,19 @@
                                 $('#results').append(error + "<br>");
                             }
                         } else if (result.success) {
-                            $('#results').html(result.success);
+                            
+                            const resultDiv = document.getElementById("results");
+                            var node = document.createElement("ul");
+                            var text = '<B>Type:</B> '+result.success[0].truck_type
+                                + ' <B>Brand:</B> ' + result.success[0].truck_type
+                                + ' - <button>Book it</button>';
+                            
+                            var liNode = document.createElement("li");
+                            liNode.innerHTML = text;
+                            node.appendChild(liNode);
+                            resultDiv.appendChild(node);
+
+                            
                         }
                     })
                     .fail(function(result) {
