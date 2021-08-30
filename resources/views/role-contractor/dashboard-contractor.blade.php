@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Dashboard Contractor') }}
         </h2>
     </x-slot>
 
@@ -30,9 +30,9 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <!-- Truck Details -->
+            <!-- Booking Details -->
             <h3>Welcome Contractor</h3>
-            <p>Fill information form</p>
+            <p>Fill booking information form</p>
             <div>
                 <x-label for="date" :value="__('Pick up Date')" />
 
@@ -67,12 +67,14 @@
 
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}"> <!-- Trucks PAGE -->
-                   <!-- {{ __('Already registered?') }} -->
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('dashboard-contractor') }}"> <!-- where user can see all the bookings -->
                 </a>
 
                 <x-button class="ml-4">
-                    {{ __('Sumbit') }}
+                    {{ __('Sumbit Request') }}
+                </x-button>
+                <x-button class="ml-4">
+                    {{ __('Cancel Request') }}
                 </x-button>
             </div>
 

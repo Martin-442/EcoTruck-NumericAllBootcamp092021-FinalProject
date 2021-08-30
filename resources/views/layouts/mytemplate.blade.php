@@ -7,11 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome Provider</h1>
-
-<a href="{{ URL::route('equipment.equipment-new') }}">Register new equipment</a><br>
-
-<h2>Equipments</h2>
-
+    @yield('scripts')
 </body>
 </html>
