@@ -90,7 +90,7 @@ class EquipmentController extends Controller
     public function show($id)
     {
         $equipment = Equipment::find($id);
-            return view('equipments-show', ['equipments' => $equipment]);
+            return view('equipment.equipment-show', ['equipment' => $equipment]);
     }
 
     /**
@@ -104,7 +104,7 @@ class EquipmentController extends Controller
         $equipment = Equipment::find($id);
 
         // Show the form
-        return view('equipment-update', ['equipment' => $equipment]);
+        return view('equipment.equipment-update', ['equipment' => $equipment]);
     }
 
     /**

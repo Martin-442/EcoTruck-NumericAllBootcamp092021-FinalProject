@@ -24,7 +24,7 @@ Route::middleware('isProvider')->group(function () {
     Route::get('/delete/equipment/{id}', [EquipmentController::class, 'destroy'])->name('delete.equipment');
 
     // ROUTE TO DISPLAY ONE SPECIFIC equipment
-    //Route::get('/show/equipment/{id}', [EquipmentController::class, 'show'])->name('show.equipment-show');
+    Route::get('/show/equipment/{id}', [EquipmentController::class, 'show'])->name('equipment.equipment-show');
 
 });
 
