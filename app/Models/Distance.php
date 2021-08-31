@@ -14,13 +14,13 @@ class Distance extends Model
     protected $fillable = ['id', 'lengths_json'];
 
     public function getLengthAttribute($from_stop_id, $to_stop_id) {
+        if($from_stop_id == $to_stop_id) return 0; // 0 length if both id's are the same
         $distance = Distance::where('id', '=', $from_stop_id)->first();
         foreach (json_decode($distance->lengths_json) as $value) {
             if ($value->to_stop_id == $to_stop_id) {
                 return $value->length;
             }
         }
-        return 0; // 0 length if both id's are the same
     }
 
 }
