@@ -25,6 +25,12 @@ Route::middleware('isAdmin')->group(function () {
     Route::get('dashboard/admin', [AdminController::class, 'index'])->name('dashboard_admin');
 });
 
+Route::middleware('isProvider')->group(function () {
+
+    // http://127.0.0.1:8000/dashboard/provider
+    Route::get('/dashboard/provider', [ProviderController::class, 'index'])->name('dashboard_provider');
+
+});
 
 Route::middleware('isContractor')->group(function () {
     // http://127.0.0.1:8000/dashboard/contractor

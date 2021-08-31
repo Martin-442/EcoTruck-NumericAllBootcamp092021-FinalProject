@@ -29,12 +29,12 @@
                         <div>
                             <x-label for="brand" :value="__('Brand')" />
 
-                            <x-input id="brand" class="block mt-1 w-full" type="text" name="brand" :value="old('brand')" required autofocus />
+                            <x-input id="brand" class="block mt-1 w-full" type="text" name="brand" :value="old('brand')"/>
                         </div>
                         <div>
                             <x-label for="model" :value="__('Model')" />
 
-                            <x-input id="model" class="block mt-1 w-full" type="text" name="model" :value="old('model')" required autofocus />
+                            <x-input id="model" class="block mt-1 w-full" type="text" name="model" :value="old('model')"/>
                         </div>
                         <div>
                             <x-label for="year" :value="__('Year')" />
@@ -44,7 +44,7 @@
                         <div>
                             <x-label for="fuel" :value="__('Fuel')" />
 
-                            <x-input id="fuel" class="block mt-1 w-full" type="text" name="fuel" :value="old('fuel')" required autofocus />
+                            <x-input id="fuel" class="block mt-1 w-full" type="text" name="fuel" :value="old('fuel')"/>
                         </div>
                         <div>
                             <x-label for="mileage" :value="__('Mileage')" />
@@ -60,7 +60,7 @@
                         <div>
                             <x-label for="located_place" :value="__('Located Place')" />
 
-                            <x-input id="located_place" class="block mt-1 w-full" type="text" name="located_place" :value="old('located_place')" required autofocus />
+                            <x-input id="located_place" class="block mt-1 w-full" type="text" name="located_place" :value="old('located_place')"/>
                         </div>
 
                         <div>
@@ -76,7 +76,7 @@
                         <div>
                             <x-label for="specification" :value="__('Specification')" />
 
-                            <x-input id="specification" class="block mt-1 w-full" type="text" name="specification" :value="old('specification')" required autofocus />
+                            <x-input id="specification" class="block mt-1 w-full" type="text" name="specification" :value="old('specification')"/>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">

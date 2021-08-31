@@ -23,8 +23,8 @@ class CreateEquipmentTable extends Migration
             $table->integer('mileage');
             $table->integer('capacity');
             $table->string('truck_location',)->nullable();
-            $table->string('city')->nullable();
-            $table->integer('postal_code')->nullable();
+            $table->string('city');
+            $table->integer('postal_code');
             $table->string('specification')->nullable();
             $table->timestamps();
         });

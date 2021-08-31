@@ -18,7 +18,7 @@ class EquipmentController extends Controller
         // show all equipments
         $equipments = Equipment::all();
         // To display a specific view :
-            return view('equipments', ['equipments' => $equipments]);
+            return view('equipment.equipments', ['equipments' => $equipments]);
     }
 
     /**
@@ -41,21 +41,41 @@ class EquipmentController extends Controller
     public function store(Request $request)
     {
         $validations = Validator::make($request->all(), [
-            //'name' => 'required|max:30',
+
+            'truck_type' => 'required',
+            'brand' => 'required',
+            'model' => 'required',
+            'year' => 'required|numeric',
             'mileage' => 'required|numeric|max:150000',
-            'capacity' => 'required|numeric'
+            'capacity' => 'required|numeric',
+            'truck_location' => '',
+            'city' => 'required',
+            'postal_code' => 'required|numeric',
+            'specification' => '',
+
         ]);
         // Message
         if ($validations->fails())
             return response()->json(['errors' => $validations->errors()->all()]);
 
-        // to see all the flowers using INSERT Mehtod
+        // to see all the Equipments using INSERT Mehtod
 
           $equipment = new Equipment;
 
-            //$equipment->name = $request->name;
+
+            $equipment->truck_type = $request->truck_type;
+            $equipment->brand = $request->brand;
+            $equipment->model = $request->model;
+            $equipment->year = $request->year;
+            $equipment->fuel = $request->fuel;
             $equipment->mileage = $request->mileage;
             $equipment->capacity = $request->capacity;
+            $equipment->truck_location = $request->truck_location;
+            $equipment->city = $request->city;
+            $equipment->postal_code = $request->postal_code;
+            $equipment->specification = $request->specification;
+            //$equipment->created_at = $request->created_at;
+            //$equipment->updated_at = $request->updated_at;
             $equipment->save();
 
         return response()->json(['success' => 'Equipment was registered successfully']);
@@ -70,7 +90,7 @@ class EquipmentController extends Controller
     public function show($id)
     {
         $equipment = Equipment::find($id);
-            return view('equipments', ['equipments' => $equipment]);
+            return view('equipments-show', ['equipments' => $equipment]);
     }
 
     /**
@@ -97,15 +117,15 @@ class EquipmentController extends Controller
     public function update(Request $request, $id)
     {
         $equipment = Equipment::find($id);
-        // now update the flower
+        // now update the Equipment
 
-        $equipment->name = $request->name;
+        $equipment->type = $request->type;
         $equipment->mileage = $request->mileage;
 
         $equipment->save();
 
-        // redirect to flowers list with a message
-        return redirect('equipments')->with('success', $request->name . ' was updated successfully');
+        // redirect to Equipments list with a message
+        return redirect('equipments')->with('success', $request->type . ' was updated successfully');
     }
 
     /**

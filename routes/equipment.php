@@ -8,8 +8,8 @@ use App\Http\Controllers\EquipmentController;
 
 Route::middleware('isProvider')->group(function () {
 
-    // http://127.0.0.1:8000/dashboard/provider
-    Route::get('/dashboard/provider', [ProviderController::class, 'index'])->name('dashboard_provider');
+    // http://127.0.0.1:8000/equipment
+    Route::get('/equipment', [EquipmentController::class, 'index'])->name('dashboard_provider');
 
     // Show the Form to Register Equipment
     // http://127.0.0.1:8000/equipment-new
@@ -18,9 +18,14 @@ Route::middleware('isProvider')->group(function () {
 
 
     // Show the form to update a  equipment
-    Route::get('/update/equipment/{id}', [EquipmentController::class, 'edit'])->name('update.equipment');
+    Route::get('/update/equipment/{id}', [EquipmentController::class, 'edit'])->name('update.equipment-update');
     Route::post('/update/equipment/{id}', [EquipmentController::class, 'update']);
-    // Show the form to delete a  equipment
+    // to delete a  equipment
     Route::get('/delete/equipment/{id}', [EquipmentController::class, 'destroy'])->name('delete.equipment');
 
+    // ROUTE TO DISPLAY ONE SPECIFIC equipment
+    //Route::get('/show/equipment/{id}', [EquipmentController::class, 'show'])->name('show.equipment-show');
+
 });
+
+
