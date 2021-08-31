@@ -44,5 +44,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+require __DIR__.'/status.php';
 
 require __DIR__.'/dropoff_location.php';
