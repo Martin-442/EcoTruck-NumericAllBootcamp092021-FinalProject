@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ContractorController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +46,16 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+// Email verification
+Auth::routes(['verify' => true]);
+
+Route::middleware('verified')->group(function () {
+    // http://127.0.0.1:8000/profile
+    Route::get('profile', function () {
+        // Only verified users may enter...
+    });
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
