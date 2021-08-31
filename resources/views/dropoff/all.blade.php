@@ -21,9 +21,9 @@
         <p><strong>Location: </strong> {{ $dropoff->location_id }}</p>
         <p><strong>Description: </strong> {{ $dropoff->description }}</p>
         <!-- creating link using the name of the route (check web.php file)  -->
-        <a href="{{ route('dropoff.update', [$dropoff->id]) }}">Edit</a>
-        <a href="{{ route('dropoff.delete', [$dropoff->id]) }}">Delete</a>
+        <a href="{{ route('dropoff.update', [$dropoff->id]) }}">Update</a>
         <a href="{{ route('dropoff.detail', [$dropoff->id]) }}">Details</a>
+        <a href="{{ route('dropoff.delete', [$dropoff->id]) }}">Delete</a>
         <hr>
     @endforeach
 @endsection

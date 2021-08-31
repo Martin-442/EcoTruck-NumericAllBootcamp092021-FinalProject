@@ -8,7 +8,7 @@ Route::middleware('isAdmin')->group(function () {
     Route::get('dropoff', [DropoffController::class, 'index'])->name('dropoff.index');
 
     // http://127.0.0.1:8000/dropoff/1
-    Route::get('dropoff/{id}', [DropoffController::class, 'show'])->name('dropoff.detail');
+    Route::get('dropoff/detail/{id}', [DropoffController::class, 'show'])->name('dropoff.detail');
 
     // Show the form to create new
     // http://127.0.0.1:8000/dropoff/new

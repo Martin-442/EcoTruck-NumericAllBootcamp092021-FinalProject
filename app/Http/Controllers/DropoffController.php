@@ -113,7 +113,7 @@ class DropoffController extends Controller
         $dropoff->save();
 
         // redirect to dropoff list with a message
-        return redirect('dropoff.all')->with('success', $request->name . ' was updated successfully');
+        return redirect('dropoff')->with('success', $request->name . ' was updated successfully');
     }
 
     /**

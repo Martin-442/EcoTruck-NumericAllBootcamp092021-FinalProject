@@ -13,4 +13,8 @@
 <p><strong>Location: </strong> {{ $dropoff->location_id }}</p>
 <p><strong>Description: </strong> {{ $dropoff->description }}</p>
 
+<hr>
+<a href="{{ route('dropoff.update', [$dropoff->id]) }}">Update</a>
+
+
 @endsection
