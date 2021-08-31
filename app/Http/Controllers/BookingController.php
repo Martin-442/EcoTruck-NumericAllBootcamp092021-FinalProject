@@ -15,7 +15,7 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $contractor_id= auth()->user()->id ;
+    {   $contractor_id= auth()->user()->company_id ;
         $bookingList = DB::table('bookings')                 
         ->where('contractor_id', '=', $contractor_id)
         ->get();

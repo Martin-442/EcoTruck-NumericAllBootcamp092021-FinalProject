@@ -52,12 +52,13 @@
                         } else if (result.success) {
                             
                             const resultDiv = document.getElementById("results");
-                            var node = document.createElement("ul");
-                            var text = '<B>Type:</B> '+result.success[0].truck_type
+                            let node = document.createElement("ul");
+                            let data = "truckid=lkjjk;bookingDate=kjhkhj;"
+                            let text = '<B>Type:</B> '+result.success[0].truck_type
                                 + ' <B>Brand:</B> ' + result.success[0].truck_type
-                                + ' - <button>Book it</button>';
+                                + ' - <button id="myBtn" data='+data+' >Book it</button>';
                             
-                            var liNode = document.createElement("li");
+                            let liNode = document.createElement("li");
                             liNode.innerHTML = text;
                             node.appendChild(liNode);
                             resultDiv.appendChild(node);
@@ -70,5 +71,34 @@
                     })
             });
         });
+    </script>
+    <script>
+    $('#myBtn').click(function(e) {
+            e.preventDefault();
+            
+            // Ajax call : ask a php file for something
+            $.ajax({
+               url: 'add-booking' ,
+               method: 'post',
+               data: ,
+            })
+            .done(function (result) {
+                //Everything that you display/echo/write down in the 'simple.php' file will be send back here in the 'result' letiable
+                this.attribute("")
+                // If AJAX call worked
+                //console.log(result);
+                $('#result').html(result);
+            })
+            .fail(function (result) {
+                // Fail means : file not found, 500 errors.
+                // Fail doesnt mean : problem with query, syntax error in php
+                console.log('AJAX FAILED');
+            })
+        });
+      });
+   
+
+
+
     </script>
 @endsection

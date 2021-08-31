@@ -43,17 +43,4 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware('isContractor')->group(function () {
-    
-    Route::get('/dashboard-contractor', [BookingController::class, 'index']);
-});
-
-Route::middleware('isContractor')->group(function () {
-    
-    Route::get('/add-booking', [BookingController::class, 'create'])->name('add.booking');
-});
-
-Route::middleware('isContractor')->group(function () {
-    
-    Route::post('/add-booking', [BookingController::class, 'findAvailableTrucks']);
-});
+require __DIR__.'/booking.php';
