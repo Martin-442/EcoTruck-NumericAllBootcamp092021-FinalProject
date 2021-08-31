@@ -15,17 +15,17 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('contractor_id');
-            $table->foreign('contractor_id')->references('id')->on('contractors')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('company')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('equipment_id');
-            $table->foreign('equipment_id')->references('id')->on('trucks')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('equipment_id')->references('id')->on('equipment')->onUpdate('cascade')->onDelete('cascade');
             $table->string('construction_site');
             $table->string('dump_site');
             $table->date('booking_date');
             $table->date('time');
-            $table->integer('meter_reading');
-            $table->integer('fuel_reading');
-            $table->integer('rent_rate');
+            $table->integer('meter_reading')->nullable();
+            $table->integer('fuel_reading')->nullable();
+            $table->integer('rent_rate')->nullable();
             $table->timestamps();
         });
     }

@@ -5,8 +5,17 @@
 @section('content')
     <form id="myForm" action="" method="post">
     @csrf
+
         <label for="">Location</label>
-        <input type="text" name="location" > <br>
+        <select name="location" >
+        <option selected="selected">Choose construction location</option>
+        <?php
+            foreach($allLocations as $location) { ?>
+            <option value="<?= $location['stop'] ?>"><?= $location['stop'] ?></option>
+        <?php
+            } ?>
+        </select> <br>
+
         <label for="">Description</label>
         <input type="text" name="description" > <br>
         <label for="">Quantity</label>
@@ -53,11 +62,13 @@
                             
                             const resultDiv = document.getElementById("results");
                             let node = document.createElement("ul");
-                            let data = "truckid=lkjjk;bookingDate=kjhkhj;"
-                            let text = '<B>Type:</B> '+result.success[0].truck_type
-                                + ' <B>Brand:</B> ' + result.success[0].truck_type
-                                + ' - <button id="myBtn" data='+data+' >Book it</button>';
+                            //let data = "truckid=lkjjk;bookingDate=kjhkhj;"
                             
+                            let text = '<B>CS:</B> '+result.success[0].stop+'<br><B>DY:</B> '+result.success[1].stop
+                            + '<br> <B>TL:</B> ' + result.success[2]['stop']+' <br><B>Distance:</B> ' + result.success[3]
+                            + ' <br>  <button id="myBtn"  >Book it</button>';
+                            console.log(JSON.stringify(result.success[2]));
+                            console.log(result.success[0].stop);
                             let liNode = document.createElement("li");
                             liNode.innerHTML = text;
                             node.appendChild(liNode);
@@ -79,8 +90,8 @@
             // Ajax call : ask a php file for something
             $.ajax({
                url: 'add-booking' ,
-               method: 'post',
-               data: ,
+               method: 'post'
+              
             })
             .done(function (result) {
                 //Everything that you display/echo/write down in the 'simple.php' file will be send back here in the 'result' letiable
@@ -94,7 +105,7 @@
                 // Fail doesnt mean : problem with query, syntax error in php
                 console.log('AJAX FAILED');
             })
-        });
+        
       });
    
 

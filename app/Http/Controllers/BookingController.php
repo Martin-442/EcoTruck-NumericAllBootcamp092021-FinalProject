@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Booking;
+use App\Models\Distance;
+use App\Models\Equipment;
+use App\Models\Stop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -15,9 +18,9 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $contractor_id= auth()->user()->company_id ;
+    {   $company_id= auth()->user()->company_id ;
         $bookingList = DB::table('bookings')                 
-        ->where('contractor_id', '=', $contractor_id)
+        ->where('company_id', '=', $company_id)
         ->get();
 
         return view('dashboard-contractor', ['bookings' => $bookingList]);
@@ -29,8 +32,9 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('add-booking');
+    {   
+        $locationList=Stop::all();
+        return view('add-booking',['allLocations' => $locationList]);
     }
 
     
@@ -54,26 +58,37 @@ class BookingController extends Controller
     {   
         // + Validations
         $validations = Validator::make($request->all(), [
-            'location' => 'required|max:50',
+            'location' => 'required',
             'description' => 'required',
             'quantity' => 'required',
             'date' => 'required',
-            //'type' => 'required',
+            
         ]);
 
         // Message
         if ($validations->fails())
             return response()->json(['errors' => $validations->errors()->all()]);
-    
-            $bookedTruck=DB::table('bookings')->select('equipment_id')->where('booking_date', '=', $request->date);
 
-            $availableTruck =  DB::table('trucks')                 
-            ->select('*')
+            // available trucks on the day selected 
+            $bookedTruck=DB::table('bookings')->select('equipment_id')->where('booking_date', '=', $request->date);
+            $availableTruck = Equipment::select('id')
             ->whereNotIn('id',$bookedTruck)
-            ->where('truck_location', '=', $request->location)
-            ->limit(1)
+            ->where('capacity','>',$request->quantity)
             ->get();
-            return response()->json(['success' => $availableTruck]);
+            //construction location id
+            $csResult= STOP::select('id')->where('stop','=',$request->location)->get();
+            $csId=$csResult[0]['id'];
+            //random dump yard locations, to replace it later with the ones in the database
+            $dy=[123,421,12,45,21];
+            //array of truck id's available
+            $tl=array();
+            foreach($availableTruck as $truckId){
+               $tl[]=$truckId['id'];
+            }
+
+            $result=(new DistanceController)->getRoundTripArray($csId,$tl,$dy);
+
+            return response()->json(['success' => $result]);
     }
 
     /**

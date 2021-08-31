@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('city');
             $table->integer('postal_code');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('company')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('role',['Admin','Contractor','Provider'])->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
