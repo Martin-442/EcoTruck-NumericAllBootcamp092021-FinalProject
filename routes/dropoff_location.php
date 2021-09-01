@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DropoffController;
 
-Route::middleware('isAdmin')->group(function () {
+Route::middleware('isAdmin')->middleware('verified')->group(function () {
     // http://127.0.0.1:8000/dropoff
     Route::get('/dropoff', [DropoffController::class, 'index'])->name('dropoff.index');
 
