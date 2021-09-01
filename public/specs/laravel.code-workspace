@@ -2,24 +2,6 @@
 	"folders": [
 		{
 			"path": "../.."
-		},
-		{
-			"path": "../../app/Http"
-		},
-		{
-			"path": "../../app/Models"
-		},
-		{
-			"path": "../../database/migrations"
-		},
-		{
-			"path": "../../database/seeders"
-		},
-		{
-			"path": "../../resources/views"
-		},
-		{
-			"path": "../../routes"
 		}
 	],
 	"settings": {}
