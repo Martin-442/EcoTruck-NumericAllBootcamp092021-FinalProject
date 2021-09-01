@@ -17,67 +17,40 @@ class DistanceController extends Controller
         return view('locations', ['locations'=>$locations['records']]);
     }
 
-    // the parameters that this function take are:
-    // $cs = id of construction site
-    //$tl= array of id's of truck location
-    //$dy=array of id of dump yard's location
-    public function getRoundTripArray($cs,$tl,$dy) {
-        $amountTL=count($tl);
-        $amountDY=count($dy);
-        
     
-        $TLdata = array();
-        $DYdata = array();
 
-       // $CS_id_tmp = rand(1,985);
-        $CSdata = [
-            "id" => $cs,
-            "name" => $this->getLocationName($cs)
-        ];
-        //$DY = array();
-       /* for ($d=1; $d < $amount; $d++) { // Yard locations
-            $DY_id_tmp = rand(1,985);
-         }*/
-
-        $roundtrip = array();
-        $t=0;
-        $d=0;
-        foreach ($tl as $truck_location) { // Truck locations
-            //$TL_id_tmp = rand(1,985);
-            $TLdata[$t] = [
-                "id" => $truck_location,
-                "name" => $this->getLocationName($truck_location)
+    public function getMinDistance($cs,$truckInfo_array,$ds_id_array){
+        $itineraries=array();
+        foreach($truckInfo_array as $t_info){
+            foreach($ds_id_array as $ds_id){
+                $itineraries[]=[
+                "truck_id"=> $t_info->truck_id,   
+                "truck_loc_id" => $t_info->truck_loc_id,
+                "CS_id" => $cs,
+                "dump_loc_id" => $ds_id,
+                "length" =>
+                    $this->getDistance($t_info->truck_loc_id,$cs) +
+                    $this->getDistance($cs, $ds_id) +
+                    $this->getDistance($ds_id, $t_info->truck_loc_id)
             ];
-            foreach ($dy as $dump_location)  { // Yard locations
-                $DYdata[$d] = [
-                    "id" => $dump_location,
-                    "name" => $this->getLocationName($dump_location)
-                ];
-    
-                $roundtrip[] = [
-                    "TL" => $tl[$t],
-                    "CS" => $cs,
-                    "DY" => $dy[$d],
-                    "length" =>
-                        $this->getDistance($TLdata[$t]['id'], $CSdata['id']) +
-                        // Distance::length($TLdata[$t]['id'], $CSdata['id'])
-                        $this->getDistance($CSdata['id'], $DYdata[$d]['id']) +
-                        $this->getDistance($DYdata[$d]['id'], $TLdata[$t]['id'])
-                ];
             }
         }
-        $length = array_column($roundtrip, 'length');
+        array_multisort( array_column($itineraries, "length"), SORT_ASC, $itineraries );
+        $tlName=STOP::select('stop')->where('id','=',$itineraries[0]['truck_loc_id'])->get();
+        $dyName=STOP::select('stop')->where('id','=',$itineraries[0]['dump_loc_id'])->get();
+        $csName=$csName=STOP::select('stop')->where('id','=',$itineraries[0]['CS_id'])->get();
+        $bestItinerary= (object)[
+            "truck_id"=> $itineraries[0]['truck_id'],   
+            "truck_loc_name" => $tlName[0]->stop,
+            "truck_loc_id" => $itineraries[0]['truck_loc_id'],   
+            "dump_loc_name" =>$dyName[0]->stop,   
+            "dump_loc_id" => $itineraries[0]['dump_loc_id'],   
+            "CS_name" => $csName[0]->stop,
+            "CS_id" =>$itineraries[0]['CS_id'],
+            "distance" =>round($itineraries[0]['length'],0),
+        ];
+        return $bestItinerary;
 
-        array_multisort($length, SORT_ASC, $roundtrip);
-        $csName=STOP::select('stop')->where('id','=',$roundtrip[0]['CS'])->get();
-        $dyName=STOP::select('stop')->where('id','=',$roundtrip[0]['DY'])->get();
-        $tlName=STOP::select('stop')->where('id','=',$roundtrip[0]['TL'])->get();
-        $distance=round($roundtrip[0]['length'],2);
-       
-        $itinerary = [$csName[0],$dyName[0],$tlName[0],$distance];
-        
-        return $itinerary;
-        //return view('dev.distance-json', ['distance'=> $distance]);
     }
     
 

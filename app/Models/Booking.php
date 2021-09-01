@@ -17,4 +17,7 @@ class Booking extends Model
         'fuel_reading',
         'rent_rate'
     ];
+    public function equipment_id(){
+        return $this->hasOne(Equipment::class,"id","equipment_id");// linking equipment.id with booking.equipment_id
+    }
 }

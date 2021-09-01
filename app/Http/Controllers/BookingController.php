@@ -44,9 +44,18 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeAvailableTruck(Request $request)
     {
-        //
+        $booking=new Booking;
+        $booking->construction_site=$request->CS_id;
+        $booking->equipment_id=$request->truck_id;
+        $booking->dump_site=$request->dump_loc_id;
+        $booking->booking_date=$request->date;
+        $booking->meter_reading=$request->distance;
+        $booking->company_id= auth()->user()->company_id;
+        
+        if($booking->save())
+            return Response()->json(['success' => 'your booking is successfuly done']);
     }
      /**
      * Store a newly created resource in storage.
@@ -64,29 +73,20 @@ class BookingController extends Controller
             'date' => 'required',
             
         ]);
-
         // Message
         if ($validations->fails())
             return response()->json(['errors' => $validations->errors()->all()]);
-
-            // available trucks on the day selected 
-            $bookedTruck=DB::table('bookings')->select('equipment_id')->where('booking_date', '=', $request->date);
-            $availableTruck = Equipment::select('id')
-            ->whereNotIn('id',$bookedTruck)
-            ->where('capacity','>',$request->quantity)
-            ->get();
-            //construction location id
-            $csResult= STOP::select('id')->where('stop','=',$request->location)->get();
-            $csId=$csResult[0]['id'];
+            
+           
+            $availableTruckInfo=DB::select("SELECT equipment.id as truck_id, stop.id as truck_loc_id FROM `equipment` INNER JOIN stop on equipment.truck_location=stop.stop_org WHERE equipment.id NOT IN (select bookings.equipment_id FROM bookings WHERE booking_date=$request->date)");
+           
+            
+            $csId=$request->location;
             //random dump yard locations, to replace it later with the ones in the database
             $dy=[123,421,12,45,21];
-            //array of truck id's available
-            $tl=array();
-            foreach($availableTruck as $truckId){
-               $tl[]=$truckId['id'];
-            }
+            
 
-            $result=(new DistanceController)->getRoundTripArray($csId,$tl,$dy);
+            $result=(new DistanceController)->getMinDistance($csId,$availableTruckInfo,$dy);
 
             return response()->json(['success' => $result]);
     }
