@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dropoff;
+use App\Models\Stop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,7 +29,9 @@ class DropoffController extends Controller
      */
     public function create()
     {
-        return view('dropoff.new');
+        $locations = new Stop();
+
+        return view('dropoff.new', ['locationsFormArray' => $locations->FormArray]);
     }
 
     /**
@@ -69,16 +72,10 @@ class DropoffController extends Controller
      */
     public function show($id)
     {
-        // Grab the flower
-        //$flower = DB::select('SELECT * FROM flowers WHERE id = ?', [$id]); // this returns an array
         $dropoff = Dropoff::find($id);
-
-        // How to access comments : dd($flower->comments);
-    //$comments = $dropoff->comments;
 
         // Show the form
         return view('dropoff.detail', ['dropoff' => $dropoff]);
-        //return view('dropoff.detail', ['dropoff' => $dropoff, 'comments' => $comments]);
 
     }
 
@@ -91,9 +88,10 @@ class DropoffController extends Controller
     public function edit($id)
     {
         $dropoff = Dropoff::find($id);
+        $locations = new Stop();
 
         // Show the form
-        return view('dropoff.update', ['dropoff' => $dropoff]);
+        return view('dropoff.update', ['dropoff' => $dropoff, 'locationsFormArray' => $locations->FormArray]);
     }
 
     /**

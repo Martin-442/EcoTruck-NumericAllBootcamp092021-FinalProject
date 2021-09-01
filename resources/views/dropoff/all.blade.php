@@ -18,7 +18,7 @@
     @foreach ($dropoffall as $dropoff)
         <p><strong>ID: </strong> {{ $dropoff->id }}</p>
         <p><strong>Name: </strong> {{ $dropoff->name }}</p>
-        <p><strong>Location: </strong> {{ $dropoff->location_id }}</p>
+        <p><strong>Location: </strong> {{ $dropoff->location_name->stop ?? '' }} (id: {{ $dropoff->location_id }})</p>
         <p><strong>Description: </strong> {{ $dropoff->description }}</p>
         <!-- creating link using the name of the route (check web.php file)  -->
         <a href="{{ route('dropoff.update', [$dropoff->id]) }}">Update</a>

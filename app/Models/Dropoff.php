@@ -14,9 +14,9 @@ class Dropoff extends Model
     protected $fillable = ['id', 'name', 'location_id', 'description'];
 
     // SetUp the type of relation
-    public function location_id()
+    public function location_name()
     {
-        return $this->hasOne(Stop::class, 'location_id', 'id');
+        return $this->hasOne(Stop::class, 'id', 'location_id'); // stop.id , dropoff.location_id
     }
 
 }
