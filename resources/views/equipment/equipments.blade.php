@@ -49,6 +49,17 @@
                 @endforeach
         </div>
     </div>
+    <hr>
+    <div class="booking">
+
+        @foreach ($bookings as $booking)
+        <p><strong>construction site : </strong> {{ $booking->construction_site }}</p>
+        <p><strong>Dump site : </strong> {{ $booking->dump_site }}</p>
+        <p><strong>Booking date: </strong> {{ $booking->booking_date }}</p>
+
+        <hr>
+    @endforeach
+
 
 </x-app-layout>
 

@@ -20,7 +20,13 @@
 
                         <!-- Truck Details -->
                         <h3>Welcome Provider</h3>
-                        
+                    <!--
+                        <label for="truck_type">Truck Type: </label><input type="text" value="Truck Type"><br>
+                        <label for="brand">Brand: </label><input type="text" value="Brand"><br>
+                        <label for="truck_type">Model: </label><input type="text" value="Model"><br>
+                        <label for="year">Year: </label><input type="text" value="Year"><br>
+                        <label for="truck_type">Model: </label><input type="text" value="Model"><br> -->
+
                         <div>
                             <x-label for="truck_type" :value="__('Truck Type')" />
 
