@@ -25,12 +25,7 @@ Route::middleware('isAdmin')->middleware('verified')->group(function () {
     Route::get('dashboard/admin', [AdminController::class, 'index'])->name('dashboard_admin');
 });
 
-<<<<<<< HEAD
-Route::middleware('isProvider')->group(function () {
-
-=======
 Route::middleware('isProvider')->middleware('verified')->group(function () {
->>>>>>> main
     // http://127.0.0.1:8000/dashboard/provider
     Route::get('/dashboard/provider', [ProviderController::class, 'index'])->name('dashboard_provider');
 
@@ -49,9 +44,6 @@ require __DIR__.'/auth.php';
 require __DIR__.'/email_verification.php';
 require __DIR__.'/status.php';
 
-<<<<<<< HEAD
 require __DIR__.'/equipment.php';
 
-=======
 require __DIR__.'/dropoff_location.php';
->>>>>>> main
