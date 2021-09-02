@@ -17,9 +17,13 @@ class EnsureContractorIsLoggedIn
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role == 'Contractor' || Auth::user()->role == 'Admin') {
-            return $next($request);
+        if (Auth::check()) {
+            if (Auth::user()->role == 'Contractor' || Auth::user()->role == 'Admin') {
+                return $next($request);
+            }
         }
-        return redirect('/dashboard');
+        $request->session()->put('missingAuth', 'Contractor');
+        return redirect()->route('401');
+        // https://stackoverflow.com/questions/33483532/which-to-use-authcheck-or-authuser-laravel-5-1
     }
 }
