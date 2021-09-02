@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Equipment;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Session;
+use Illuminate\Support\Facades\DB;
 
 
 class EquipmentController extends Controller
@@ -20,7 +21,11 @@ class EquipmentController extends Controller
         // show all equipments
         $equipments = Equipment::all();
         // To display a specific view :
-            return view('equipment.equipments', ['equipments' => $equipments]);
+        $company_id= auth()->user()->company_id;
+        $bookingList = DB::table('bookings')
+        ->where('company_id', '=', $company_id)
+        ->get();
+            return view('equipment.equipments', ['equipments' => $equipments], ['bookings' => $bookingList]);
     }
 
     /**
