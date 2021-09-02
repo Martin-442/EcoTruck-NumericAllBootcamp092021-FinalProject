@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Equipment;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Session;
+
 
 class EquipmentController extends Controller
 {
@@ -62,7 +64,6 @@ class EquipmentController extends Controller
 
           $equipment = new Equipment;
 
-
             $equipment->truck_type = $request->truck_type;
             $equipment->brand = $request->brand;
             $equipment->model = $request->model;
@@ -74,11 +75,10 @@ class EquipmentController extends Controller
             $equipment->city = $request->city;
             $equipment->postal_code = $request->postal_code;
             $equipment->specification = $request->specification;
-            //$equipment->created_at = $request->created_at;
-            //$equipment->updated_at = $request->updated_at;
-            $equipment->save();
 
-        return response()->json(['success' => 'Equipment was registered successfully']);
+
+            return response()->json(['success' => 'Equipment was registered successfully']);
+
     }
 
     /**
@@ -119,13 +119,22 @@ class EquipmentController extends Controller
         $equipment = Equipment::find($id);
         // now update the Equipment
 
-        $equipment->type = $request->type;
+        $equipment->truck_type = $request->truck_type;
+        $equipment->brand = $request->brand;
+        $equipment->model = $request->model;
+        $equipment->year = $request->year;
+        $equipment->fuel = $request->fuel;
         $equipment->mileage = $request->mileage;
+        $equipment->capacity = $request->capacity;
+        $equipment->truck_location = $request->truck_location;
+        $equipment->city = $request->city;
+        $equipment->postal_code = $request->postal_code;
+        $equipment->specification = $request->specification;
 
         $equipment->save();
 
         // redirect to Equipments list with a message
-        return redirect('equipments')->with('success', $request->type . ' was updated successfully');
+        return redirect('equipment')->with('success', $request->id. 'was updated successfully');
     }
 
     /**
@@ -138,6 +147,7 @@ class EquipmentController extends Controller
     {
         Equipment::destroy($id);
 
-        return redirect('equipments')->with('success', 'Equipment deleted');
+        return redirect('equipment')->with('success', 'Requested Equipment Was Deleted Successfully'); //$message['id'] ['$message' => 'Equipment Deleted Successfully', 'id' => $id]
+
     }
 }
