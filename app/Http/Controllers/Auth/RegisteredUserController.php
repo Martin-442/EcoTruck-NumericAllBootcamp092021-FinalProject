@@ -38,12 +38,13 @@ class RegisteredUserController extends Controller
             'last_name' => 'required|string|max:255',
             'city' => 'required|string|max:20',
             'postal_code' => 'required|integer',
-            // 'role' => 'required|enum ' ('Admin','Contractor','Provider'), // check with Martin
+            'role' => 'required', // check with Martin
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
+            'company_id'=>$request->company_id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'city' => $request->city,
