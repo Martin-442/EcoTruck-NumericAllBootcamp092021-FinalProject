@@ -19,11 +19,11 @@ class CreateBookingsTable extends Migration
             $table->foreign('company_id')->references('id')->on('company')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('equipment_id');
             $table->foreign('equipment_id')->references('id')->on('equipment')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('equipment_id');
-            $table->string('construction_site');
-            $table->string('dump_site');
+            $table->integer('construction_site_id');
+            $table->string('description');
+            $table->integer('dump_site_id');
             $table->date('booking_date');
-            $table->date('time');
+            $table->string('time');
             $table->integer('meter_reading')->nullable();
             $table->integer('fuel_reading')->nullable();
             $table->integer('rent_rate')->nullable();

@@ -39,6 +39,7 @@ class DistanceController extends Controller
         $tlName=STOP::select('stop')->where('id','=',$itineraries[0]['truck_loc_id'])->get();
         $dyName=STOP::select('stop')->where('id','=',$itineraries[0]['dump_loc_id'])->get();
         $csName=$csName=STOP::select('stop')->where('id','=',$itineraries[0]['CS_id'])->get();
+        $price=round($itineraries[0]['length'],0)*rand(3,7);
         $bestItinerary= (object)[
             "truck_id"=> $itineraries[0]['truck_id'],   
             "truck_loc_name" => $tlName[0]->stop,
@@ -48,6 +49,7 @@ class DistanceController extends Controller
             "CS_name" => $csName[0]->stop,
             "CS_id" =>$itineraries[0]['CS_id'],
             "distance" =>round($itineraries[0]['length'],0),
+            "price"=>$price,
         ];
         return $bestItinerary;
 

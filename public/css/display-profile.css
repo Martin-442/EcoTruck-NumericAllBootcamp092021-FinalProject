@@ -1,0 +1,9 @@
+.details{
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}

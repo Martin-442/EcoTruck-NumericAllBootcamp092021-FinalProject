@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ContractorController;
 use App\Http\Controllers\BookingController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,11 @@ use App\Http\Controllers\BookingController;
 Route::get('/', function () {
     return view('/home');
 });
+
+Route::get('/devpdf', function () {
+    return view('/invoice');
+});
+
 
 Route::middleware('isAdmin')->group(function () {
     // http://127.0.0.1:8000/dashboard/admin
@@ -44,3 +50,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 require __DIR__.'/booking.php';
+require __DIR__.'/company.php';
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
