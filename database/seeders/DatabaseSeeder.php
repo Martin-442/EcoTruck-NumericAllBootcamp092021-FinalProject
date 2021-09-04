@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(StopSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(DropoffSeeder::class);
+        $this->call(CompanySeeder::class);
+        $this->call(EquipmentSeeder::class);
+        $this->call(BookingSeeder::class);
         $this->call(DistanceSeeder::class);
     }
 }
