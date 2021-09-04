@@ -11,6 +11,7 @@
 <body>
     <h1>Equipments Details Page</h1>
     <hr>
+    <p><strong>ID : </strong> {{$equipment->id}}</p>
     <p><strong>Type : </strong> {{$equipment->truck_type}}</p>
     <p><strong>Brand : </strong> {{$equipment->brand}}</p>
     <p><strong>Model: </strong> {{$equipment->model}}</p>

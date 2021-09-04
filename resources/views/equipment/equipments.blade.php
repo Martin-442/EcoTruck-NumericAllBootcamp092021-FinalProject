@@ -12,7 +12,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Equipment') }}
+            {{ __('Equipment and Booking') }}
         </h2>
     </x-slot>
 
@@ -34,8 +34,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             @foreach ($equipments as $equipment)
-            <div class="p-6 bg-white border-b border-gray-200">
-
+                <div class="p-6 bg-white border-b border-gray-200">
                     <p><strong>Brand: </strong> {{$equipment->brand}}</p>
                     <p><strong>Model: </strong> {{$equipment->model}}</p>
                     <p><strong>Mileage: </strong> {{$equipment->mileage}}</p>
@@ -46,20 +45,33 @@
                     <a style="color:red; margin: 200px;" href="{{ route('delete.equipment', [$equipment->id])}}">Delete this equipment ?</a>
                     <hr>
                 </div>
-                @endforeach
+            @endforeach
+        </div>
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 bg-white border-b border-gray-200">
+                        Current Bookings:
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+            @if (empty($bookings))
+            <p>You have no reservations yet</p>
+            @endif
+
+            @foreach ($bookings as $booking)
+            <p><strong>Booking date: </strong> {{ $booking->booking_date }}</p>
+            <p><strong>Construction site : </strong> {{ $booking->construction_site }}</p>
+            <p><strong>Dump site : </strong> {{ $booking->dump_site }}</p>
+            <hr>
+            @endforeach
+        </div>
         </div>
     </div>
     <hr>
-    <div class="booking">
-
-        @foreach ($bookings as $booking)
-        <p><strong>construction site : </strong> {{ $booking->construction_site }}</p>
-        <p><strong>Dump site : </strong> {{ $booking->dump_site }}</p>
-        <p><strong>Booking date: </strong> {{ $booking->booking_date }}</p>
-
-        <hr>
-    @endforeach
-
 
 </x-app-layout>
 

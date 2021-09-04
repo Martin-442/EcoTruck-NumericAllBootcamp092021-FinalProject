@@ -37,12 +37,17 @@
             </div>
 
             <!-- Role -->
-            <div>
+            <div class="mt-4">
                 <x-label for="role" :value="__('Role')" />
-
-                <!-- <input type="hidden" name="role" value="0"> -->
-
-                <x-input id="role" class="block mt-1 w-full" type="enum" name="role" :value="old('role')" autofocus />
+                    <div class="block mt-1 w-full"> <!-- form-group row -->
+                        <div class="col-sm-6">
+                            <select class="block mt-1 w-full" id="role" name="role" required focus> <!-- form-control -->
+                                <option value="" disabled selected>Select Role</option>
+                                <option value="Provider">Provider</option>
+                                <option value="Contracter">Contracter</option>
+                            </select>
+                        </div>
+                    </div>
             </div>
 
             <!-- Email Address -->
@@ -50,6 +55,13 @@
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+
+            </div>
+            <div class="mt-4">
+                <x-label for="company_id" :value="__('company_id')" />
+
+                <x-input id="company_id" class="block mt-1 w-full" type="number" name="company_id" :value="old('company_id')" required />
+
             </div>
 
             <!-- Password -->
