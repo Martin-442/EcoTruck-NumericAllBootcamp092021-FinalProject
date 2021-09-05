@@ -26,8 +26,8 @@ class RegisterContractorController extends Controller
     public function createContractor1(Request $request)
     {
         return view('register.'.$this->getRole().'-step1', [
-            $this->getRole().'User' => session()->get($this->getRole().'User'),
-            $this->getRole().'Company' => session()->get($this->getRole().'Company'),
+            'sU' => session()->get($this->getRole().'User'),
+            'sC' => session()->get($this->getRole().'Company'),
         ]);
     }
 
@@ -78,8 +78,8 @@ class RegisterContractorController extends Controller
     public function createContractor2(Request $request)
     {
         return view('register.'.$this->getRole().'-step2', [
-            $this->getRole().'User' => session()->get($this->getRole().'User'),
-            $this->getRole().'Company' => session()->get($this->getRole().'Company'),
+            'sU' => session()->get($this->getRole().'User'),
+            'sC' => session()->get($this->getRole().'Company'),
         ]);
     }
 
@@ -132,12 +132,26 @@ class RegisterContractorController extends Controller
     public function createContractor3(Request $request)
     {
         return view('register.'.$this->getRole().'-step3', [
-            $this->getRole().'User' => session()->get($this->getRole().'User'),
-            $this->getRole().'Company' => session()->get($this->getRole().'Company'),
+            'sU' => session()->get($this->getRole().'User'),
+            'sC' => session()->get($this->getRole().'Company'),
         ]);
     }
 
     public function storeContractor3(Request $request)
+    {
+        // User data validation step
+    }
+
+    // Constructor Step 4
+    public function createContractor4(Request $request)
+    {
+        return view('register.'.$this->getRole().'-step4', [
+            'sU' => session()->get($this->getRole().'User'),
+            'sC' => session()->get($this->getRole().'Company'),
+        ]);
+    }
+
+    public function storeContractor4(Request $request)
     {
         $validatedUser = $request->validate([
             // 'password' => ['required', 'confirmed', Rules\Password::defaults()],

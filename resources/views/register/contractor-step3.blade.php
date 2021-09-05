@@ -1,59 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-</head>
-<body>
-    <div class="container">
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        @if(Session::has('contractorUser'))
-            <div class="">
-                <ul>
-                    <li>{{ session()->get('contractorUser')->first_name }}</li>
-                    <li>{{ session()->get('contractorUser')->last_name }}</li>
-                    <li>{{ session()->get('contractorUser')->email }}</li>
-                    <li>{{ session()->get('contractorCompany')->company_name }}</li>
-                    <li>{{ session()->get('contractorCompany')->address }}</li>
-                    <li>{{ session()->get('contractorCompany')->city }}</li>
-                    <li>{{ session()->get('contractorCompany')->zip_code }}</li>
-                    <li>{{ session()->get('contractorCompany')->phone }}</li>
-                </ul>
-            </div>
-        @endif
-
-        <!-- https://laravelcollective.com/docs/6.x/html -->
-        <!-- composer require laravelcollective/html -->
-        {!! Form::open(['method' => 'POST']) !!}
-            {{ Form::token() }}
-            {!! Form::password('password', $attributes = ['id'=>'password', 'class' => '', 'placeholder' => 'Password']) !!}
-            {!! Form::label('password','Password *', ['class' => '']) !!} <br>
-
-            {!! Form::password('password_confirmation', $attributes = ['id'=>'password_confirmation', 'class' => '', 'placeholder' => 'Password confirmation']) !!}
-            {!! Form::label('password_confirmation','Confirm your Password *', ['class' => '']) !!}
-
-            <a href="{{ URL::route('register.contractor-step2') }}" class="btn btn-default">Back</a>
-            {!! Form::button('Submit', $options = ['class' => 'btn btn-default', 'type' => 'submit']) !!}
-        {!! Form::close() !!}
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+<x-form-fullscreen>
+    <x-slot name="content">
+        <div class="mb-3">
+            <ul class="list-group bg-light">
+                <li  class="list-group-item"><span class="fw-bold">First Name:</span>
+                    {{ $sU->first_name ?? '' }}
+                </li>
+                <li class="list-group-item"><span class="fw-bold">Last Name:</span>
+                    {{ $sU->last_name ?? '' }}
+                </li>
+                <li class="list-group-item"><span class="fw-bold">Email Address:</span>
+                    {{ $sU->email ?? '' }}
+                </li>
+                <li class="list-group-item"><span class="fw-bold">Company Name:</span>
+                    {{ $sC->company_name ?? '' }}
+                </li>
+                <li class="list-group-item"><span class="fw-bold">Street:</span>
+                    {{ $sC->address ?? '' }}
+                </li>
+                <li class="list-group-item"><span class="fw-bold">City:</span>
+                    {{ $sC->city ?? '' }}
+                </li>
+                <li class="list-group-item"><span class="fw-bold">Zip Code:</span>
+                    {{ $sC->zip_code ?? '' }}
+                </li>
+                <li class="list-group-item"><span class="fw-bold">Phone Number:</span>
+                    {{ $sC->phone ?? '' }}
+                </li>
+            </ul>
+        </div>
+        <div class="mb-3">
+            <p>Is your input correct? </p>
+            <a href="{{ URL::route('register.contractor-step2') }}" class="btn btn-outline-light">Back</a>
+            <a href="{{ URL::route('register.contractor-step4') }}" class="btn btn-outline-light">Next</a>
+        </div>
+    </x-slot>
+</x-form-fullscreen>

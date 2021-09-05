@@ -1,53 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-</head>
-<body>
-    <div class="container">
+<x-form-fullscreen>
+    <x-slot name="headStyle-tmp">
+        <style>
+            [class*="col"] {
+                background-color: #33b5e5;
+                border: 2px solid white;
+                color: white;
+                text-align: center;
+            }
+            [class*="con"] {
+                background-color: #9e33e5;
+                border: 2px solid white;
+                color: white;
+                text-align: center;
+            }
+        </style>
+    </x-slot>
+    <x-slot name="content">
         @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>
         @endif
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+        <form method="POST" action="">
+            @csrf
+            <div class="mb-3">
+                <label for="company_name" class="form-label">Company Name</label>
+                <input type="text" class="form-control" id="company_name" name="company_name" placeholder="" value="{{ $sC->company_name ?? '' }}">
+                @error('company_name')<div class="alert alert-danger p-1">{{ $message }}</div>
+                @else
+                <div id="company_name" class="form-text light">The name of your company</div>
+                @enderror
             </div>
-        @endif
-        <!-- https://laravelcollective.com/docs/6.x/html -->
-        <!-- composer require laravelcollective/html -->
-        {!! Form::open(['route' => 'register.provider-step2', 'method' => 'POST']) !!}
-            {{ Form::token() }}
-            {!! Form::text('company_name', empty(session()->get('providerCompany')->company_name) ? '' : session()->get('providerCompany')->company_name, $attributes = ['id'=>'company_name', 'class' => '', 'placeholder' => 'Company Name']) !!}
-            {!! Form::label('company_name','Company Name *', ['class' => '']) !!} <br>
-
-            {!! Form::text('address', empty(session()->get('providerCompany')->address) ? '' : session()->get('providerCompany')->address, $attributes = ['id'=>'address', 'class' => '', 'placeholder' => 'Address']) !!}
-            {!! Form::label('address','Address *', ['class' => '']) !!} <br>
-
-            {!! Form::text('city', empty(session()->get('providerCompany')->city) ? '' : session()->get('providerCompany')->city, $attributes = ['id'=>'city', 'class' => '', 'placeholder' => 'City']) !!}
-            {!! Form::label('city','City *', ['class' => '']) !!} <br>
-
-            {!! Form::text('zip_code', empty(session()->get('providerCompany')->zip_code) ? '' : session()->get('providerCompany')->zip_code, $attributes = ['id'=>'zip_code', 'class' => '', 'placeholder' => 'ZIP Code']) !!}
-            {!! Form::label('zip_code','ZIP Coda *', ['class' => '']) !!} <br>
-
-            {!! Form::text('phone', empty(session()->get('providerCompany')->phone) ? '' : session()->get('providerCompany')->phone, $attributes = ['id'=>'phone', 'class' => '', 'placeholder' => 'Phone']) !!}
-            {!! Form::label('phone','Phone *', ['class' => '']) !!} <br>
-
-            <a href="{{ URL::route('register.provider-step1') }}" class="btn btn-default">Back</a>
-            {!! Form::button('Next', $options = ['class' => 'btn btn-default', 'type' => 'submit']) !!}
-        {!! Form::close() !!}
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="" value="{{ $sC->company_name ?? '' }}">
+                @error('address')<div class="alert alert-danger p-1">{{ $message }}</div>
+                @else
+                <div id="address" class="form-text light">Street and Number</div>
+                @enderror
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="zip_code" class="form-label">Zip Code</label>
+                    <input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="" value="{{ $sC->zip_code ?? '' }}">
+                    @error('zip_code')<div class="alert alert-danger p-1">{{ $message }}</div>
+                    @else
+                    <div id="zip_code" class="form-text light">Zip Code</div>
+                    @enderror
+                </div>
+                <div class="col-md-9">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="" value="{{ $sC->city ?? '' }}">
+                    @error('city')<div class="alert alert-danger p-1">{{ $message }}</div>
+                    @else
+                    <div id="city" class="form-text light">Location of your comany</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="{{ $sC->phone ?? '' }}">
+                @error('phone')<div class="alert alert-danger p-1">{{ $message }}</div>
+                @else
+                <div id="phone" class="form-text light">Your phone number</div>
+                @enderror
+            </div>
+            <div class="md-12">
+                <a href="{{ URL::route('register.provider-step1') }}" class="btn btn-outline-light">Back</a>
+                <button type="submit" class="btn btn-outline-light">Next</button>
+            </div>
+        </form>
+    </x-slot>
+</x-form-fullscreen>

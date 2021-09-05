@@ -13,48 +13,70 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 // Register Provider
-Route::get('/register/provider1', [RegisterProviderController::class, 'createProvider1'])
+$step = 1;
+Route::get('/register/provider'.$step, [RegisterProviderController::class, 'createProvider'.$step])
                 ->middleware('guest')
-                ->name('register.provider-step1');
-Route::post('/register/provider1', [RegisterProviderController::class, 'storeProvider1'])
+                ->name('register.provider-step'.$step);
+Route::post('/register/provider'.$step, [RegisterProviderController::class, 'storeProvider'.$step])
                 ->middleware('guest');
 
-Route::get('/register/provider2', [RegisterProviderController::class, 'createProvider2'])
+$step = 2;
+Route::get('/register/provider'.$step, [RegisterProviderController::class, 'createProvider'.$step])
                 ->middleware('guest')
-                ->name('register.provider-step2');
-Route::post('/register/provider2', [RegisterProviderController::class, 'storeProvider2'])
+                ->name('register.provider-step'.$step);
+Route::post('/register/provider'.$step, [RegisterProviderController::class, 'storeProvider'.$step])
                 ->middleware('guest');
 
-Route::get('/register/provider3', [RegisterProviderController::class, 'createProvider3'])
+$step = 3;
+Route::get('/register/provider'.$step, [RegisterProviderController::class, 'createProvider'.$step])
                 ->middleware('guest')
-                ->name('register.provider-step3');
-Route::post('/register/provider3', [RegisterProviderController::class, 'storeProvider3'])
+                ->name('register.provider-step'.$step);
+Route::post('/register/provider'.$step, [RegisterProviderController::class, 'storeProvider'.$step])
                 ->middleware('guest');
 
+$step = 4;
+Route::get('/register/provider'.$step, [RegisterProviderController::class, 'createProvider'.$step])
+                ->middleware('guest')
+                ->name('register.provider-step'.$step);
+Route::post('/register/provider'.$step, [RegisterProviderController::class, 'storeProvider'.$step])
+                ->middleware('guest');
+
+$step = 'final';
 Route::get('/register/provider', [RegisterProviderController::class, 'createProviderFinal'])
                 ->middleware('guest')
                 ->name('register.provider-final');
 
 
 // Register Contractor
-Route::get('/register/contractor1', [RegisterContractorController::class, 'createContractor1'])
+$step = 1;
+Route::get('/register/contractor'.$step, [RegisterContractorController::class, 'createContractor'.$step])
                 ->middleware('guest')
-                ->name('register.contractor-step1');
-Route::post('/register/contractor1', [RegisterContractorController::class, 'storeContractor1'])
+                ->name('register.contractor-step'.$step);
+Route::post('/register/contractor'.$step, [RegisterContractorController::class, 'storeContractor'.$step])
                 ->middleware('guest');
 
-Route::get('/register/contractor2', [RegisterContractorController::class, 'createContractor2'])
+$step = 2;
+Route::get('/register/contractor'.$step, [RegisterContractorController::class, 'createContractor'.$step])
                 ->middleware('guest')
-                ->name('register.contractor-step2');
-Route::post('/register/contractor2', [RegisterContractorController::class, 'storeContractor2'])
+                ->name('register.contractor-step'.$step);
+Route::post('/register/contractor'.$step, [RegisterContractorController::class, 'storeContractor'.$step])
                 ->middleware('guest');
 
-Route::get('/register/contractor3', [RegisterContractorController::class, 'createContractor3'])
+$step = 3;
+Route::get('/register/contractor'.$step, [RegisterContractorController::class, 'createContractor'.$step])
                 ->middleware('guest')
-                ->name('register.contractor-step3');
-Route::post('/register/contractor3', [RegisterContractorController::class, 'storeContractor3'])
+                ->name('register.contractor-step'.$step);
+Route::post('/register/contractor'.$step, [RegisterContractorController::class, 'storeContractor'.$step])
                 ->middleware('guest');
 
+$step = 4;
+Route::get('/register/contractor'.$step, [RegisterContractorController::class, 'createContractor'.$step])
+                ->middleware('guest')
+                ->name('register.contractor-step'.$step);
+Route::post('/register/contractor'.$step, [RegisterContractorController::class, 'storeContractor'.$step])
+                ->middleware('guest');
+
+$step = 'final';
 Route::get('/register/contractor', [RegisterContractorController::class, 'createContractorFinal'])
                 ->middleware('guest')
                 ->name('register.contractor-final');

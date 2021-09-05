@@ -27,8 +27,8 @@ class RegisterProviderController extends Controller
     {
 
         return view('register.'.$this->getRole().'-step1', [
-            $this->getRole().'User' => session()->get($this->getRole().'User'),
-            $this->getRole().'Company' => session()->get($this->getRole().'Company'),
+            'sU' => session()->get($this->getRole().'User'),
+            'sC' => session()->get($this->getRole().'Company'),
         ]);
     }
 
@@ -79,8 +79,8 @@ class RegisterProviderController extends Controller
     public function createProvider2(Request $request)
     {
         return view('register.'.$this->getRole().'-step2', [
-            $this->getRole().'User' => session()->get($this->getRole().'User'),
-            $this->getRole().'Company' => session()->get($this->getRole().'Company'),
+            'sU' => session()->get($this->getRole().'User'),
+            'sC' => session()->get($this->getRole().'Company'),
         ]);
     }
 
@@ -133,12 +133,27 @@ class RegisterProviderController extends Controller
     public function createProvider3(Request $request)
     {
         return view('register.'.$this->getRole().'-step3', [
-            $this->getRole().'User' => session()->get($this->getRole().'User'),
-            $this->getRole().'Company' => session()->get($this->getRole().'Company'),
+            'sU' => session()->get($this->getRole().'User'),
+            'sC' => session()->get($this->getRole().'Company'),
         ]);
     }
 
     public function storeProvider3(Request $request)
+    {
+        // User data validation step
+    }
+
+
+    // Provider Step 4
+    public function createProvider4(Request $request)
+    {
+        return view('register.'.$this->getRole().'-step4', [
+            'sU' => session()->get($this->getRole().'User'),
+            'sC' => session()->get($this->getRole().'Company'),
+        ]);
+    }
+
+    public function storeProvider4(Request $request)
     {
         $validatedUser = $request->validate([
             // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -171,6 +186,7 @@ class RegisterProviderController extends Controller
     //    dd($provider);
         return redirect()->route('register.'.$this->getRole().'-final');
     }
+
 
     public function createProviderFinal(Request $request) {
 

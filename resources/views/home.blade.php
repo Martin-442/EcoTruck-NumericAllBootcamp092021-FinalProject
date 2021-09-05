@@ -10,8 +10,10 @@
               </div>
               <div class="col-4 d-flex justify-content-end align-items-center">
                 @if (!Auth::guest())
-                    <a class="btn btn-sm btn-outline-primary" href="{{ route('logout') }}" data-bs-toggle="modal" data-bs-target="#logoutModal">Log out</a>
-                    <a class="btn btn-sm btn-outline-primary" href="{{ route('logout') }}">Log out</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-outline-primary">{{ __('Log Out') }}</button>
+                    </form>
                 @endif
 
               </div>
