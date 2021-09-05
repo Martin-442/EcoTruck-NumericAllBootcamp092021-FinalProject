@@ -23,4 +23,10 @@ class Stop extends Model
         return $this->all()->sortBy('stop', SORT_NATURAL | SORT_FLAG_CASE)->pluck('stop', 'id');
     }
 
+    public function getPositionAttribute() {
+        $random = rand(1,985);
+        //return 'hello';
+        return Stop::where('id', '=', '1')->first();
+    }
+
 }

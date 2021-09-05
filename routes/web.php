@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ContractorController;
+use App\Http\Controllers\DistanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use App\Http\Controllers\ContractorController;
 Route::get('/', function () {
     return view('/home');
 });
+Route::get('/geoportal', [DistanceController::class, 'getStopPosition'])->name('geoportal');
 
 Route::middleware('isAdmin')->middleware('verified')->group(function () {
     // http://127.0.0.1:8000/dashboard/admin
