@@ -9,10 +9,32 @@
                 <a class="blog-header-logo text-primary" href="#">EcoTruck</a>
               </div>
               <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="btn btn-sm btn-outline-secondary" href="#">Log in</a>
+                @if (!Auth::guest())
+                    <a class="btn btn-sm btn-outline-primary" href="{{ route('logout') }}" data-bs-toggle="modal" data-bs-target="#logoutModal">Log out</a>
+                    <a class="btn btn-sm btn-outline-primary" href="{{ route('logout') }}">Log out</a>
+                @endif
+
               </div>
             </div>
         </header>
+        <!-- Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Log out</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Do you want to log out?
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary">Yes</button>
+                </div>
+            </div>
+            </div>
+        </div>
     </x-slot>
 
     <x-slot name="navscroller">
@@ -24,46 +46,45 @@
     </x-slot>
 
     <x-slot name="jumbotron">
-        <div class="jumbotron p-3 p-md-5 text-white rounded bg-primary">
-            <div class="col-md-6 px-0">
-              <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
-              <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
+        <div class="jumbotron p-3 p-md-10 text-white rounded bg-primary">
+            <div class="col-md-12 px-0">
+              <h1 class="display-4 font-italic">Our mission: <br> Reducing CO&sup2; emission!</h1>
+              <p class="lead my-3">We believe that every km driven less on <br> Luxembourgish roads is a great win for all of us! <br> An ecomony driver by our shared goal to protect our environment <br> and to have sustainable developments!</p>
             </div>
-          </div>
+        </div>
     </x-slot>
 
     <x-slot name="providerCTA">
         <div class="col-md-6">
-            <div class="card flex-md-row mb-4 box-shadow h-md-250">
-              <div class="card-body d-flex flex-column align-items-start">
-                <strong class="d-inline-block mb-2 text-primary">Provider</strong>
-                <h3 class="mb-0">
-                  <a class="text-dark" href="#">Featured post</a>
-                </h3>
-                <div class="mb-1 text-muted">Nov 12</div>
-                <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                <a href="#">Continue reading</a>
-              </div>
-              <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17babaf04e3%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A13pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17babaf04e3%22%3E%3Crect%20width%3D%22200%22%20height%3D%22250%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2256.1953125%22%20y%3D%22131%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+            <div class="card flex-md-row mb-10 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-primary">As a Provider</strong>
+                    <h3 class="mb-0">
+                        <a class="text-dark" href="#">Join the Pool</a>
+                    </h3>
+                    <p class="card-text mb-auto">You want to contribute to the idea. <br> Reduce CO&sup2; emission and add your Truck to the pool.</p>
+                    <div class="col-md-10 cta-button">
+                        <a href="{{ route('register.provider-step1') }}" class="btn btn-lg btn-block btn-primary">Register</a>
+                        <a href="{{ route('login') }}" class="btn btn-lg btn-block btn-outline-primary">Log in</a>
+                    </div>
+                </div>
             </div>
         </div>
     </x-slot>
 
     <x-slot name="contractorCTA">
         <div class="col-md-6">
-            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card flex-md-row mb-10 box-shadow h-md-250">
                 <div class="card-body d-flex flex-column align-items-start">
-                    <strong class="d-inline-block mb-2 text-success">Contractor</strong>
+                    <strong class="d-inline-block mb-2 text-success">As a Contractor</strong>
                     <h3 class="mb-0">
-                    <a class="text-dark" href="#">Post title</a>
+                    <a class="text-dark" href="#">Responsible construction planning</a>
                     </h3>
-                    <div class="mb-1 text-muted">Nov 11</div>
-                    <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                    <div class="col-md-3 cta-button">
-                        <a href="#" class="btn btn-lg btn-block btn-default">Join the pool</a>
+                    <p class="card-text mb-auto">You're construction site needs material to be removed? Join the platform and choose the nearest truck available to your construction site.</p>
+                    <div class="col-md-10 cta-button">
+                        <a href="{{ route('register.contractor-step1') }}" class="btn btn-lg btn-block btn-primary">Register</a>
+                        <a href="{{ route('login') }}" class="btn btn-lg btn-block btn-outline-primary">Log in</a>
                     </div>
-                </div>
-                <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17babaf04e8%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A13pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17babaf04e8%22%3E%3Crect%20width%3D%22200%22%20height%3D%22250%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2256.1953125%22%20y%3D%22131%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 200px; height: 250px;">
                 </div>
             </div>
         </div>

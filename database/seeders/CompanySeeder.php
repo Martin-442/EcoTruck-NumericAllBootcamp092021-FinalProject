@@ -15,10 +15,11 @@ class CompanySeeder extends Seeder
     public function run()
     {
         $company = array(
-            array('id' => '1','company_name' => 'immotop','address' => 'lorem ipsum','city' => 'belval','zip_code' => '3455','phone' => '222222222','email' => 'lorem@gmail.com','created_at' => NULL,'updated_at' => NULL),
-            array('id' => '2','company_name' => 'second company','address' => 'lol','city' => 'wiltz','zip_code' => '3422','phone' => '88888888','email' => 'company@gmail.com','created_at' => NULL,'updated_at' => NULL)
-          );
-          DB::table('company')->insert($company);
+            array('id' => '6134baf1a350a','company_name' => 'Company','address' => '5, Rue de Luxembourg','city' => 'Walferdange','zip_code' => '3535','phone' => '+443732839474','email' => 'test@example.com','created_at' => '2021-09-05 14:41:21','updated_at' => '2021-09-05 14:41:21'),
+            array('id' => '6134bb5c01c53','company_name' => 'Company','address' => '5, Rue de Luxembourg','city' => 'Walferdange','zip_code' => '3535','phone' => '+443732839474','email' => 'test@example.com','created_at' => '2021-09-05 14:43:08','updated_at' => '2021-09-05 14:43:08')
+        );
+
+        DB::table('company')->insert($company);
 
     }
 }

@@ -18,13 +18,6 @@ class HomepageController extends Controller
         $routeCollection = Route::getRoutes();
         $routesGET = $routeCollection->getRoutesByMethod()['GET'];
         $excludeRoutes = array (
-            '_ignition/health-check' => $routesGET['_ignition/health-check'],
-            '_ignition/scripts/{script}' => $routesGET['_ignition/scripts/{script}'],
-            '_ignition/styles/{style}' => $routesGET['_ignition/styles/{style}'],
-            'sanctum/csrf-cookie' => $routesGET['sanctum/csrf-cookie'],
-            'api/user' => $routesGET['api/user']
-        );
-        $excludeRoutes = array (
             '_ignition/health-check',
             '_ignition/scripts/{script}',
             '_ignition/styles/{style}',
@@ -35,14 +28,14 @@ class HomepageController extends Controller
             'email/verify',
             'email/verify/{id}/{hash}',
             'delete/equipment/{id}',
-            'dropoff/delete/{id}',
+            'delete/dropoff/{id}',
 
             // '/',
             // 'sitemap/{debug}',
             // 'update/equipment/{id}',
             // 'show/equipment/{id}',
-            // 'dropoff/detail/{id}',
-            // 'dropoff/update/{id}'
+            // 'detail/dropoff/{id}',
+            // 'update/dropoff/{id}'
         );
         foreach ($excludeRoutes as $key => $value) {
             unset($routesGET[$value]);
@@ -64,15 +57,7 @@ class HomepageController extends Controller
                     'route' => str_replace('{id}', $lastID->id, $value->uri)
                 );
                 $routesExamples[$key] = $value;
-            } else if (str_contains($key, 'dropoff/detail/{id}')) {
-                $lastID = Dropoff::select('id')->orderby('id','desc')->first();
-                $value->action['arg'] = array(
-                    'value' => $lastID->id,
-                    'arg' => 'id',
-                    'route' => str_replace('{id}', $lastID->id, $value->uri)
-                );
-                $routesExamples[$key] = $value;
-            } else if (str_contains($key, 'dropoff/update/{id}')) {
+            } else if (str_contains($key, 'dropoff/{id}')) {
                 $lastID = Dropoff::select('id')->orderby('id','desc')->first();
                 $value->action['arg'] = array(
                     'value' => $lastID->id,

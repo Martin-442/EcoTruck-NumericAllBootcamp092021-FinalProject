@@ -8,19 +8,19 @@ Route::middleware('isAdmin')->middleware('verified')->group(function () {
     Route::get('/dropoff', [DropoffController::class, 'index'])->name('dropoff.index');
 
     // http://127.0.0.1:8000/dropoff/1
-    Route::get('/dropoff/detail/{id}', [DropoffController::class, 'show'])->name('dropoff.detail');
+    Route::get('/detail/dropoff/{id}', [DropoffController::class, 'show'])->name('dropoff.detail');
 
     // Show the form to create new
     // http://127.0.0.1:8000/dropoff/new
-    Route::get('/dropoff/new', [DropoffController::class, 'create'])->name('dropoff.new');
-    Route::post('/dropoff/new', [DropoffController::class, 'store']);
+    Route::get('/new/dropoff', [DropoffController::class, 'create'])->name('dropoff.new');
+    Route::post('/new/dropoff', [DropoffController::class, 'store']);
 
     // Show the form to update
     // http://127.0.0.1:8000/dropoff/update/1
-    Route::get('/dropoff/update/{id}', [DropoffController::class, 'edit'])->name('dropoff.update');
-    Route::post('/dropoff/update/{id}', [DropoffController::class, 'update']);
+    Route::get('/update/dropoff/{id}', [DropoffController::class, 'edit'])->name('dropoff.update');
+    Route::post('/update/dropoff/{id}', [DropoffController::class, 'update']);
 
     // http://127.0.0.1:8000/dropoff/delete/1
-    Route::get('/dropoff/delete/{id}', [DropoffController::class, 'destroy'])->name('dropoff.delete');
+    Route::get('/delete/dropoff/{id}', [DropoffController::class, 'destroy'])->name('dropoff.delete');
 
 });
