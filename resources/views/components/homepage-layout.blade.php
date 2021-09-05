@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ asset('css/themestrap.css') }}">
     <!-- https://themestr.app/theme?start=1&font=Nunito&palette=1&icons=fontawesome&border-width=3px&spacer=1.2rem&btn-border-radius=0&enable-gradients=true -->
     <!-- https://getbootstrap.com/docs/4.0/examples/blog/ -->
+
+    {{ $headerScript ?? '' }}
 </head>
 <body>
     <div class="container">
