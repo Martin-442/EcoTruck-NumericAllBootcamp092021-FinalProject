@@ -8,9 +8,9 @@
                 <div class="list-group">
                     @foreach ($routesExamples as $key => $route)
                         @if (isset($route->action['arg']))
-                        <a class="list-group-item list-group-item-action list-group-item-primary" href="{{ route($route->action['as'], array($route->action['arg']['arg'], $route->action['arg']['value']) ) }}">{{ $route->action['as']}} ({{ $route->action['arg']['arg'] }}={{ $route->action['arg']['value'] }})</a>
+                        <a class="list-group-item list-group-item-action list-group-item-primary" href="{{ $route->action['arg']['route'] }}">{{ $route->action['as']}} ({{ $route->action['arg']['arg'] }}={{ $route->action['arg']['value'] }})</a>
                         @else
-                        <a class="list-group-item list-group-item-action list-group-item-primary" href="/{{ $route->uri }}">{{ $route->uri}}</a>
+                            <a class="list-group-item list-group-item-action list-group-item-primary" href="/{{ $route->uri }}">{{ $route->uri}}</a>
                         @endif
                     @endforeach
                 </div>

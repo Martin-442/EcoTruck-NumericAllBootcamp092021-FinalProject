@@ -50,19 +50,35 @@ class HomepageController extends Controller
         $routesExamples = array();
         foreach ($routesGET as $key => $value) {
             if (str_contains($key, '{debug}')) {
-                $value->action['arg'] = array( 'value' => 'debug', 'arg' => 'debug');
+                $value->action['arg'] = array(
+                    'value' => 'debug',
+                    'arg' => 'debug',
+                    'route' => str_replace('{debug}', 'debug', $value->uri)
+                );
                 $routesExamples[$key] = $value;
             } else if (str_contains($key, 'equipment/{id}')) {
                 $lastID = Equipment::select('id')->orderby('id','desc')->first();
-                $value->action['arg'] = array( 'value' => $lastID->id, 'arg' => 'id');
+                $value->action['arg'] = array(
+                    'value' => $lastID->id,
+                    'arg' => 'id',
+                    'route' => str_replace('{id}', $lastID->id, $value->uri)
+                );
                 $routesExamples[$key] = $value;
             } else if (str_contains($key, 'dropoff/detail/{id}')) {
                 $lastID = Dropoff::select('id')->orderby('id','desc')->first();
-                $value->action['arg'] = array( 'value' => $lastID->id, 'arg' => 'id');
+                $value->action['arg'] = array(
+                    'value' => $lastID->id,
+                    'arg' => 'id',
+                    'route' => str_replace('{id}', $lastID->id, $value->uri)
+                );
                 $routesExamples[$key] = $value;
             } else if (str_contains($key, 'dropoff/update/{id}')) {
                 $lastID = Dropoff::select('id')->orderby('id','desc')->first();
-                $value->action['arg'] = array( 'value' => $lastID->id, 'arg' => 'id');
+                $value->action['arg'] = array(
+                    'value' => $lastID->id,
+                    'arg' => 'id',
+                    'route' => str_replace('{id}', $lastID->id, $value->uri)
+                );
                 $routesExamples[$key] = $value;
             } else {
                 $routesExamples[$key] = $value;
