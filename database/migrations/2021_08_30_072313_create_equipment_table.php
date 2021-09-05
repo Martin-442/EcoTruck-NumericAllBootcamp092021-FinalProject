@@ -15,17 +15,17 @@ class CreateEquipmentTable extends Migration
     {
         Schema::create('equipment', function (Blueprint $table) {
             $table->id();
-            $table->string('truck_type')->nullable();
-            $table->string('brand')->nullable();
-            $table->string('model')->nullable();
-            $table->integer('year')->nullable();
-            $table->enum('fuel',['Diesel','Petrol','Electric'])->nullable();
+            $table->string('truck_type')->nullable(true);
+            $table->string('brand')->nullable(true);
+            $table->string('model')->nullable(true);
+            $table->integer('year')->nullable(true);
+            $table->enum('fuel',['Diesel','Petrol','Electric'])->nullable(true);
             $table->integer('mileage');
-            $table->integer('capacity');
-            $table->string('truck_location',)->nullable();
+            $table->integer('capacity')->nullable(true);
+            $table->string('truck_location',)->nullable(true);
             $table->string('city');
             $table->integer('postal_code');
-            $table->string('specification')->nullable();
+            $table->string('specification')->nullable(true);
             $table->timestamps();
         });
     }

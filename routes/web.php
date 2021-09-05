@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ContractorController;
+use App\Http\Controllers\HomepageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +17,16 @@ use App\Http\Controllers\ContractorController;
 |
 */
 
-Route::get('/', function () {
-    return view('/home');
-});
+Route::get('/', [HomepageController::class, 'getHomepage'])->name('homepage');
 
 Route::middleware('isAdmin')->middleware('verified')->group(function () {
+    // Sitemap
+    Route::get('sitemap', [HomepageController::class, 'getSitemap'])->name('sitemap');
+    // debugging routes object
+    // http://127.0.0.1:8000/sitemap/debug
+    Route::get('sitemap/{debug}', [HomepageController::class, 'getSitemap'])->name('sitemap');
+
+    // Admin Dashboard
     // http://127.0.0.1:8000/dashboard/admin
     Route::get('dashboard/admin', [AdminController::class, 'index'])->name('dashboard_admin');
 });
