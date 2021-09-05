@@ -175,6 +175,15 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Laravel Collective
+         * https://laravelcollective.com/docs/6.x/html
+         * https://ekimunyime.medium.com/working-with-forms-in-laravel-8-a28283301622
+         * composer require laravelcollective/html
+         */
+        Collective\Html\HtmlServiceProvider::class,
+
+
     ],
 
     /*
@@ -228,6 +237,15 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*
+         * Laravel Collective
+         * https://laravelcollective.com/docs/6.x/html
+         * https://ekimunyime.medium.com/working-with-forms-in-laravel-8-a28283301622
+         * composer require laravelcollective/html
+         */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
