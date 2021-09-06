@@ -102,7 +102,7 @@ class CompanyController extends Controller
             'companyName'=>'required',
             'address'=>'required',
             'zip_code'=>'numeric',
-            'compayEmail'=>'required',
+            'companyEmail'=>'required',
             
         ]);
 
@@ -123,7 +123,7 @@ class CompanyController extends Controller
         $company->company_name = $request->companyName;
         $company->address = $request->address;
         $company->zip_code = $request->zip_code;
-        $company->email = $request->compayEmail;
+        $company->email = $request->companyEmail;
 
         $company->save();
         $user->save();
@@ -133,7 +133,8 @@ class CompanyController extends Controller
         if ($validations->fails())
             return response()->json(['errors' => $validations->errors()->all()]);
         
-        return response()->json(['success' => 'Profile successfully updated ']);
+        //return response()->json(['success' => 'Profile successfully updated ']);
+        return redirect('profile')->with('success', $request->name . ' was updated successfully');
     }
 
     /**
