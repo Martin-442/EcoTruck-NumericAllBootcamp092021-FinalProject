@@ -39,7 +39,7 @@
 
     </script>
 
-@foreach ($stops as $stop)
+    @foreach ($stops as $stop)
     <script>
         let position{{$stop['id']}} = [{{$stop['Y_RECHTS']}}, {{$stop['X_HOCH']}}];
         let name{{$stop['id']}} = "{{$stop['stop']}}";
@@ -48,17 +48,19 @@
             position: position{{$stop['id']}},
             positioning: 'center-center',
             // iconURL: '/media/lion.png',
-            iconURL: '/media/home-solid-small.png',
+            // iconURL: '/media/home-solid-small.png',
             // iconURL: '/media/mountain-solid-small.png',
             // iconURL: '/media/truck-pickup-solid-small.png',
+            iconURL: '{{$stop["icon"]}}',
             click: false,
             target: info2d,
             html: '<p>'+name{{$stop['id']}}+'</p>'
-
         });
-
     </script>
-@endforeach
+    @endforeach
+    <script>
+        map2d.addGPX( 'GPX/{{$stops[0]['gpx']}}', {click: false, target:'info2d'} );
+    </script>
 
 </body>
 </html>
