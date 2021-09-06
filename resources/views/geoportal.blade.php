@@ -47,7 +47,10 @@
         {
             position: position{{$stop['id']}},
             positioning: 'center-center',
-            iconURL: '/media/lion.png',
+            // iconURL: '/media/lion.png',
+            iconURL: '/media/home-solid-small.png',
+            // iconURL: '/media/mountain-solid-small.png',
+            // iconURL: '/media/truck-pickup-solid-small.png',
             click: false,
             target: info2d,
             html: '<p>'+name{{$stop['id']}}+'</p>'

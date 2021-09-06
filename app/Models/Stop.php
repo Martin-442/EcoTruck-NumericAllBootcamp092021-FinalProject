@@ -26,7 +26,21 @@ class Stop extends Model
     public function getPositionAttribute() {
         $random = rand(1,985);
         //return 'hello';
-        return Stop::where('id', '=', '1')->first();
+        return Stop::where('id', '=', $random)->first();
+    }
+
+    public function getTrkptAttribute($stopID) {
+        // <trkpt lat="49.610193746014716" lon="6.113119125366208"/>
+        $stop = Stop::where('id', '=', $stopID)->first();
+        $trkpt = '<trkpt lat="'.$stop["LON_LL84"].'" lon="'.$stop["LAT_LL84"].'"/>';
+        return $trkpt;
+    }
+
+    public function getWptAttribute($stopID) {
+        // <wpt lat="49.61052744655663" lon="6.112394928932187">
+        $stop = Stop::where('id', '=', $stopID)->first();
+        $trkpt = '<wpt lat="'.$stop["LON_LL84"].'" lon="'.$stop["LAT_LL84"].'">';
+        return $trkpt;
     }
 
 }
