@@ -6,31 +6,45 @@ use App\Models\Booking;
 use App\Models\Stop;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
  
 
 class BookingController extends Controller
-{
+{   
+    public function index1($data){
+        
+
+        $filePath = public_path("pdf/".$data);
+
+    	$headers = ['Content-Type: application/pdf'];
+
+    	$fileName = $data;
+
+    	return response()->download($filePath, $fileName, $headers);
+
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-
-    {   $company_id= auth()->user()->company_id ;
+    {    $locationList=Stop::all();
+        
+        $company_id= auth()->user()->company_id ;
         //retrieve dump_site and construction site name
         $dump_sites=DB::select("SELECT stop.stop as dump_site  FROM `bookings`,stop WHERE bookings.dump_site_id=stop.id AND bookings.company_id=$company_id");
         $bookingList=DB::select("SELECT bookings.*,stop.stop as construction_site  FROM `bookings`,stop WHERE bookings.construction_site_id=stop.id AND bookings.company_id=$company_id");
        
+        //dd($bookingList);
         for ($i=0; $i < count($bookingList); $i++) { 
             $bookingList[$i]->dump_site=$dump_sites[$i]->dump_site;
         }
-        //dd($bookingList);
         
-        return view('dashboard-contractor', ['bookings' => $bookingList]);
+        return view('dashboard-contractor', ['bookings' => $bookingList],['allLocations' => $locationList]);
     }
 
     /**
@@ -56,11 +70,13 @@ class BookingController extends Controller
         $booking=new Booking;
         $booking->construction_site_id=$request->CS_id;
         $booking->time=$request->time;
+        //dd($booking);
         $booking->truck_type=$request->truck_type;
         $booking->description=$request->description;
         $booking->equipment_id=$request->truck_id;
         $booking->dump_site_id=$request->dump_loc_id;
-        $booking->booking_date=$request->date;
+        $newDate = date("Y-m-d", strtotime($request->date));  
+        $booking->booking_date=$newDate;
         $booking->meter_reading=$request->distance;
         $booking->price=$request->price;
         $booking->company_id= auth()->user()->company_id;
@@ -71,21 +87,42 @@ class BookingController extends Controller
    
     // Generate PDF
     public function createPDF(Request $request) {
-        // retreive all records from db
-        //$data = Booking::all();
+        //store Data in booking DB
+        $booking=new Booking;
+        $booking->construction_site_id=$request->CS_id;
+        $booking->time=$request->time;
+        $booking->truck_type=$request->truck_type;
+        $booking->description=$request->description;
+        $booking->equipment_id=$request->truck_id;
+        $booking->dump_site_id=$request->dump_loc_id;
+        $newDate = date("Y-m-d", strtotime($request->date));  
+        $booking->booking_date=$newDate;
+        $booking->meter_reading=$request->distance;
+        $booking->price=$request->price;
+        $booking->company_id= auth()->user()->company_id;
+        $booking->save();
 
-        // share data to view
+        
         $data=$request;
+        
         
         
         view()->share('booking',$data);
         $pdf = PDF::loadView('invoice', $data);
+        //$pdf = PDF::loadView('invoice', $data);
         $pdf->setPaper("a4", "portrait");
-        //$pdf->setPaper(array( 0 , 0 , 226.77 , 226.77 ) );
+        
         
         // download PDF file with download method
+        $path = public_path('pdf/');
+        $fileName =  time().'.'. 'pdf' ;
+        //$fileName =  'Booking.pdf' ;
+        $pdf->save($path . '/' . $fileName);
+        // $pdfFile = public_path('pdf/'.$fileName);
+        // $filePath = public_path("pdf/Booking.pdf");
+        return $fileName;
+    	
         return $pdf->download('invoice.pdf');
-        //return Response()->json(['success' => $data->date]);
     }
      /**
      * Store a newly created resource in storage.
@@ -113,7 +150,7 @@ class BookingController extends Controller
             AND equipment.id NOT IN (select bookings.equipment_id 
             FROM bookings WHERE booking_date='$request->date')");
             if(empty($availableTruckInfo)){
-                return response()->json(['error' => "No truck available, please change type or date"]);
+                return response()->json(['errors' => "No truck available, please change type or date"]);
             }
             $csId=$request->location;
             //random dump yard locations, to replace it later with the ones in the database
@@ -124,7 +161,6 @@ class BookingController extends Controller
             return response()->json(['success' => $result]);
     }
 
-    /**
 
     /**
      * Display the specified resource.

@@ -5,8 +5,8 @@ use App\Http\Controllers\CompanyController;
 Route::middleware('isContractor')->group(function () {
     
     Route::get('/profile', [CompanyController::class, 'index'])->name('company.profile');
-    Route::get('/profile/update', [CompanyController::class, 'create'])->name('profile.update');
-    Route::post('/profile/update', [CompanyController::class, 'update']);
+    Route::get('/update', [CompanyController::class, 'create'])->name('profile.update');
+    Route::post('/update', [CompanyController::class, 'update']);
 
     
   
