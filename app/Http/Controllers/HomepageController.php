@@ -17,6 +17,8 @@ class HomepageController extends Controller
     public function testForm($step=1) {
         return view('register.provider-step'.$step);
     }
+    // temporary dev
+
 
     public function getSitemap($debug='') {
         // https://stackoverflow.com/questions/18394891/how-to-get-a-list-of-registered-route-paths-in-laravel

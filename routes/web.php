@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Auth;
 // https://medium.com/fabcoding/laravel-redirect-users-according-to-roles-and-protect-routes-bde324fe1823
 Route::get('/', [HomepageController::class, 'getHomepage'])->name('homepage');
 
+require __DIR__.'/ecogreen.php';
+
 // temporary dev
 Route::get('/testform/{step}', [HomepageController::class, 'testForm'])->name('testform');
 
