@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ContractorController;
+use App\Http\Controllers\DistanceController;
 use App\Http\Controllers\HomepageController;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,12 +19,12 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-
 // different homepage paths for auth roles handled in Middleware/RedirectIfAuthenticated
 // https://medium.com/fabcoding/laravel-redirect-users-according-to-roles-and-protect-routes-bde324fe1823
 Route::get('/', [HomepageController::class, 'getHomepage'])->name('homepage');
 
 require __DIR__.'/ecogreen.php';
+Route::get('/geoportal', [DistanceController::class, 'getStopPosition'])->name('geoportal');
 
 // temporary dev
 Route::get('/testform/{step}', [HomepageController::class, 'testForm'])->name('testform');
