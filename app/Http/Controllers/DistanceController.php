@@ -241,10 +241,13 @@ class DistanceController extends Controller
         else
             $penality+=4;
         return $penality;
+    }
+
+
     // get Data from API
     public function getAllLocations() {
         //return $locations->json();
-        return view('locations', ['locations'=>$locations['records']]);
+        //return view('locations', ['locations'=>$locations['records']]);
     }
 
     public function getStopPosition($tl = 5, $cs = 1, $dy = 5) {
