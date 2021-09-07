@@ -11,16 +11,25 @@
             <div class="row">
                <div class="col-md-3">
                   <div class="main-logo">
-                     <a href="index.html"><img src="images/logo/logo.png" alt=""></a>
+                     <a href="{{ url('/dashboard-contractor') }}"><img src="images/logo/logo.png" alt=""></a>
                   </div>
                </div>
                <div class="col-md-9 menu-column">
                 <nav class="menuzord" id="main_menu">
-                   <ul class="menuzord-menu">
-                        <li><a href="{{ route('profile.update') }}">Profile</a></li>
-                        <li><a href= "{{ url('/logout') }}">Logout</a></li>
+                  <ul class="menuzord-menu">
+                     <li><a href="{{ url('/dashboard-contractor') }}">Dashboard</a></li>
+                     <!-- <li><a href="{{ route('company.profile') }}">Profile</a></li> -->
+                     <li><a href="{{ url('/logout') }}">Logout</a></li>
+
+                      <div class="col-6"><!--extra div--></div>
+                      
+
+                    <div class="col-md-3 login_ecotruck">
+                         
+                    </div>
+                    
                        
-                    </ul>
+                  </ul>
                 </nav>
                </div>
                <div class="col-md-9 menu-column">
@@ -47,8 +56,7 @@
          <div class="row">
             <!--Form Column-->
             <div class="form-column column col-lg-6 col-md-6 col-sm-12 col-xs-12">
-               <form method="post" id="updateProfile" >
-                   @csrf
+               
                   <div class="section-title style-2">
                      <h3>Your Profile</h3>
                   </div>
@@ -84,7 +92,7 @@
                
                 <div class="form-column column col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="section-title style-2">
-                        <h3>Company Profile</h3>
+                        <h3>Company Profile </h3>
                         
                 </div>
            
@@ -99,7 +107,7 @@
                 </div>
                 <div class="form-group">
                 
-                        <span class="adon-icon"><span class="far fa-mailbox"></span></span>
+                        <span class="adon-icon"><span  class="fas fa-map-marker-alt"></span></span>
                         <p><strong> Postal Code: </strong> {{ $companyDetails->zip_code }}</p>
                 </div>
                 <div class="form-group">
@@ -114,7 +122,7 @@
                 <button  class="thm-btn thm-tran-bg"><a id="editProfile" href="{{ route('profile.update') }}">Edit profile</a></button>
              </div>
          </div>
-         </form> <br><br>
+          <br><br>
       </div>
    </section>
    <section class="call-out">
