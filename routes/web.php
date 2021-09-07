@@ -64,3 +64,7 @@ require __DIR__.'/status.php';
 require __DIR__.'/equipment.php';
 
 require __DIR__.'/dropoff_location.php';
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+// Route::get('/test', function () {
+//     return view('/test');
+// });

@@ -8,3 +8,6 @@ a#editProfile{
     display: flex;
     justify-content: space-evenly;
 }
+.dropdown:hover .dropdown-content {
+    display: block;
+  }

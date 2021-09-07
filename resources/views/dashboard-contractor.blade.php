@@ -4,7 +4,7 @@
 <link href="{{ asset('css/display-profile.css') }}" rel="stylesheet">    
 @endsection
 @section('content')
-<a href="{{ route('company.profile') }}">Profile</a>
+<!-- <a href="{{ route('company.profile') }}">Profile</a> -->
 
 <div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
    <div class="modal-dialog modal-lg" role="document">
@@ -22,6 +22,15 @@
                   <a href="index.html"><img src="images/logo/logo.png" alt=""></a>
                </div>
             </div>
+            <div class="col-md-9 menu-column">
+                <nav class="menuzord" id="main_menu">
+                   <ul class="menuzord-menu">
+                        <li><a href="{{ route('company.profile') }}">Profile</a></li>
+                        <li><a href="{{ url('/logout') }}">Logout</a></li>
+                       
+                    </ul>
+                </nav>
+               </div>
             <div class="col-md-9 menu-column">
                <!-- nav -->
             </div>
