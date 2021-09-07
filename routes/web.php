@@ -22,8 +22,12 @@ use Illuminate\Support\Facades\Auth;
 // different homepage paths for auth roles handled in Middleware/RedirectIfAuthenticated
 // https://medium.com/fabcoding/laravel-redirect-users-according-to-roles-and-protect-routes-bde324fe1823
 Route::get('/', [HomepageController::class, 'getHomepage'])->name('homepage');
+Route::get('/contact', [HomepageController::class, 'getContact'])->name('contact');
+Route::get('/aboutus', [HomepageController::class, 'getAboutus'])->name('aboutus');
 
 Route::get('/geoportal', [DistanceController::class, 'getStopPosition'])->name('geoportal');
+Route::get('/geoportal/{amount}', [DistanceController::class, 'getStopPosition'])->name('geoportal');
+
 Route::get('/distance/statistics/{amount}', [DistanceController::class, 'shortRoute'])->name('distance_statistics');
 require __DIR__.'/ecogreen.php';
 

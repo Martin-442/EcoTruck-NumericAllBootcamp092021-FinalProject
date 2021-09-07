@@ -250,31 +250,25 @@ class DistanceController extends Controller
         //return view('locations', ['locations'=>$locations['records']]);
     }
 
-    public function getStopPosition($tl = 5, $cs = 1, $dy = 5) {
+    public function getStopPosition($amount = -1, $tl = 1, $cs = 1, $dy = 1) {
         $gpx = '<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" creator="geoportail.lu" xmlns="http://www.topografix.com/GPX/1/1">
 ';
         $gpxfile = uniqid();
         $stops = array();
-
-        for ($i=0; $i < $tl; $i++) {
-            $random = rand(1,985);
-            $stop = Stop::where('id', '=', $random)->first();
-            $stopsTL[$i] = ([
-                'id' => $random,
-                'icon' => '/media/truck-pickup-solid-small.png',
-                'Y_RECHTS' => $stop->Y_RECHTS,
-                'X_HOCH' => $stop->X_HOCH,
-                'LON_LL84' => $stop->LON_LL84,
-                'LAT_LL84' => $stop->LAT_LL84,
-                'id' => $stop->id,
-                'gpx' => $gpxfile.'.gpx',
-                'batch' => $gpxfile,
-                'trackpoint' => $this->getTrkptAttribute($stop->id),
-                'stop' => 'Truck location: '.$stop->stop,
-            ]);
-            $stops[] = $stopsTL[$i];
-
+        if($amount == -1) {
+            $tl = 0;
+            $dy = 0;
         }
+        if($amount == 0) {
+            $tl = 0;
+            $dy = 1;
+        }
+        if($amount > 0) {
+            $tl = $amount;
+            $dy = $amount;
+        }
+
+        // random construction site
         $random = rand(1,985);
         $stop = Stop::where('id', '=', $random)->first();
         $stopCS = ([
@@ -292,27 +286,51 @@ class DistanceController extends Controller
         ]);
         $stops[] = $stopCS;
 
+        if ($tl > 0) {
+        // random truck locations
+            for ($i=0; $i < $tl; $i++) {
+                $random = rand(1,985);
+                $stop = Stop::where('id', '=', $random)->first();
+                $stopsTL[$i] = ([
+                    'id' => $random,
+                    'icon' => '/media/truck-pickup-solid-small.png',
+                    'Y_RECHTS' => $stop->Y_RECHTS,
+                    'X_HOCH' => $stop->X_HOCH,
+                    'LON_LL84' => $stop->LON_LL84,
+                    'LAT_LL84' => $stop->LAT_LL84,
+                    'id' => $stop->id,
+                    'gpx' => $gpxfile.'.gpx',
+                    'batch' => $gpxfile,
+                    'trackpoint' => $this->getTrkptAttribute($stop->id),
+                    'stop' => 'Truck location: '.$stop->stop,
+                ]);
+                $stops[] = $stopsTL[$i];
+            }
+        } // end if ($tl > 0)
 
-        for ($i=0; $i < $dy; $i++) {
-            $random = rand(1,985);
-            $stop = Stop::where('id', '=', $random)->first();
-            $stopsDY[$i] = ([
-                'id' => $random,
-                'icon' => '/media/mountain-solid-small.png',
-                'Y_RECHTS' => $stop->Y_RECHTS,
-                'X_HOCH' => $stop->X_HOCH,
-                'LON_LL84' => $stop->LON_LL84,
-                'LAT_LL84' => $stop->LAT_LL84,
-                'id' => $stop->id,
-                'gpx' => $gpxfile.'.gpx',
-                'batch' => $gpxfile,
-                'trackpoint' => $this->getTrkptAttribute($stop->id),
-                'stop' => 'Drop-Off location: '.$stop->stop,
-            ]);
-            $stops[] = $stopsDY[$i];
+        if ($dy > 0) {
+        // random dumpyard locations
+            for ($i=0; $i < $dy; $i++) {
+                $random = rand(1,985);
+                $stop = Stop::where('id', '=', $random)->first();
+                $stopsDY[$i] = ([
+                    'id' => $random,
+                    'icon' => '/media/mountain-solid-small.png',
+                    'Y_RECHTS' => $stop->Y_RECHTS,
+                    'X_HOCH' => $stop->X_HOCH,
+                    'LON_LL84' => $stop->LON_LL84,
+                    'LAT_LL84' => $stop->LAT_LL84,
+                    'id' => $stop->id,
+                    'gpx' => $gpxfile.'.gpx',
+                    'batch' => $gpxfile,
+                    'trackpoint' => $this->getTrkptAttribute($stop->id),
+                    'stop' => 'Drop-Off location: '.$stop->stop,
+                ]);
+                $stops[] = $stopsDY[$i];
+            }
+        } // if ($dy > 0)
 
-        }
-
+        if ( $tl > 0 && $dy > 1 && $amount != 2 && $amount != 3) {
 
         foreach ($stopsTL as $stopTL) {
             foreach ($stopsDY as $stopDY) {
@@ -332,6 +350,7 @@ class DistanceController extends Controller
 
         $gpx .= '</gpx>';
         file_put_contents('gpx/'.$gpxfile.'.gpx', $gpx);
+        } // end if ($tl > 0 || $dy > 1)
 
         return view('geoportal', ['stops' => $stops]);
     }
@@ -347,9 +366,9 @@ class DistanceController extends Controller
     public function getWptAttribute($stopID) {
         // <wpt lat="49.61052744655663" lon="6.112394928932187">
         $stop = Stop::where('id', '=', $stopID)->first();
-        $trkpt = '<wpt lat="'.$stop["LAT_LL84"].'" lon="'.$stop["LON_LL84"].'">
+        $wpt = '<wpt lat="'.$stop["LAT_LL84"].'" lon="'.$stop["LON_LL84"].'">
 ';
-        return $trkpt;
+        return $wpt;
     }
 
 }

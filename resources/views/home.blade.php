@@ -1,19 +1,12 @@
 <x-homepage-layout>
 
-    <x-slot name="navscroller">
-        <div class="nav-scroller py-1 mb-2">
-            <nav class="nav d-flex justify-content-between">
-              <a class="p-2 text-muted" href="#">World</a>
-            </nav>
-        </div>
-    </x-slot>
-
     <x-slot name="jumbotron">
         <div class="jumbotron bg-primary">
             <h1 class="display-4 text-white">Our mission: <br> Reducing CO&sup2; emission!</h1>
             <p class="lead text-white">We believe that every km driven less on <br> Luxembourgish roads is a great win for all of us!</p>
             <hr class="my-4 text-white">
             <p class="text-white">An ecomony driver by our shared goal to protect our environment and to have sustainable developments!</p>
+            <a href="{{ route('aboutus') }}" class="btn btn-lg btn-light md-2">Learn more</a>
         </div>
     </x-slot>
 
