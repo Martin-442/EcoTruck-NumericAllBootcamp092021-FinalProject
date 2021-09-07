@@ -1,0 +1,74 @@
+<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" creator="geoportail.lu" xmlns="http://www.topografix.com/GPX/1/1">
+<trk>
+    <trkseg>
+      <trkpt lat="49.72" lon="6.44"/>
+      <trkpt lat="49.91" lon="6.08"/>
+      <trkpt lat="49.8" lon="6.39"/>
+      <trkpt lat="49.72" lon="6.44"/>
+   </trkseg>
+</trk>
+<trk>
+    <trkseg>
+      <trkpt lat="49.72" lon="6.44"/>
+      <trkpt lat="49.91" lon="6.08"/>
+      <trkpt lat="49.58" lon="5.99"/>
+      <trkpt lat="49.72" lon="6.44"/>
+   </trkseg>
+</trk>
+<trk>
+    <trkseg>
+      <trkpt lat="49.72" lon="6.44"/>
+      <trkpt lat="49.91" lon="6.08"/>
+      <trkpt lat="49.76" lon="6.04"/>
+      <trkpt lat="49.72" lon="6.44"/>
+   </trkseg>
+</trk>
+<trk>
+    <trkseg>
+      <trkpt lat="49.5" lon="6.05"/>
+      <trkpt lat="49.91" lon="6.08"/>
+      <trkpt lat="49.8" lon="6.39"/>
+      <trkpt lat="49.5" lon="6.05"/>
+   </trkseg>
+</trk>
+<trk>
+    <trkseg>
+      <trkpt lat="49.5" lon="6.05"/>
+      <trkpt lat="49.91" lon="6.08"/>
+      <trkpt lat="49.58" lon="5.99"/>
+      <trkpt lat="49.5" lon="6.05"/>
+   </trkseg>
+</trk>
+<trk>
+    <trkseg>
+      <trkpt lat="49.5" lon="6.05"/>
+      <trkpt lat="49.91" lon="6.08"/>
+      <trkpt lat="49.76" lon="6.04"/>
+      <trkpt lat="49.5" lon="6.05"/>
+   </trkseg>
+</trk>
+<trk>
+    <trkseg>
+      <trkpt lat="49.81" lon="6.38"/>
+      <trkpt lat="49.91" lon="6.08"/>
+      <trkpt lat="49.8" lon="6.39"/>
+      <trkpt lat="49.81" lon="6.38"/>
+   </trkseg>
+</trk>
+<trk>
+    <trkseg>
+      <trkpt lat="49.81" lon="6.38"/>
+      <trkpt lat="49.91" lon="6.08"/>
+      <trkpt lat="49.58" lon="5.99"/>
+      <trkpt lat="49.81" lon="6.38"/>
+   </trkseg>
+</trk>
+<trk>
+    <trkseg>
+      <trkpt lat="49.81" lon="6.38"/>
+      <trkpt lat="49.91" lon="6.08"/>
+      <trkpt lat="49.76" lon="6.04"/>
+      <trkpt lat="49.81" lon="6.38"/>
+   </trkseg>
+</trk>
+</gpx>

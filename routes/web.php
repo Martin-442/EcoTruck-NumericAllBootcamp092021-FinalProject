@@ -25,6 +25,7 @@ Route::get('/', [HomepageController::class, 'getHomepage'])->name('homepage');
 
 Route::get('/geoportal', [DistanceController::class, 'getStopPosition'])->name('geoportal');
 Route::get('/distance/statistics/{amount}', [DistanceController::class, 'shortRoute'])->name('distance_statistics');
+require __DIR__.'/ecogreen.php';
 
 // temporary dev
 Route::get('/testform/{step}', [HomepageController::class, 'testForm'])->name('testform');
@@ -57,9 +58,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->middleware('verified')->name('dashboard');
 
 require __DIR__.'/auth.php'; // includes auth-register-roles.php
-// require __DIR__.'/email_verification.php';
+require __DIR__.'/email_verification.php';
 require __DIR__.'/status.php';
 
-// require __DIR__.'/equipment.php';
+require __DIR__.'/equipment.php';
 
 require __DIR__.'/dropoff_location.php';

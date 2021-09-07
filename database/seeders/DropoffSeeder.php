@@ -15,8 +15,8 @@ class DropoffSeeder extends Seeder
     public function run()
     {
         $dropoff = array(
-            array('id' => '1','name' => 'Dump Yard 1','location_id' => '10','description' => 'All kinds of material'),
-            array('id' => '2','name' => 'Dump Yard 2','location_id' => '235','description' => 'All kinds of material'),
+            array('id' => '1','name' => 'Dump Yard 1','location_id' => '557','description' => 'All kinds of material'),
+            array('id' => '2','name' => 'Dump Yard 2','location_id' => '1','description' => 'All kinds of material'),
             array('id' => '3','name' => 'Dump Yard 3','location_id' => '311','description' => 'All kinds of material'),
             array('id' => '4','name' => 'Dump Yard 4','location_id' => '425','description' => 'All kinds of material'),
             array('id' => '5','name' => 'Dump Yard 5','location_id' => '432','description' => 'All kinds of material'),

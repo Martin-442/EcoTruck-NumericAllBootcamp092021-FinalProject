@@ -20,6 +20,15 @@
 		},
 		{
 			"path": "../../routes"
+		},
+		{
+			"path": "../../app/View/Components"
+		},
+		{
+			"path": "../../vendor/laravelcollective/html/src"
+		},
+		{
+			"path": ".."
 		}
 	],
 	"settings": {}

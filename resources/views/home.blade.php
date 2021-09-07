@@ -1,17 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h1>Welcome to ECO Truck Pooling</h1>
-<a href="{{ URL::route('register') }}">Register as Provider</a><br>
-<a href="{{ URL::route('register') }}">Register as Contracter</a><br>
-<!-- <a href="{{ URL::route('register') }}">Admin</a><br> -->
-<br>
-<a href="{{ URL::route('login') }}">Login</a>
-</body>
-</html>
+<x-homepage-layout>
+
+    <x-slot name="navscroller">
+        <div class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex justify-content-between">
+              <a class="p-2 text-muted" href="#">World</a>
+            </nav>
+        </div>
+    </x-slot>
+
+    <x-slot name="jumbotron">
+        <div class="jumbotron bg-primary">
+            <h1 class="display-4 text-white">Our mission: <br> Reducing CO&sup2; emission!</h1>
+            <p class="lead text-white">We believe that every km driven less on <br> Luxembourgish roads is a great win for all of us!</p>
+            <hr class="my-4 text-white">
+            <p class="text-white">An ecomony driver by our shared goal to protect our environment and to have sustainable developments!</p>
+        </div>
+    </x-slot>
+
+    <x-slot name="providerCTA">
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-10 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-primary">As a Provider</strong>
+                    <h3 class="mb-0">
+                        Join the Pool
+                    </h3>
+                    <p class="card-text mb-auto">You want to contribute to the idea. <br> Reduce CO&sup2; emission and add your Truck to the pool.</p>
+                    <div class="col-md-10 cta-button">
+                        <a href="{{ route('register.provider-step1') }}" class="btn btn-lg btn-block btn-primary">Register</a>
+                        <a href="{{ route('login') }}" class="btn btn-lg btn-block btn-outline-primary">Log in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </x-slot>
+
+    <x-slot name="contractorCTA">
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-10 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-success">As a Contractor</strong>
+                    <h3 class="mb-0">
+                    Responsible construction planning
+                    </h3>
+                    <p class="card-text mb-auto">Your construction site needs material to be removed? Join the platform and choose the nearest truck available to your construction site.</p>
+                    <div class="col-md-10 cta-button">
+                        <a href="{{ route('register.contractor-step1') }}" class="btn btn-lg btn-block btn-primary">Register</a>
+                        <a href="{{ route('login') }}" class="btn btn-lg btn-block btn-outline-primary">Log in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </x-slot>
+
+</x-homepage-layout>

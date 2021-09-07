@@ -1,11 +1,5 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
+<x-form-fullscreen>
+    <x-slot name="content">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -17,19 +11,15 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Email')" />
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="" :value="old('email')" required autofocus>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="" :value="old('password')" required autocomplete="current-password">
             </div>
 
             <!-- Remember Me -->
@@ -42,15 +32,19 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="btn btn-primary rounded-md" href="{{ route('password.request') }}" style="margin-right: 20px;">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
 
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
+                <!-- components/button.blade.php -->
+                <button type="submit" class="btn btn-primary rounded-md">{{ __('Log in') }}</button>
+
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+
+        <div class="md-12 py-4">
+            <a href="{{ URL::route('homepage') }}" class="btn btn-primary">Back to Homepage</a>
+        </div>
+    </x-slot>
+</x-form-fullscreen>
