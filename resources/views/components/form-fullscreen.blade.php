@@ -73,7 +73,17 @@
                             <a href="{{ route('homepage') }}"><img src="{{asset('images/logo_large.png')}}" alt=""></a>
                         </div>
                     </div>
-                    <div class="col-6"><!--extra div--></div>
+                    <div class="col-6">
+                        <nav class="menuzord menuzord-responsive" id="main_menu">
+                            <a href="javascript:void(0)" class="showhide" style="display: none;"></a>
+                        <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px; display: block;">
+                             <li><a href="{{ route('homepage')}}">Home</a></li>
+                             <li><a href="{{ route('aboutus')}}">About us</a></li>
+                             <li><a href="{{ route('contact')}}">Contact</a></li>
+
+                         <li class="scrollable-fix"></li></ul>
+                     </nav>
+                    </div>
                     <div class="col-md-3 login_ecotruck">
                         @if (!Auth::guest())
                         <form method="POST" action="{{ route('logout') }}">
@@ -122,7 +132,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="footer-widget about-column">
                                         <figure class="footer-logo"><a href="index.html"><img src="{{asset('images/logo_large.png')}}" alt=""></a></figure>
-                                        <div class="text"><p>When you give to us you know your donation is making a diffe. </p> </div>
+                                        <div class="text"><p>Do not hessitate to contact us. </p> </div>
                                         <ul class="contact-info">
                                             <li><span class="icon-signs"></span>123 Rue de Rock'n'Roll <br>2322 - Belval</li>
                                             <li><span class="icon-phone-call"></span> Phone: +123-456-7890</li>

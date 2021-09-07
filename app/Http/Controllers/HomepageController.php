@@ -13,6 +13,14 @@ class HomepageController extends Controller
         return view('/home');
     }
 
+    public function getContact() {
+        return view('/contact');
+    }
+
+    public function getAboutus() {
+        return view('/about');
+    }
+
     // temporary dev
     public function testForm($step=1) {
         return view('register.provider-step'.$step);
