@@ -9,11 +9,11 @@
     </x-slot>
 
     <x-slot name="jumbotron">
-        <div class="jumbotron p-3 p-md-10 text-white rounded bg-primary">
-            <div class="col-md-12 px-0">
-              <h1 class="display-4 font-italic">Our mission: <br> Reducing CO&sup2; emission!</h1>
-              <p class="lead my-3">We believe that every km driven less on <br> Luxembourgish roads is a great win for all of us! <br> An ecomony driver by our shared goal to protect our environment <br> and to have sustainable developments!</p>
-            </div>
+        <div class="jumbotron bg-primary">
+            <h1 class="display-4 text-white">Our mission: <br> Reducing CO&sup2; emission!</h1>
+            <p class="lead text-white">We believe that every km driven less on <br> Luxembourgish roads is a great win for all of us!</p>
+            <hr class="my-4 text-white">
+            <p class="text-white">An ecomony driver by our shared goal to protect our environment and to have sustainable developments!</p>
         </div>
     </x-slot>
 
@@ -43,7 +43,7 @@
                     <h3 class="mb-0">
                     Responsible construction planning
                     </h3>
-                    <p class="card-text mb-auto">You're construction site needs material to be removed? Join the platform and choose the nearest truck available to your construction site.</p>
+                    <p class="card-text mb-auto">Your construction site needs material to be removed? Join the platform and choose the nearest truck available to your construction site.</p>
                     <div class="col-md-10 cta-button">
                         <a href="{{ route('register.contractor-step1') }}" class="btn btn-lg btn-block btn-primary">Register</a>
                         <a href="{{ route('login') }}" class="btn btn-lg btn-block btn-outline-primary">Log in</a>

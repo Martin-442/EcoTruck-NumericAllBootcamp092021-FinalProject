@@ -31,9 +31,10 @@
                 <div id="email" class="form-text light">Your email address</div>
                 @enderror
             </div>
+            <hr>
             <div class="md-12">
-                <a href="{{ URL::route('homepage') }}" class="btn btn-outline-light">Cancel</a>
-                <button type="submit" class="btn btn-outline-light">Next</button>
+                <a href="{{ URL::route('homepage') }}" class="btn btn-primary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Next</button>
             </div>
         </form>
     </x-slot>

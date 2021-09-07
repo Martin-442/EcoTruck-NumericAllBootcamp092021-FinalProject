@@ -16,13 +16,13 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="" :value="old('password')" required autocomplete="current-password">
             </div>
 
-            <button type="submit" class="btn btn-outline-light rounded-md">{{ __('Confirm') }}</button>
+            <button type="submit" class="btn btn-primary rounded-md">{{ __('Confirm') }}</button>
 
         </div>
     </form>
-
+<hr>
     <div class="md-12 py-4">
-        <a href="{{ URL::route('homepage') }}" class="btn btn-outline-light">Back to Homepage</a>
+        <a href="{{ URL::route('homepage') }}" class="btn btn-primary">Back to Homepage</a>
     </div>
 
     </x-slot>

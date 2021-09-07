@@ -13,15 +13,16 @@
         <div class="md-12">
             <form method="POST" action="{{ route('verification.send') }}" style="float:left; margin-right: 20px;">
                 @csrf
-                <button type="submit" class="btn btn-outline-light">{{ __('Resend Verification Email') }}</button>
+                <button type="submit" class="btn btn-primary">{{ __('Resend Verification Email') }}</button>
             </form>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="btn btn-outline-light">{{ __('Log Out') }}</button>
+                <button type="submit" class="btn btn-primary">{{ __('Log Out') }}</button>
             </form>
         </div>
+        <hr>
         <div class="md-12 py-4">
-            <a href="{{ URL::route('homepage') }}" class="btn btn-outline-light">Back to Homepage</a>
+            <a href="{{ URL::route('homepage') }}" class="btn btn-primary">Back to Homepage</a>
         </div>
     </x-slot>
 </x-form-fullscreen>

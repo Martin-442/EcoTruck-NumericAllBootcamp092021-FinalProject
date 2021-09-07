@@ -58,19 +58,23 @@
     <!-- mobile responsive meta  from Theme -->
 
     {{ $css ?? '' }}
+    <link rel="stylesheet" href="{{asset('css/_theme_menu.css')}}">
     {{ $headerScript ?? '' }}
 </head>
 <body>
     <div class="box-wrapper">
-        <section class="theme_menu stricky">
+
+
+        <section class="theme_menu_ecotruck stricky">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="main-logo">
-                            <a href="index.html"><img src="{{asset('images/logo_large.png')}}" alt=""></a>
+                        <div class="main-logo_ecotruck">
+                            <a href="{{ route('homepage') }}"><img src="{{asset('images/logo_large.png')}}" alt=""></a>
                         </div>
                     </div>
-                    <div class="float_right">
+                    <div class="col-6"><!--extra div--></div>
+                    <div class="col-md-3 login_ecotruck">
                         @if (!Auth::guest())
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -83,9 +87,14 @@
                         </form>
                         @endif
                     </div>
+
+
                 </div>
+
+
            </div>
         </section>
+
         <div class="container g-5 my-5">
             <div class="row g-5 justify-content-md-center">
                 <div class="col-sm p-3 bg-primary col-md-8 col-lg-6">
@@ -97,7 +106,7 @@
         <section class="call-out">
             <div class="container">
                 <div class="float_left">
-                    <h4>Join Our Mission to Improve a Child's Feature, Pet’s Life and Our Planet.</h4>
+                    <h4>Join Our Mission to reduce CO&sup2; emision on our roads.</h4>
                 </div>
             </div>
         </section>

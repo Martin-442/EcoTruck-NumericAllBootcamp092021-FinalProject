@@ -70,21 +70,18 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="main-logo_ecotruck">
-                            <a href="index.html"><img src="{{asset('images/logo_large.png')}}" alt=""></a>
+                            <a href="{{ route('homepage') }}"><img src="{{asset('images/logo_large.png')}}" alt=""></a>
                         </div>
                     </div>
                     <div class="col-6"><!--extra div--></div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 login_ecotruck">
                         @if (!Auth::guest())
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="thm-btn style-4">{{ __('Log Out') }}</button>
                         </form>
                         @else
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <button type="submit" class="thm-btn style-4">{{ __('Log In') }}</button>
-                        </form>
+                        <a href="{{ route('login') }}" class="thm-btn style-4">Log in</a>
                         @endif
                     </div>
 
@@ -111,7 +108,7 @@
         <section class="call-out">
             <div class="container">
                 <div class="float_left">
-                    <h4>Join Our Mission to Improve a Child's Feature, Pet’s Life and Our Planet.</h4>
+                    <h4>Join Our Mission to reduce CO&sup2; emision on our roads.</h4>
                 </div>
 
             </div>

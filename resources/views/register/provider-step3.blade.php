@@ -28,10 +28,11 @@
                 </li>
             </ul>
         </div>
+        <hr>
         <div class="mb-3">
-            <p>Is your input correct? </p>
-            <a href="{{ URL::route('register.provider-step2') }}" class="btn btn-outline-light">Back</a>
-            <a href="{{ URL::route('register.provider-step4') }}" class="btn btn-outline-light">Next</a>
+            <p class="text-white">Is your input correct? </p>
+            <a href="{{ URL::route('register.provider-step2') }}" class="btn btn-primary">Back</a>
+            <a href="{{ URL::route('register.provider-step4') }}" class="btn btn-primary">Next</a>
         </div>
     </x-slot>
 </x-form-fullscreen>

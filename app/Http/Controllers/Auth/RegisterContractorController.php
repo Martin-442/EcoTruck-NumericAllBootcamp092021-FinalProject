@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\Stop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
@@ -77,9 +78,11 @@ class RegisterContractorController extends Controller
 
     public function createContractor2(Request $request)
     {
+        $stop_select = Stop::select('stop', 'id')->get();
         return view('register.'.$this->getRole().'-step2', [
             'sU' => session()->get($this->getRole().'User'),
             'sC' => session()->get($this->getRole().'Company'),
+            'stops' => $stop_select,
         ]);
     }
 
@@ -190,6 +193,7 @@ class RegisterContractorController extends Controller
         $companyID = uniqid();
         if (!empty(session()->get($this->getRole().'Company'))) {
             $contractorCompany = session()->get($this->getRole().'Company');
+            // forget session
             $request->session()->forget($this->getRole().'Company');
             $contractorCompany->email = 'test@example.com';
             $contractorCompany->id = $companyID;
@@ -206,12 +210,12 @@ class RegisterContractorController extends Controller
 
         Auth::login(session()->get($this->getRole().'User'));
 
-
+        // forget session
         $request->session()->forget($this->getRole().'User');
 
         return redirect(RouteServiceProvider::HOME);
-        return view('register.'.$this->getRole().'-final', compact('request'));
-        return view('register.'.$this->getRole().'-final', ['request' => $request]);
+        // return view('register.'.$this->getRole().'-final', compact('request'));
+        // return view('register.'.$this->getRole().'-final', ['request' => $request]);
     }
 
 }

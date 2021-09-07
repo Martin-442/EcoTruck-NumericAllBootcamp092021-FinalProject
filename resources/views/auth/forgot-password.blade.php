@@ -24,14 +24,15 @@
                 </div>
 
                 <div class="md-12 mt-4">
-                    <button type="submit" class="btn btn-outline-light rounded-md">{{ __('Email Password Reset Link') }}</button>
+                    <button type="submit" class="btn btn-primary rounded-md">{{ __('Email Password Reset Link') }}</button>
                 </div>
 
             </form>
 
         </div>
+<hr>
         <div class="md-12 py-4">
-            <a href="{{ URL::route('homepage') }}" class="btn btn-outline-light">Back to Homepage</a>
+            <a href="{{ URL::route('homepage') }}" class="btn btn-primary">Back to Homepage</a>
         </div>
     </x-slot>
 </x-form-fullscreen>

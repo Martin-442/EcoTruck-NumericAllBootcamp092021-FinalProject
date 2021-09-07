@@ -21,10 +21,13 @@ theme_menu_ecotruck stricky slideIn stricky-fixed fadeInDown animated"
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(93, 73, 73, 0.12);
   }
 
+.main-logo_ecotruck {
+    /* padding-top: 20px; */
+}
 
 .theme_menu_ecotruck .container .row {
     display: flex;
-    justify-content: pace-between;
+    align-items: center;
 }
 .theme_menu_ecotruck.stricky-fixed .container .row {
     margin: 20px 0;
@@ -46,87 +49,9 @@ theme_menu_ecotruck stricky slideIn stricky-fixed fadeInDown animated"
 }
 
 
-@media (max-width: 1200px) and (min-width: 992px) {
-    /*====logo=======*/
-	.theme_menu_ecotruck2 .main-logo {
-        width: 300px;
-	}
-}
-
-
-@media (max-width: 991px) {
-	.main-logo_ecotruck2 {
-	    /* margin: 0;
-	    position: relative;
-	    top: 22px; */
-        width: 300px;
-	}
-	.theme_menu_ecotruck2 {
-		background-color: #fff;
-		padding: 0px;
-	}
-
-	.theme_menu_ecotruck2 .menu-column {
-		padding-left: 15px;
-		padding-right: 15px;
-	}
-
-	/*=========search=========*/
-
-	.theme_menu_ecotruck2 .right-column {
-	    right: 60px;
-	    top: 4px;
-	}
-	.theme_menu_ecotruck2.stricky-fixed {
-		padding: 0;
-	}
-}
-
-@media (max-width: 1200px) and (min-width: 992px) {
-    /*====logo=======*/
-	.main-logo_ecotruck2 {
-        width: 300px;
-	}
-
-	.theme_menu_ecotruck2 .menu-column {
-		padding-right: 60px;
-	}
-	.theme_menu_ecoturck2 .right-column {
-		right: 6px;
-	}
-}
-
-@media (max-width: 991px) {
-
-	/*====logo=======*/
-	.main-logo_ecotruck2 {
-	    /* margin: 0;
-	    position: relative;
-	    top: 22px; */
-        width: 300px;
-	}
-	/*====menu=======*/
-	.theme_menu_ecotruck2 {
-		background-color: #fff;
-		padding: 0px;
-	}
-
-	.theme_menu_ecotruck2 .menu-column {
-		padding-left: 15px;
-		padding-right: 15px;
-	}
-
-	/*====menu=======*/
-
-	/*=========search=========*/
-	.theme_menu_ecotruck .right-column {
-	    right: 60px;
-	    top: 4px;
-	}
-
-    /*======top-bar=========*/
-	.theme_menu_ecotruck.stricky-fixed {
-		padding: 0;
-	}
+@media (max-width: 768px) {
+    .login_ecotruck {
+        display: none;
+    }
 }
 

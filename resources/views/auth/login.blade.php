@@ -32,19 +32,19 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="btn btn-outline-light rounded-md" href="{{ route('password.request') }}" style="margin-right: 20px;">
+                    <a class="btn btn-primary rounded-md" href="{{ route('password.request') }}" style="margin-right: 20px;">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
 
                 <!-- components/button.blade.php -->
-                <button type="submit" class="btn btn-outline-light rounded-md">{{ __('Log in') }}</button>
+                <button type="submit" class="btn btn-primary rounded-md">{{ __('Log in') }}</button>
 
             </div>
         </form>
 
         <div class="md-12 py-4">
-            <a href="{{ URL::route('homepage') }}" class="btn btn-outline-light">Back to Homepage</a>
+            <a href="{{ URL::route('homepage') }}" class="btn btn-primary">Back to Homepage</a>
         </div>
     </x-slot>
 </x-form-fullscreen>

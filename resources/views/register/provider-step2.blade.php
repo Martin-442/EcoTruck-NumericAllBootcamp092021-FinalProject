@@ -48,7 +48,12 @@
                 </div>
                 <div class="col-md-9">
                     <label for="city" class="form-label">City</label>
-                    <input type="text" class="form-control" id="city" name="city" placeholder="" value="{{ $sC->city ?? '' }}">
+                    <select class="form-control" data-style="btn-primary" id="city" name="city">
+                        <option selected>Select a city</option>
+                        @foreach ($stops as $stop)
+                        <option value="{{ $stop['stop'] }}" <?php if($sC->city == $stop['stop']) { echo 'selected'; } ?>>{{ $stop['stop'] }}</option>
+                        @endforeach
+                    </select>
                     @error('city')<div class="alert alert-danger p-1">{{ $message }}</div>
                     @else
                     <div id="city" class="form-text light">Location of your comany</div>
@@ -63,9 +68,10 @@
                 <div id="phone" class="form-text light">Your phone number</div>
                 @enderror
             </div>
+            <hr>
             <div class="md-12">
-                <a href="{{ URL::route('register.provider-step1') }}" class="btn btn-outline-light">Back</a>
-                <button type="submit" class="btn btn-outline-light">Next</button>
+                <a href="{{ URL::route('register.provider-step1') }}" class="btn btn-primary">Back</a>
+                <button type="submit" class="btn btn-primary">Next</button>
             </div>
         </form>
     </x-slot>

@@ -22,10 +22,11 @@
                 <div id="password_confirmation" class="form-text light">Please retype your password</div>
                 @enderror
             </div>
+            <hr>
             <div class="md-12">
-                <a href="{{ URL::route('register.contractor-step3') }}" class="btn btn-outline-light">Back</a>
-                <a href="{{ URL::route('homepage') }}" class="btn btn-outline-light">Cancel</a>
-                <button type="submit" class="btn btn-outline-light">Submit</button>
+                <a href="{{ URL::route('register.contractor-step3') }}" class="btn btn-primary">Back</a>
+                <a href="{{ URL::route('homepage') }}" class="btn btn-primary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
 
         </form>

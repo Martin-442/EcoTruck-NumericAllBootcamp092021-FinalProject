@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\Stop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
@@ -78,9 +79,11 @@ class RegisterProviderController extends Controller
 
     public function createProvider2(Request $request)
     {
+        $stop_select = Stop::select('stop', 'id')->get();
         return view('register.'.$this->getRole().'-step2', [
             'sU' => session()->get($this->getRole().'User'),
             'sC' => session()->get($this->getRole().'Company'),
+            'stops' => $stop_select,
         ]);
     }
 
@@ -193,6 +196,7 @@ class RegisterProviderController extends Controller
         $companyID = uniqid();
         if (!empty(session()->get($this->getRole().'Company'))) {
             $providerCompany = session()->get($this->getRole().'Company');
+            // forget session
             $request->session()->forget($this->getRole().'Company');
             $providerCompany->email = 'test@example.com';
             $providerCompany->id = $companyID;
@@ -209,12 +213,12 @@ class RegisterProviderController extends Controller
 
         Auth::login(session()->get($this->getRole().'User'));
 
-
+        // forget session
         $request->session()->forget($this->getRole().'User');
 
         return redirect(RouteServiceProvider::HOME);
-        return view('register.'.$this->getRole().'-final', compact('request'));
-        return view('register.'.$this->getRole().'-final', ['request' => $request]);
+        // return view('register.'.$this->getRole().'-final', compact('request'));
+        // return view('register.'.$this->getRole().'-final', ['request' => $request]);
     }
 
 }

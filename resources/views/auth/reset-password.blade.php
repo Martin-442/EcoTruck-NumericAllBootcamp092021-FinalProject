@@ -30,15 +30,15 @@
                         <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="" required>
                     </div>
 
-
+<hr>
 
                     <div class="flex items-center justify-end mt-4">
-                        <button type="submit" class="btn btn-outline-light rounded-md">{{ __('Reset Password') }}</button>
+                        <button type="submit" class="btn btn-primary rounded-md">{{ __('Reset Password') }}</button>
                     </div>
                 </form>
-
+<hr>
         <div class="md-12 py-4">
-            <a href="{{ URL::route('homepage') }}" class="btn btn-outline-light">Back to Homepage</a>
+            <a href="{{ URL::route('homepage') }}" class="btn btn-primary">Back to Homepage</a>
         </div>
     </x-slot>
 </x-form-fullscreen>
