@@ -58,21 +58,23 @@
     <!-- mobile responsive meta  from Theme -->
 
     {{ $css ?? '' }}
+    <link rel="stylesheet" href="{{asset('css/_theme_menu.css')}}">
     {{ $headerScript ?? '' }}
 </head>
 <body>
     <div class="boxed_wrapper">
 
 
-        <section class="theme_menu stricky">
+        <section class="theme_menu_ecotruck stricky">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="main-logo">
+                        <div class="main-logo_ecotruck">
                             <a href="index.html"><img src="{{asset('images/logo_large.png')}}" alt=""></a>
                         </div>
                     </div>
-                    <div class="float_right">
+                    <div class="col-6"><!--extra div--></div>
+                    <div class="col-md-3">
                         @if (!Auth::guest())
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

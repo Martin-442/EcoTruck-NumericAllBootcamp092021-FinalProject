@@ -26,6 +26,9 @@
 		},
 		{
 			"path": "../../vendor/laravelcollective/html/src"
+		},
+		{
+			"path": ".."
 		}
 	],
 	"settings": {}
