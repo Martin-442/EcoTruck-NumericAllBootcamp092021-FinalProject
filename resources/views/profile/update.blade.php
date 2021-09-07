@@ -12,6 +12,14 @@
                   </div>
                </div>
                <div class="col-md-9 menu-column">
+                <nav class="menuzord" id="main_menu">
+                   <ul class="menuzord-menu">
+                        <li><a href="{{ route('profile.update') }}">Profile</a></li>
+                        <li><a href="{{ url('/logout') }}">Logout</a></li>
+                    </ul>
+                </nav>
+               </div>
+               <div class="col-md-9 menu-column">
                   <!-- nav -->
                </div>
                <div class="right-column">

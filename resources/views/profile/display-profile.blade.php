@@ -15,7 +15,16 @@
                   </div>
                </div>
                <div class="col-md-9 menu-column">
-                  <!-- nav -->
+                <nav class="menuzord" id="main_menu">
+                   <ul class="menuzord-menu">
+                        <li><a href="{{ route('profile.update') }}">Profile</a></li>
+                        <li><a href= "{{ url('/logout') }}">Logout</a></li>
+                       
+                    </ul>
+                </nav>
+               </div>
+               <div class="col-md-9 menu-column">
+               <!-- <a href="{{ url('/logout') }}"> logout </a> -->
                </div>
                <div class="right-column">
                   <div class="right-area">
@@ -24,6 +33,7 @@
             </div>
          </div>
       </section>
+      
    </div>
    <div class="inner-banner has-base-color-overlay text-center" style="background: url(images/background/4.jpg); height:50px;">
       <div class="container">
