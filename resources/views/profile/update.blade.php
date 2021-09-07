@@ -80,7 +80,7 @@
                 </div>
                 <div class="form-group">
                         <span class="adon-icon"><span class="fas fa-map-marker-alt"></span></span>
-                        <input type="number" name="zip_code" value="{{ $companyDetails->zip_code}}">
+                        <input type="text" name="zip_code" value="{{ $companyDetails->zip_code}}">
                 </div>
                 <div class="form-group">
                         <span class="adon-icon"><span class="fa fa-envelope-o"></span></span>
@@ -100,7 +100,7 @@
    <section class="call-out">
       <div class="container">
          <div class="text-center">
-            <h4>Join Our Mission to Improve a Child's Feature, Pet’s Life and Our Planet.</h4>
+            <h4>Our mission: Reducing CO&sup2; emission!</h4>
          </div>
       </div>
    </section>

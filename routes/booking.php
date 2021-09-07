@@ -10,6 +10,7 @@ Route::middleware('isContractor')->group(function () {
     Route::put('/dashboard-contractor', [BookingController::class, 'storeAvailableTruck']);
     Route::post('/download/pdf', [BookingController::class, 'createPDF']);
 
-    Route::get('/file-download/{id}', [BookingController::class, 'index1']);
+    Route::get('/file-download/{id}', [BookingController::class, 'downloadPdf']);
+  
     
 });

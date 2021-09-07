@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 
 class BookingController extends Controller
 {   
-    public function index1($data){
+    public function downloadPdf($data){
         
 
         $filePath = public_path("pdf/".$data);
@@ -82,7 +82,8 @@ class BookingController extends Controller
         $booking->company_id= auth()->user()->company_id;
         
         if($booking->save())
-            return Response()->json(['success' => 'your booking is successfuly done']);
+        //return redirect('dashboardd-contractor',['success' => 'your booking is successfuly done']);
+        return Response()->json(['success' => 'your booking is successfuly done']);
     }
    
     // Generate PDF
@@ -109,17 +110,14 @@ class BookingController extends Controller
         
         view()->share('booking',$data);
         $pdf = PDF::loadView('invoice', $data);
-        //$pdf = PDF::loadView('invoice', $data);
+      
         $pdf->setPaper("a4", "portrait");
-        
-        
-        // download PDF file with download method
+    
         $path = public_path('pdf/');
         $fileName =  time().'.'. 'pdf' ;
-        //$fileName =  'Booking.pdf' ;
+   
         $pdf->save($path . '/' . $fileName);
-        // $pdfFile = public_path('pdf/'.$fileName);
-        // $filePath = public_path("pdf/Booking.pdf");
+       
         return $fileName;
     	
         return $pdf->download('invoice.pdf');
@@ -141,7 +139,7 @@ class BookingController extends Controller
             'truck_type' => 'required',
             
         ]);
-        // Message
+    
         if ($validations->fails())
             return response()->json(['errors' => $validations->errors()->all()]);
             

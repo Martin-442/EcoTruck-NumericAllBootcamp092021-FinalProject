@@ -30,7 +30,6 @@ class CreateEquipmentTable extends Migration
             $table->integer('postal_code')->nullable();
             $table->string('specification')->nullable();
             $table->timestamps();
-
             
             
         });

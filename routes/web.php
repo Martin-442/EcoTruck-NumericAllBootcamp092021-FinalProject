@@ -22,10 +22,6 @@ Route::get('/', function () {
     return view('/home');
 });
 
-Route::get('/devpdf', function () {
-    return view('/invoice');
-});
-
 
 Route::middleware('isAdmin')->group(function () {
     // http://127.0.0.1:8000/dashboard/admin
@@ -54,3 +50,8 @@ require __DIR__.'/company.php';
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// Route::get('/test', function () {
+//     return view('/test');
+// });

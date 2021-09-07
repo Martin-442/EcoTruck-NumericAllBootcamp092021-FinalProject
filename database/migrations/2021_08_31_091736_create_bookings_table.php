@@ -16,12 +16,14 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('company_id');
+            $table->enum('truck_type',['Standard','Semi trailer','Truck Pup','Dump Truck']);
             $table->foreign('company_id')->references('id')->on('company')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('equipment_id');
             $table->foreign('equipment_id')->references('id')->on('equipment')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('construction_site_id');
             $table->string('description');
             $table->integer('dump_site_id');
+            $table->integer('price');
             $table->date('booking_date');
             $table->string('time');
             $table->integer('meter_reading')->nullable();
