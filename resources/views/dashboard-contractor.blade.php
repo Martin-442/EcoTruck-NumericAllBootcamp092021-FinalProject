@@ -1,6 +1,8 @@
 @extends('layouts.dash')
 @section('title', 'Dashboard')
-
+@section('css')
+<link href="{{ asset('css/display-profile.css') }}" rel="stylesheet">    
+@endsection
 @section('content')
 <a href="{{ route('company.profile') }}">Profile</a>
 
@@ -29,8 +31,8 @@
             </div>
          </div>
       </div>
+   </section>
 </div>
-</section>
 <div class="inner-banner has-base-color-overlay text-center" style="background: url(images/background/4.jpg); height:50px;">
    <div class="container">
       <div class="box">
@@ -101,7 +103,7 @@
                                           <div class="input-group input-group-sm">
                                              <span class="input-group-addon" id="sizing-addon1" >Construction site</span>
                                              <select class="form-control" id="exampleFormControlSelect1" name="location" aria-describedby="sizing-addon1" >
-                                                <option selected="selected">Choose construction location</option>
+                                                
                                                 @foreach($allLocations as $location)
                                                 <option value="<?=$location['id']?>"><?=$location['stop']?></option>
                                                 @endforeach
@@ -126,7 +128,7 @@
                                           </div>
                                        </div>
                                        <div class="form-group date">
-                                          <input placeholder="21/08/217" type="text" id="datepicker" name="date" ><i class="fa fa-calendar"></i>
+                                          <input placeholder="09/09/2021" type="text" id="datepicker" name="date" ><i class="fa fa-calendar"></i>
                                        </div>
                                        <div class="form-group">
                                           <span class="input-group-addon" id="sizing-addon1" >Description</span>
@@ -179,7 +181,7 @@
                </div>
                <h4></h4>
                <form id="modal-form" method="put" class="donate-form default-form" onsubmit='return false;' action="/dashboard-contractor">
-
+               
                   <!-- <h3>Booking Information</h3> -->
                   <div class="form-bg">
                      <div class="row clearfix">
@@ -189,7 +191,7 @@
                               <p id="construction_site"></p>
                            </div>
                         </div>
-
+                  
                         <div class="col-md-6 col-sm-6 col-xs-12">
                            <div class="form-group">
                               <p> <strong>Dump Site :</strong> </p>
@@ -208,21 +210,17 @@
                               <p id="price"></p>
                            </div>
                         </div>
-                        <!-- <div class="col-md-6 col-sm-6 col-xs-12">
-                           <div class="form-group">
-                              <p>Phn Num*</p>
-                              <input type="text" name="fname" placeholder="">
-                           </div>
-                        </div> -->
+                     
                      </div>
                   </div>
                   <br>
-
-                  <div class="center">
-                    <button  type="submit" id="btnForm" class="thm-btn" >Book</input>
-                  </div>
-                  <div class="left">
-                    <button  type="submit" id="download" class="thm-btn" onclick=downloadBooking(dataJson) >Book & Download confirmation</input>
+                  <div class="bookBtn">
+                     <div class="float_left">
+                        <button  type="submit" id="btnForm" class="thm-btn" >Book</input>
+                     </div>
+                     <div class="center">
+                        <button  type="submit" id="download" class="thm-btn" onclick=downloadBooking(dataJson) >Book & Download confirmation</input>
+                     </div>
                   </div>
                </form>
             </div>
@@ -232,65 +230,6 @@
    </div>
   </div>
 
-
-   <!-- preloader
-<div class="preloader"></div>
-   <div id="donate-popup" class="donate-popup">
-      <div class="close-donate theme-btn"><span class="fa fa-close"></span></div>
-      <div class="popup-inner">
-         <div class="container">
-            <div class="donate-form-area">
-               <div class="section-title center">
-                  <h2 id="modal-title"></h2>
-               </div>
-               <h4></h4>
-               <form id="modal-form" action="#" class="donate-form default-form">
-
-                  <h3>Profile Information</h3>
-                  <div class="form-bg">
-                     <div class="row clearfix">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                           <div class="form-group">
-                              <p>Your Name*</p>
-                              <input type="text" name="fname" placeholder="">
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                           <div class="form-group">
-                              <p>Your test</p>
-                              <input type="text" name="fname" placeholder="">
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                           <div class="form-group">
-                              <p>Email*</p>
-                              <input type="text" name="fname" placeholder="">
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                           <div class="form-group">
-                              <p>Address*</p>
-                              <input type="text" name="fname" placeholder="">
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                           <div class="form-group">
-                              <p>Phn Num*</p>
-                              <input type="text" name="fname" placeholder="">
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div class="center"><button class="thm-btn" type="submit">Donate Now</button></div>
-               </form>
-            </div>
-         </div>
-      </div>
-   </div>
-   </div>
-   </div> -->
-
 <!-- end of template file -->
 
 <script>
@@ -298,10 +237,11 @@ let dataJson= {};
 
 function renderModal(responseJson){
   $('#modal-form').show();
+  console.log(responseJson);
   document.getElementById("modal-title").innerHTML="Booking details";
   document.getElementById("construction_site").innerHTML=responseJson.CS_name;
   document.getElementById("dump_site").innerHTML=responseJson.dump_loc_name;
-  document.getElementById("distance").innerHTML=responseJson.distance;
+  document.getElementById("distance").innerHTML=responseJson.distance +" km";
   document.getElementById("price").innerHTML=responseJson.price +" €";
 
   //put the data in dataJson
@@ -316,17 +256,22 @@ function renderModal(responseJson){
   dataJson.dump_loc_id=responseJson.dump_loc_id;
   dataJson.CS_name=responseJson.CS_name;
   dataJson.CS_id=responseJson.CS_id;
-
+  
   dataJson.distance=responseJson.distance;
   dataJson.price=responseJson.price;
-  //console.log("heeeeheh");
-  //console.log(dataJson);
-
 }
 
-function renderEmptyModal(errorMsg){
+function renderEmptyModal(responseJson){
+   let errorData="";
+   if(Array.isArray(responseJson)){
+      responseJson.forEach(element => {
+         errorData = errorData +"<br>"+element;
+      });
+   }else{
+      errorData=responseJson;
+   }
   $('#modal-form').hide();
-  document.getElementById("modal-title").innerHTML='sorry :( ' + errorMsg;
+  document.getElementById("modal-title").innerHTML= errorData;
 }
 
   dataJson._token="{{ csrf_token() }}";
@@ -341,7 +286,7 @@ function renderEmptyModal(errorMsg){
       success: function (response) {
         console.log(response);
         if(response.errors){
-          renderEmptyModal(response.error);
+          renderEmptyModal(response.errors);
         }else{
           renderModal(response.success);
         }
@@ -353,83 +298,19 @@ function renderEmptyModal(errorMsg){
 
 });
 
-  //  /* Wait for the page to be loaded/ready */
-  //  $(function() {
-  //      $('#call').submit(function(e) {
-  //          e.preventDefault();
-  //          let formData = new FormData(this);
-  //          //dataJson.form= this;
-
-  //          $.ajax({
-  //                  url: "dashboard-contractor",
-  //                  method: 'post',
-  //                  data: formData,
-  //                  processData: false,
-  //                  contentType: false,
-  //                  dataType: 'json'
-  //              })
-  //              .done(function(result) {
-
-  //                  $('#results').html('');
-  //                  // Did we get errors or success ?
-  //                  if (result.error) {
-  //                          $('#results').html(result.error);
-
-  //                  } else if (result.success) {
-
-  //                      const resultDiv = document.getElementById("results");
-  //                      let node = document.createElement("ul");
-  //                      dataJson.description=document.getElementById("description").value;
-  //                      dataJson.date=document.getElementById("date").value;
-  //                      dataJson.truck_type=document.getElementById("truck_type").value;
-  //                      //console.log(dataJson.truck_type);
-  //                      dataJson.time=document.getElementById("time").value;
-  //                      dataJson.truck_id=result.success.truck_id;
-  //                      dataJson.truck_loc_name=result.success.truck_loc_name;
-  //                      dataJson.truck_loc_id=result.success.truck_loc_id;
-  //                      dataJson.dump_loc_name=result.success.dump_loc_name;
-  //                      dataJson.dump_loc_id=result.success.dump_loc_id;
-  //                      dataJson.CS_name=result.success.CS_name;
-  //                      dataJson.CS_id=result.success.CS_id;
-  //                      dataJson.distance=result.success.distance;
-  //                      dataJson.price=result.success.price;
-
-  //                     //  let text = '<B>CS_name:</B> '+result.success.CS_name
-  //                     //              +'<br><B>DY_name:</B> '+result.success.dump_loc_name
-  //                     //              + '<br> <B>TL_name:</B> ' + result.success.truck_loc_name
-  //                     //              +' <br><B>Distance:</B> ' + result.success.distance
-  //                     //              +' <br><B>Price:</B> ' + result.success.price+'€'
-  //                     //              + ' <br>  <button id="myBtn"  onclick="storeTruck(dataJson)" >Book it</button>';
-
-  //                     //  console.log(result.success);
-  //                     //  let liNode = document.createElement("li");
-  //                     //  liNode.innerHTML = text;
-  //                     //  node.appendChild(liNode);
-  //                     //  resultDiv.appendChild(node);
-  //                  }
-  //              })
-  //              .fail(function(result) {
-  //                  console.log('AJAX FAILED', result);
-  //              })
-  //      });
-
-
-
-
-  //  });
-
-
+  //  
+  
   $('#btnForm').on('click', function (e) {
     dataJson._token={};
     dataJson._token="{{ csrf_token() }}";
     e.preventDefault(); //prevent to reload the page
-
+    
     $.ajax({
       type: 'PUT', //hide url
       url: 'dashboard-contractor', //your form validation url
       data: dataJson, //USE THE ID WE SET IN THE FORM
       success: function (response) {
-
+        
         console.log(response);
         console.log("youpiiii");
       },
@@ -437,75 +318,50 @@ function renderEmptyModal(errorMsg){
           console.log("error on saving");
       }
     });
-
+      
   });
 
-
-
-
   function downloadBooking(json){
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            url: "/download/pdf",
-            method: 'post',
-            data: json,
-            xhrFields: {
-              //responseType: 'blob',
-              crossDomain: false,
-              'X-Requested-With': 'XMLHttpRequest'
-            },
+   $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        },
+        url: "/download/pdf",
+       
+        data:json,
+        method: 'post',
+        cache: false,
+        xhrFields: {
+        responseType: '',
+        crossDomain: false,
+        
+        },
+        
             success: function (data) {
-              var blob = new Blob([data], { type: 'application/pdf' });
-              var link = document.createElement('a');
-              link.href = window.URL.createObjectURL(blob);
-              link.download = "Sample.pdf";
+               //var blob = new Blob([data], { type: 'application/pdf' });
+               var link = document.createElement('a');
+               link.href = "http://localhost:8000/file-download/"+data;
+               console.log(link.href);
+               link.download = data;
 
-              link.click();
+               link.click();
+               link.remove();
+               
 
             },
             error: function(result) {
                 console.log("error on printing");
             }
-        });
+            
+            
+         
+         });
+               
+      }
 
-  }
-
-
-  /*
-  function downloadBooking(json){
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            url: "/download/pdf",
-            method: 'post',
-            data: json,
-            success: function (data) {
-                let a = document.createElement('a');
-                let binaryData = [];
-                binaryData.push(data);
-                console.log(data);
-
-                let url = window.URL.createObjectURL(new Blob(binaryData, {type: "application/pdf"}));
-                a.href = url;
-                a.download = "BookingConf.pdf";
-                a.style.display = 'none';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                window.URL.revokeObjectURL(url);
-            },
-            error: function(result) {
-                console.log("error on printing");
-            }
-        });
-
-  }
-  */
-
-
+  
+   
+  
 </script>
-<!-- jQuery -->
+
 @endsection
