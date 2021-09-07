@@ -25,7 +25,7 @@
 <body>
 <div class="container">
     <div id="map2d" class="map2d"></div>
-    <div id="info2d"><p>info</p></div>
+    <div id="info2d"><p>Move your mouse to an icon</p></div>
 </div>
 
 
@@ -59,7 +59,7 @@
     </script>
     @endforeach
     <script>
-        map2d.addGPX( 'GPX/{{$stops[0]['gpx']}}', {click: false, target:'info2d'} );
+        map2d.addGPX( '/GPX/{{$stops[0]['gpx']}}', {click: false, target:'info2d', fit: false});
     </script>
 
 </body>

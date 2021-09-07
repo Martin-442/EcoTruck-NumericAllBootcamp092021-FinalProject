@@ -26,6 +26,8 @@ Route::get('/contact', [HomepageController::class, 'getContact'])->name('contact
 Route::get('/aboutus', [HomepageController::class, 'getAboutus'])->name('aboutus');
 
 Route::get('/geoportal', [DistanceController::class, 'getStopPosition'])->name('geoportal');
+Route::get('/geoportal/{amount}', [DistanceController::class, 'getStopPosition'])->name('geoportal');
+
 Route::get('/distance/statistics/{amount}', [DistanceController::class, 'shortRoute'])->name('distance_statistics');
 require __DIR__.'/ecogreen.php';
 
