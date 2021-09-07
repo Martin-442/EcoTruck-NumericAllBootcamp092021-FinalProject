@@ -31,11 +31,11 @@ class DistanceController extends Controller
                 'X_HOCH' => $stop->X_HOCH,
                 'LON_LL84' => $stop->LON_LL84,
                 'LAT_LL84' => $stop->LAT_LL84,
-                'stop' => $stop->stop,
                 'id' => $stop->id,
                 'gpx' => $gpxfile.'.gpx',
                 'batch' => $gpxfile,
-                'trackpoint' => $this->getTrkptAttribute($stop->id)
+                'trackpoint' => $this->getTrkptAttribute($stop->id),
+                'stop' => 'Truck location: '.$stop->stop,
             ]);
             $stops[] = $stopsTL[$i];
 
@@ -49,11 +49,11 @@ class DistanceController extends Controller
             'X_HOCH' => $stop->X_HOCH,
             'LON_LL84' => $stop->LON_LL84,
             'LAT_LL84' => $stop->LAT_LL84,
-            'stop' => $stop->stop,
             'id' => $stop->id,
             'gpx' => $gpxfile.'.gpx',
             'batch' => $gpxfile,
-            'trackpoint' => $this->getTrkptAttribute($stop->id)
+            'trackpoint' => $this->getTrkptAttribute($stop->id),
+            'stop' => 'Construction site: '.$stop->stop,
         ]);
         $stops[] = $stopCS;
 
@@ -68,11 +68,11 @@ class DistanceController extends Controller
                 'X_HOCH' => $stop->X_HOCH,
                 'LON_LL84' => $stop->LON_LL84,
                 'LAT_LL84' => $stop->LAT_LL84,
-                'stop' => $stop->stop,
                 'id' => $stop->id,
                 'gpx' => $gpxfile.'.gpx',
                 'batch' => $gpxfile,
-                'trackpoint' => $this->getTrkptAttribute($stop->id)
+                'trackpoint' => $this->getTrkptAttribute($stop->id),
+                'stop' => 'Drop-Off location: '.$stop->stop,
             ]);
             $stops[] = $stopsDY[$i];
 
