@@ -15,7 +15,7 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_id');
+            $table->string('company_id');
             $table->enum('truck_type',['Standard','Semi trailer','Truck Pup','Dump Truck']);
             $table->foreign('company_id')->references('id')->on('company')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('equipment_id');

@@ -15,8 +15,8 @@ class CreateEquipmentTable extends Migration
     {
         Schema::create('equipment', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('company')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('company_id');
+            //$table->foreign('company_id')->references('id')->on('company')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('truck_type',['Standard','Semi trailer','Truck Pup','Dump Truck']);
             $table->string('brand')->nullable();
             $table->string('model')->nullable();
@@ -30,8 +30,8 @@ class CreateEquipmentTable extends Migration
             $table->integer('postal_code')->nullable();
             $table->string('specification')->nullable();
             $table->timestamps();
-            
-            
+
+
         });
     }
 
