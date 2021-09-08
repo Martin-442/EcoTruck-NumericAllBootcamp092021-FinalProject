@@ -1,0 +1,13 @@
+a#editProfile{
+    text-decoration: none;
+    color: white;
+    
+}
+
+.bookBtn{
+    display: flex;
+    justify-content: space-evenly;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+  }
