@@ -6,6 +6,9 @@
         <meta name="description" content="CSS histogramme" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ asset('css/distance.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <style>
             .statistic {
@@ -57,7 +60,7 @@
             <div class="data data{{ $key }}" style="height:{{ $route['shortest'] }}px;"><div class="data_short" style="height:{{ $route['longest'] }}px;"></div></div>
         @endforeach
         <?php
-        $kilometer_consumtion = 1.5;
+        $kilometer_consumtion = 35;
         $total = 0;
         $total_run = 0;
         foreach ($route_difference_array as $key => $value) {
@@ -87,10 +90,11 @@
         ?>
 
     </div>
-
+    <!--diesel : 1 liter diesel is  835 grammes. Diesel is made 86.2% of carbone (C), it means 720 per liter diesel. For combustion of this C en CO2, 1920 g d'oxygène is necessary. We then have 720 + 1920 = 2640 g of  CO2 per liter diesel.
+    A Truck with a comsuption of 35 litre/100km release 35L x 2640 g/L / 100 (per km) = 132 g CO2/km. -->
     <div class="container">
-        <div>Total average distance between longest and shortes routes after <?php echo $total_run; ?> runs: <?php echo $total / $total_run; ?> km</div>
-        <div>The planet is save of about: <?php echo $total / $total_run * $kilometer_consumtion; ?> kg CO&sup2;</div>
+        <div>Total average distance between longest and shortes route after <?php echo $total_run; ?> runs: <?php echo $total / $total_run; ?> km <span class="fas fa-route"></span></div>
+        <div>The planet is save of about: <?php echo round($total / $total_run * ($kilometer_consumtion*2640/100)/1000 , 2); ?> kg CO2 <span class="fas fa-smog"></span></div>
     </div>
 
 

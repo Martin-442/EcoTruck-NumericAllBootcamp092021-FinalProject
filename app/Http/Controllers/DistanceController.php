@@ -52,7 +52,7 @@ class DistanceController extends Controller
 
         while ($serie_Number<=$number_Of_Run)
         {
-            echo "<b>Serie number $serie_Number</b><br>";
+            echo "<br><b>Serie number $serie_Number</b><br><br>";
             $arrayTL = array();
             $arrayDY = array();
             $arrayRoute = array();
@@ -138,20 +138,7 @@ class DistanceController extends Controller
 
         } // end while on $number_Of_Run
 
-
-        // foreach ($route_difference_statistic as $value) {
-        //     $route_Value_Gain += $value;
-        // }
-        //echo  $route_Value;
-        ?>
-        <!-- <div style="background-color: white;"><h1>Diagramme Km Gain</h1>
-           <div style=" width: 300px; height: 300px; border-radius: 50%; background: yellowgreen; background-image: linear-gradient(to right, transparent 50%, #655 0);"></div>
-        </div> -->
-        <?php
-        /*        echo '<pre>';
-        var_dump($arrayRoute);
-        echo '</pre>';
-
+        /*
         // The Route array ist sort reggardind the Value of length
         foreach ($arrayRoute as $key => $row) {
             $lenght[$key] = $row['lenght'];
@@ -177,45 +164,27 @@ class DistanceController extends Controller
 
 
     public function show_Statistique($arrayRoute){
-        echo '<br><b> STATISTIC</b><br>';
+        echo '<br><b> STATISTIC</b></br>';
         $route_Difference = $arrayRoute[count($arrayRoute)-1]['lenght']-$arrayRoute[0]['lenght'];
-        echo 'The shorttest route is: '.$arrayRoute[0]['lenght'].'<br>';
-        echo 'The longgest route is: '.$arrayRoute[count($arrayRoute)-1]['lenght'].'<br>';
-        echo 'The difference beetwen shorttest and longgest route is: '.$route_Difference.'<br>';
-        echo 'You make a gain of: '.$arrayRoute[0]['lenght'] * 100 / $arrayRoute[count($arrayRoute)-1]['lenght']. ' %'.'<br>';
-        //echo 'The planet is save of about: '.$route_Difference * $this->kilometer_consumtion.' g CO2'.'<br><br>';
-
-        //-------------------------------------------------------------03 septembre---------------------
+        echo 'The shorttest route is: <b>'.$arrayRoute[0]['lenght'].' Km</b><br>';
+        echo 'The longgest route is: <b>'.$arrayRoute[count($arrayRoute)-1]['lenght'].'Km</b><br>';
+        echo 'The difference beetwen shorttest and longgest route is: <b>'.$route_Difference.'Km</b><br>';
+        echo 'You make a gain of: <b>'.$arrayRoute[0]['lenght'] * 100 / $arrayRoute[count($arrayRoute)-1]['lenght']. ' %</b><br><br>';
         ?>
-        <!-- <pre>
-        <h1>Diagramme</h1>
-        <p>kilometre</p>
-        <?php
-        $data1 = $arrayRoute[count($arrayRoute)-1]['lenght'];?>
-        <?php
-        $data2 = $arrayRoute[0]['lenght'];?>
 
-        <dl id="csschart">
-            <dt>Jouree 1</dt>
-            <dd><span class="long" style= "height: <?php echo $data1; ?>px"><em class="middle"><?php echo $data1; ?></em><em class="short" style="height:<?php echo $data2; ?>px;"><?php echo $data2; ?></em></span></dd>
-        </dl>
-        <p>serie ....</p>
-        </pre> -->
         <?php
-        //-------------------------------------------------------------fin 03 septembre-----------------
-
         return $route_Difference;
 
     }
 
-    public function km_Gain($allRoute){
-
-    }
-
-    public function bestEquipment($fuel, $mileage){
+    public function bestEquipment($fuel, $mileage, $year){
         $penality= 0;
         // electric=1, gaz = 2, essence = 3, diesel= 4;
-        switch($fuel){
+        //average per Truck 40 tonne
+        //average co2 600 g/km
+        $currentYear = 0;
+
+        switch ($fuel) {
             case 1:
                 $penality+=0;
             break;
@@ -230,22 +199,27 @@ class DistanceController extends Controller
             break;
         }
 
-        if ($mileage<300)
+        if ($mileage<300) {
             $penality+=0;
-        if ($mileage<300 && $mileage<400)
+        }
+        if ($mileage<300 && $mileage<400) {
             $penality+=1;
-        if ($mileage<=400 && $mileage<450)
+        }
+        if ($mileage<=400 && $mileage<450) {
             $penality+=2;
-        if ($mileage<=450 && $mileage<500)
+        }
+        if ($mileage<=450 && $mileage<500) {
             $penality+=3;
-        else
+        } else {
             $penality+=4;
+        }
         return $penality;
+    }
     // get Data from API
-    public function getAllLocations() {
+   /* public function getAllLocations() {
         //return $locations->json();
         return view('locations', ['locations'=>$locations['records']]);
-    }
+    }*/
 
     public function getStopPosition($tl = 5, $cs = 1, $dy = 5) {
         $gpx = '<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" creator="geoportail.lu" xmlns="http://www.topografix.com/GPX/1/1">
