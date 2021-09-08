@@ -318,7 +318,7 @@ function renderEmptyModal(responseJson){
         }
       },
       error: function(result) {
-          console.log("all element are requiers");
+          console.log("all element are requierd");
       }
     });
 
@@ -340,9 +340,10 @@ function renderEmptyModal(responseJson){
         console.log(response);
         console.log("youpiiii");
         document.getElementById("bookMsg").innerHTML=response.success;
-        $(document).ajaxStop(function(){
-            window.location.reload();
-         });
+      //   $(document).ajaxStop(function(){
+      //       window.location.reload();
+      //    });
+      window.setTimeout(function(){location.reload()},2000);
       },
       error: function(result) {
           console.log("error on saving");
@@ -379,9 +380,7 @@ function renderEmptyModal(responseJson){
                link.click();
                link.remove();
                
-               $(document).ajaxStop(function(){
-                     window.location.reload();
-                  });
+               window.setTimeout(function(){location.reload()},2000);
 
             },
             error: function(result) {

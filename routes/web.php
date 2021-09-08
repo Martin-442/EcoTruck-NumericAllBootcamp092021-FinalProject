@@ -41,9 +41,9 @@ Route::middleware('isProvider')->group(function () {
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard-contractor');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard-contractor');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -52,3 +52,4 @@ require __DIR__.'/company.php';
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
