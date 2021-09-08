@@ -71,10 +71,10 @@
                 </a>
 
                 <x-button class="ml-4">
-                    {{ __('Sumbit Request') }}
+                    {{ __('Cancel Request') }}
                 </x-button>
                 <x-button class="ml-4">
-                    {{ __('Cancel Request') }}
+                    {{ __('Sumbit Request') }}
                 </x-button>
             </div>
 

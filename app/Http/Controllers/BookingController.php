@@ -64,7 +64,6 @@ class BookingController extends Controller
         return view('add-booking',['allLocations' => $locationList]);
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -159,7 +158,6 @@ class BookingController extends Controller
             $csId=$request->location;
             //random dump yard locations, to replace it later with the ones in the database
             $dy=[123,421,12,45,21];
-
             $result=(new DistanceController)->getMinDistance($csId,$availableTruckInfo,$dy);
 
             return response()->json(['success' => $result]);
@@ -210,7 +208,6 @@ class BookingController extends Controller
     {
         //
     }
-
 
 
 }

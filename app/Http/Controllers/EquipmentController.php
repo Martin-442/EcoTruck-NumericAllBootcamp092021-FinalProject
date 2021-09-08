@@ -22,9 +22,17 @@ class EquipmentController extends Controller
         $equipments = Equipment::all();
         // To display a specific view :
         $company_id= auth()->user()->company_id;
-        $bookingList = DB::table('bookings')
+        $equipments = DB::table('equipment')
         ->where('company_id', '=', $company_id)
         ->get();
+        $dump_sites=DB::select("SELECT stop.stop as dump_site  FROM `bookings`,stop WHERE bookings.dump_site_id=stop.id AND bookings.company_id='$company_id'");
+        $bookingList=DB::select("SELECT bookings.*,stop.stop as construction_site  FROM `bookings`,stop WHERE bookings.construction_site_id=stop.id AND bookings.company_id='$company_id'");
+       
+        //dd($bookingList);
+        for ($i=0; $i < count($bookingList); $i++) { 
+            $bookingList[$i]->dump_site=$dump_sites[$i]->dump_site;
+        }
+        
             return view('equipment.equipments', ['equipments' => $equipments], ['bookings' => $bookingList]);
     }
 
@@ -81,6 +89,7 @@ class EquipmentController extends Controller
             $equipment->postal_code = $request->postal_code;
             $equipment->specification = $request->specification;
 
+            $equipment->save();
 
             return response()->json(['success' => 'Equipment was registered successfully']);
 
@@ -139,7 +148,7 @@ class EquipmentController extends Controller
         $equipment->save();
 
         // redirect to Equipments list with a message
-        return redirect('equipment')->with('success', $request->id. 'was updated successfully');
+        return redirect('equipment')->with('success', $request->id. ' was updated successfully');
     }
 
     /**
