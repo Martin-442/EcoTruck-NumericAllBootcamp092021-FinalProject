@@ -343,7 +343,7 @@ function renderEmptyModal(responseJson){
       //   $(document).ajaxStop(function(){
       //       window.location.reload();
       //    });
-      window.setTimeout(function(){location.reload()},2000);
+      window.setTimeout(function(){location.reload()},3000);
       },
       error: function(result) {
           console.log("error on saving");
@@ -372,7 +372,7 @@ function renderEmptyModal(responseJson){
                //var blob = new Blob([data], { type: 'application/pdf' });
                document.getElementById("bookMsg").innerHTML="Your booking was successfuly done";
        
-               var link = document.createElement('a');
+               let link = document.createElement('a');
                link.href = "http://localhost:8000/file-download/"+data;
                console.log(link.href);
                link.download = data;
@@ -380,7 +380,7 @@ function renderEmptyModal(responseJson){
                link.click();
                link.remove();
                
-               window.setTimeout(function(){location.reload()},2000);
+               window.setTimeout(function(){location.reload()},5000);
 
             },
             error: function(result) {
