@@ -1,7 +1,7 @@
 @extends('layouts.dash')
 @section('title', 'Dashboard')
 @section('css')
-<link href="{{ asset('css/display-profile.css') }}" rel="stylesheet">    
+<link href="{{ asset('css/display-profile.css') }}" rel="stylesheet">
 @endsection
 @section('content')
 <!-- <a href="{{ route('company.profile') }}">Profile</a> -->
@@ -27,7 +27,7 @@
                    <ul class="menuzord-menu">
                         <li><a href="{{ route('company.profile') }}">Profile</a></li>
                         <li><a href="{{ url('/logout') }}">Logout</a></li>
-                       
+
                     </ul>
                 </nav>
                </div>
@@ -112,7 +112,7 @@
                                           <div class="input-group input-group-sm">
                                              <span class="input-group-addon" id="sizing-addon1" >Construction site</span>
                                              <select class="form-control" id="exampleFormControlSelect1" name="location" aria-describedby="sizing-addon1" >
-                                                
+
                                                 @foreach($allLocations as $location)
                                                 <option value="<?=$location['id']?>"><?=$location['stop']?></option>
                                                 @endforeach
@@ -190,7 +190,7 @@
                </div>
                <h4></h4>
                <form id="modal-form" method="put" class="donate-form default-form" onsubmit='return false;' action="/dashboard-contractor">
-               
+
                   <!-- <h3>Booking Information</h3> -->
                   <div class="form-bg">
                      <div class="row clearfix">
@@ -200,7 +200,7 @@
                               <p id="construction_site"></p>
                            </div>
                         </div>
-                  
+
                         <div class="col-md-6 col-sm-6 col-xs-12">
                            <div class="form-group">
                               <p> <strong>Dump Site :</strong> </p>
@@ -219,7 +219,7 @@
                               <p id="price"></p>
                            </div>
                         </div>
-                     
+
                      </div>
                   </div>
                   <br>
@@ -265,7 +265,7 @@ function renderModal(responseJson){
   dataJson.dump_loc_id=responseJson.dump_loc_id;
   dataJson.CS_name=responseJson.CS_name;
   dataJson.CS_id=responseJson.CS_id;
-  
+
   dataJson.distance=responseJson.distance;
   dataJson.price=responseJson.price;
 }
@@ -301,25 +301,25 @@ function renderEmptyModal(responseJson){
         }
       },
       error: function(result) {
-          console.log("all element are requiers");
+          console.log("all element are requiers", result);
       }
     });
 
 });
 
-  //  
-  
+  //
+
   $('#btnForm').on('click', function (e) {
     dataJson._token={};
     dataJson._token="{{ csrf_token() }}";
     e.preventDefault(); //prevent to reload the page
-    
+
     $.ajax({
       type: 'PUT', //hide url
       url: 'dashboard-contractor', //your form validation url
       data: dataJson, //USE THE ID WE SET IN THE FORM
       success: function (response) {
-        
+
         console.log(response);
         console.log("youpiiii");
       },
@@ -327,7 +327,7 @@ function renderEmptyModal(responseJson){
           console.log("error on saving");
       }
     });
-      
+
   });
 
   function downloadBooking(json){
@@ -336,16 +336,16 @@ function renderEmptyModal(responseJson){
             'X-CSRF-TOKEN': "{{ csrf_token() }}"
         },
         url: "/download/pdf",
-       
+
         data:json,
         method: 'post',
         cache: false,
         xhrFields: {
         responseType: '',
         crossDomain: false,
-        
+
         },
-        
+
             success: function (data) {
                //var blob = new Blob([data], { type: 'application/pdf' });
                var link = document.createElement('a');
@@ -355,22 +355,22 @@ function renderEmptyModal(responseJson){
 
                link.click();
                link.remove();
-               
+
 
             },
             error: function(result) {
-                console.log("error on printing");
+                console.log("error on printing", result);
             }
-            
-            
-         
+
+
+
          });
-               
+
       }
 
-  
-   
-  
+
+
+
 </script>
 
 @endsection

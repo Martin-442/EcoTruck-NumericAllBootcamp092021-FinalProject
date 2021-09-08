@@ -51,7 +51,7 @@
                     <select class="form-control" data-style="btn-primary" id="city" name="city">
                         <option selected>Select a city</option>
                         @foreach ($stops as $stop)
-                        <option value="{{ $stop['stop'] }}" <?php if($sC->city == $stop['stop']) { echo 'selected'; } ?>>{{ $stop['stop'] }}</option>
+                        <option value="{{ $stop['stop'] }}" <?php // if($sC->city == $stop['stop']) { echo 'selected'; } ?>>{{ $stop['stop'] }}</option>
                         @endforeach
                     </select>
                     @error('city')<div class="alert alert-danger p-1">{{ $message }}</div>

@@ -43,6 +43,8 @@ class RegisterContractorController extends Controller
             'last_name' => 'string|max:255',
         ]);
 
+        // User Table
+
         if (empty($request->session()->get($this->getRole()))) {
             $contractorUser = new User();
             $contractorUser->fill($validatedUser);
@@ -52,6 +54,17 @@ class RegisterContractorController extends Controller
             $contractorUser->fill($validatedUser);
             $request->session()->put($this->getRole().'User', $contractorUser);
         }
+
+
+        // Company Table
+        if (empty($request->session()->get($this->getRole().'Company'))) {
+            $contractor['Company'] = new Company();
+            $request->session()->put($this->getRole().'Company', $contractor['Company']);
+        } else {
+            $contractor['Company'] = $request->session()->get($this->getRole().'Company');
+            $request->session()->put($this->getRole().'Company', $contractor['Company']);
+        }
+
     // dd($request);
         return redirect()->route('register.'.$this->getRole().'-step2');
 
@@ -78,6 +91,7 @@ class RegisterContractorController extends Controller
 
     public function createContractor2(Request $request)
     {
+
         $stop_select = Stop::select('stop', 'id')->get();
         return view('register.'.$this->getRole().'-step2', [
             'sU' => session()->get($this->getRole().'User'),
