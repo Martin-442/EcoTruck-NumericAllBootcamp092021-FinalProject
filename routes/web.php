@@ -60,9 +60,9 @@ Route::middleware('isContractor')->middleware('verified')->group(function () {
     Route::get('/dashboard/contractor', [ContractorController::class, 'index'])->name('dashboard_contractor');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->middleware('verified')->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard-contractor');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php'; // includes auth-register-roles.php
 require __DIR__.'/email_verification.php';
@@ -76,3 +76,4 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 //     return view('/test');
 // });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
