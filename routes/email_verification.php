@@ -10,8 +10,13 @@ Route::get('/email/verify', function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-
-    return redirect('/dashboard');
+    if(auth()->user()->role == 'Provider') {
+        return redirect( '/equipment' );
+    } else if(auth()->user()->role == 'Contractor') {
+        return redirect( '/dashboard-contractor' );
+    } else {
+        return redirect('/homepage');
+    }
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {

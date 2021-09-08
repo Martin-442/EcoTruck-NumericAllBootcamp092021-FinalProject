@@ -79,7 +79,6 @@
                         <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px; display: block;">
                              <li><a href="{{ route('homepage')}}">Home</a></li>
                              <li><a href="{{ route('aboutus')}}">About us</a></li>
-                             <li><a href="{{ route('contact')}}">Contact</a></li>
 
                          <li class="scrollable-fix"></li></ul>
                      </nav>

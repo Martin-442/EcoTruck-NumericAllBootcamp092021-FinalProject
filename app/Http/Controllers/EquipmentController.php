@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Equipment;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Session;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 
@@ -27,12 +28,12 @@ class EquipmentController extends Controller
         ->get();
         $dump_sites=DB::select("SELECT stop.stop as dump_site  FROM `bookings`,stop WHERE bookings.dump_site_id=stop.id AND bookings.company_id='$company_id'");
         $bookingList=DB::select("SELECT bookings.*,stop.stop as construction_site  FROM `bookings`,stop WHERE bookings.construction_site_id=stop.id AND bookings.company_id='$company_id'");
-       
+
         //dd($bookingList);
-        for ($i=0; $i < count($bookingList); $i++) { 
+        for ($i=0; $i < count($bookingList); $i++) {
             $bookingList[$i]->dump_site=$dump_sites[$i]->dump_site;
         }
-        
+
             return view('equipment.equipments', ['equipments' => $equipments], ['bookings' => $bookingList]);
     }
 
@@ -61,12 +62,10 @@ class EquipmentController extends Controller
             'brand' => 'required',
             'model' => 'required',
             'year' => 'required|numeric',
-            'mileage' => 'required|numeric|max:150000',
+            'mileage' => 'required|numeric',
             'capacity' => 'required|numeric',
-            'truck_location' => '',
             'city' => 'required',
             'postal_code' => 'required|numeric',
-            'specification' => '',
 
         ]);
         // Message
@@ -75,8 +74,9 @@ class EquipmentController extends Controller
 
         // to see all the Equipments using INSERT Mehtod
 
-          $equipment = new Equipment;
+            $equipment = new Equipment;
 
+            $equipment->company_id = auth()->user()->company_id;
             $equipment->truck_type = $request->truck_type;
             $equipment->brand = $request->brand;
             $equipment->model = $request->model;
@@ -91,6 +91,7 @@ class EquipmentController extends Controller
 
             $equipment->save();
 
+            return redirect('equipment')->with('success', $request->id. ' was updated successfully');
             return response()->json(['success' => 'Equipment was registered successfully']);
 
     }
