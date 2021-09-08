@@ -8,13 +8,14 @@
             <div class="row">
                <div class="col-md-3">
                   <div class="main-logo">
-                     <a href="index.html"><img src="images/logo/logo.png" alt=""></a>
+                     <a href="{{url('/dashboard-contractor') }}"><img src="images/logo/logo.png" alt=""></a>
                   </div>
                </div>
                <div class="col-md-9 menu-column">
                 <nav class="menuzord" id="main_menu">
                    <ul class="menuzord-menu">
-                        <li><a href="{{ route('profile.update') }}">Profile</a></li>
+                        <li><a href="{{ url('/dashboard-contractor') }}">Dashboard</a></li>
+                        <li><a href="{{url('/profile') }}">Profile</a></li>
                         <li><a href="{{ url('/logout') }}">Logout</a></li>
                     </ul>
                 </nav>

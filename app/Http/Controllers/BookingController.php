@@ -36,13 +36,19 @@ class BookingController extends Controller
 
         $company_id= auth()->user()->company_id ;
         //retrieve dump_site and construction site name
-        $dump_sites=DB::select("SELECT stop.stop as dump_site  FROM `bookings`,stop WHERE bookings.dump_site_id=stop.id AND bookings.company_id='$company_id'");
-        $bookingList=DB::select("SELECT bookings.*,stop.stop as construction_site  FROM `bookings`,stop WHERE bookings.construction_site_id=stop.id AND bookings.company_id='$company_id'");
+        $dump_sites=DB::select("SELECT stop.stop as dump_site  FROM `bookings`,stop WHERE bookings.dump_site_id=stop.id AND bookings.company_id='$company_id' ORDER BY booking_date ASC ");
+        $bookingList=DB::select("SELECT bookings.*,stop.stop as construction_site  FROM `bookings`,stop WHERE bookings.construction_site_id=stop.id AND bookings.company_id='$company_id' ORDER BY booking_date ASC");
 
         //dd($bookingList);
         for ($i=0; $i < count($bookingList); $i++) {
             $bookingList[$i]->dump_site=$dump_sites[$i]->dump_site;
+            $timestamp=strtotime($bookingList[$i]->booking_date);
+            $day=date("d",$timestamp);
+            $month=date("M",$timestamp);
+            $bookingList[$i]->day=$day;
+            $bookingList[$i]->month=$month;
         }
+
 
         return view('dashboard-contractor', ['bookings' => $bookingList],['allLocations' => $locationList]);
     }
@@ -83,7 +89,7 @@ class BookingController extends Controller
 
         if($booking->save())
         //return redirect('dashboardd-contractor',['success' => 'your booking is successfuly done']);
-        return Response()->json(['success' => 'your booking is successfuly done']);
+        return Response()->json(['success' => 'Your booking was successfuly done']);
     }
 
     // Generate PDF

@@ -11,3 +11,8 @@ a#editProfile{
 .dropdown:hover .dropdown-content {
     display: block;
   }
+
+.navBar{
+    color: #8DC63F;
+    font-weight: 2rem;
+}

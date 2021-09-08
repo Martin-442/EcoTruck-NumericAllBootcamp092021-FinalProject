@@ -42,6 +42,9 @@ Route::middleware('isAdmin')->middleware('verified')->group(function () {
     Route::get('/sitemap/{debug}', [HomepageController::class, 'getSitemap'])->name('sitemap');
 
     // Admin Dashboard
+
+
+Route::middleware('isAdmin')->group(function () {
     // http://127.0.0.1:8000/dashboard/admin
     Route::get('/dashboard/admin', [AdminController::class, 'index'])->name('dashboard_admin');
 });

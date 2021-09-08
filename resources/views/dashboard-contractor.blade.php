@@ -19,13 +19,13 @@
          <div class="row">
             <div class="col-md-3">
                <div class="main-logo">
-                  <a href="index.html"><img src="images/logo/logo.png" alt=""></a>
+                  <a href="{{url('/dashboard-contractor') }}"><img src="images/logo/logo.png" alt=""></a>
                </div>
             </div>
             <div class="col-md-9 menu-column">
                 <nav class="menuzord" id="main_menu">
                    <ul class="menuzord-menu">
-                        <li><a href="{{ route('company.profile') }}">Profile</a></li>
+                        <li><a href="{{url('/profile') }}">Profile</a></li>
                         <li><a href="{{ url('/logout') }}">Logout</a></li>
 
                     </ul>
@@ -51,24 +51,37 @@
 </div>
 <section class="eventlist">
    <div class="container">
-      @if (empty($bookings))
-      <p>You have no reservations yet</p>
-      @endif
+      <br><br>
+
+
+      <h2>Yours Bookings  </h4>
       <div class="row">
          <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="outer-box sec-padd event-style2">
+
+               <div class="item style-1 clearfix">
+                     <div class="img-column float_left">
+
+                        @if (empty($bookings))
+                        <h4>You have no reservations yet </h4>
+                        @endif
+
+                     </div>
+               </div>
+
                @foreach ($bookings as $booking)
                <div class="item style-1 clearfix">
                   <div class="img-column float_left">
                      <figure class="img-holder">
                         <a href="#"><img src="images/logo/1.png" alt=""></a>
-                        <div class="date"><span>21 <br>Mar</span></div>
+                        <div class="date"><span>{{$booking->day}} <br>{{$booking->month}}</span></div>
                      </figure>
                   </div>
                   <div class="text-column float_left">
+
                      <div class="lower-content">
-                        <p>Organizer: Imane</p>
-                        <a href="#">
+
+                        <a href="">
                            <h4>{{ $booking->description}}</h4>
                         </a>
                         <div class="text">
@@ -164,7 +177,7 @@
 <section class="call-out">
 <div class="container">
 <div class="text-center ">
-<h4>Join Our Mission to Improve a Child's Feature, Pet’s Life and Our Planet.</h4>
+<h4>Our mission: Reducing CO&sup2; emission!</h4>
 </div>
 <!-- <div class="float_right">
    <a href="#" class="thm-btn style-3">Get Involeved</a>
@@ -223,6 +236,10 @@
                      </div>
                   </div>
                   <br>
+                  <div>
+                     <h2 id="bookMsg" style="text-align: center;"></h2>
+                     <br><br>
+                  </div>
                   <div class="bookBtn">
                      <div class="float_left">
                         <button  type="submit" id="btnForm" class="thm-btn" >Book</input>
@@ -322,6 +339,11 @@ function renderEmptyModal(responseJson){
 
         console.log(response);
         console.log("youpiiii");
+        document.getElementById("bookMsg").innerHTML=response.success;
+      //   $(document).ajaxStop(function(){
+      //       window.location.reload();
+      //    });
+      window.setTimeout(function(){location.reload()},2000);
       },
       error: function(result) {
           console.log("error on saving");
@@ -348,6 +370,8 @@ function renderEmptyModal(responseJson){
 
             success: function (data) {
                //var blob = new Blob([data], { type: 'application/pdf' });
+               document.getElementById("bookMsg").innerHTML="Your booking was successfuly done";
+
                var link = document.createElement('a');
                link.href = "http://localhost:8000/file-download/"+data;
                console.log(link.href);
@@ -356,6 +380,7 @@ function renderEmptyModal(responseJson){
                link.click();
                link.remove();
 
+               window.setTimeout(function(){location.reload()},2000);
 
             },
             error: function(result) {
