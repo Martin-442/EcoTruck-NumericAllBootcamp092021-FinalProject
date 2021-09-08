@@ -40,10 +40,9 @@ Route::middleware('isAdmin')->middleware('verified')->group(function () {
     // debugging routes object
     // http://127.0.0.1:8000/sitemap/debug
     Route::get('/sitemap/{debug}', [HomepageController::class, 'getSitemap'])->name('sitemap');
+});
 
     // Admin Dashboard
-
-
 Route::middleware('isAdmin')->group(function () {
     // http://127.0.0.1:8000/dashboard/admin
     Route::get('/dashboard/admin', [AdminController::class, 'index'])->name('dashboard_admin');
@@ -60,9 +59,9 @@ Route::middleware('isContractor')->middleware('verified')->group(function () {
     Route::get('/dashboard/contractor', [ContractorController::class, 'index'])->name('dashboard_contractor');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard-contractor');
-// })->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard-contractor');
+})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php'; // includes auth-register-roles.php
 require __DIR__.'/email_verification.php';
