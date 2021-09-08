@@ -2,7 +2,7 @@
 
     <x-slot name="jumbotron">
         <div class="jumbotron bg-primary">
-            <h1 class="display-4 text-white">Our mission: <br> Reducing CO&sup2; emission!</h1>
+            <h1 class="display-4 text-white">Our mission: <br> Reducing CO<sub>2</sub> emission!</h1>
             <p class="lead text-white">We believe that every km driven less on <br> Luxembourgish roads is a great win for all of us!</p>
             <hr class="my-4 text-white">
             <p class="text-white">An ecomony driver by our shared goal to protect our environment and to have sustainable developments!</p>
@@ -18,7 +18,7 @@
                     <h3 class="mb-0">
                         <a href="{{ route('dashboard_provider') }}">Join the Pool</a>
                     </h3>
-                    <p class="card-text mb-auto">You want to contribute to the idea. <br> Reduce CO&sup2; emission and add your Truck to the pool.</p>
+                    <p class="card-text mb-auto">You want to contribute to the idea. <br> Reduce CO<sub>2</sub> emission and add your Truck to the pool.</p>
                     <div class="col-md-10 cta-button">
                         <a href="{{ route('register.provider-step1') }}" class="btn btn-lg btn-block btn-primary">Register</a>
                         <a href="{{ route('login') }}" class="btn btn-lg btn-block btn-outline-primary">Log in</a>

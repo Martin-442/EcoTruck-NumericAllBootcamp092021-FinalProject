@@ -115,7 +115,7 @@
         <section class="call-out">
             <div class="container">
                 <div class="float_left">
-                    <h4>Join Our Mission to reduce CO&sup2; emision on our roads.</h4>
+                    <h4>Join Our Mission to reduce CO<sub>2</sub> emision on our roads.</h4>
                 </div>
             </div>
         </section>

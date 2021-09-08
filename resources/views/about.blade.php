@@ -53,7 +53,7 @@
                       <h4>Our Objective</h4>
                             <p>The main objective of the Dump Truck routing website is to reduce environmental pollution and reduce energy consumption. Consequently, green logistics is a sustainable development of the concept of logistics</p>
 
-                            <p> We reduce global CO2 for you</p>
+                            <p> We reduce global CO<sub>2</sub> for you</p>
 
                             <h4>Together we can make a difference</h4>
                             <br> <br>

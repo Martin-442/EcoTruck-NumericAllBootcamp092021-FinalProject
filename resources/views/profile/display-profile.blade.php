@@ -128,7 +128,7 @@
    <section class="call-out">
       <div class="container">
          <div class="text-center">
-            <h4>Our mission: Reducing CO&sup2; emission!</h4>
+            <h4>Our mission: Reducing CO<sub>2</sub> emission!</h4>
          </div>
       </div>
    </section>

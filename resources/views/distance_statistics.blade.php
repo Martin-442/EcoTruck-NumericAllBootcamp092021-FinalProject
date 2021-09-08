@@ -90,7 +90,7 @@
 
     <div class="container">
         <div>Total average distance between longest and shortes routes after <?php echo $total_run; ?> runs: <?php echo $total / $total_run; ?> km</div>
-        <div>The planet is save of about: <?php echo $total / $total_run * $kilometer_consumtion; ?> kg CO&sup2;</div>
+        <div>The planet is save of about: <?php echo $total / $total_run * $kilometer_consumtion; ?> kg CO<sub>2</sub></div>
     </div>
 
 
