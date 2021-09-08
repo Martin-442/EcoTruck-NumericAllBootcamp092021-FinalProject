@@ -60,7 +60,8 @@ Route::middleware('isContractor')->middleware('verified')->group(function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard-contractor');
+    return redirect()->route('dashboard-contractor');
+    // return view('dashboard-contractor');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php'; // includes auth-register-roles.php
