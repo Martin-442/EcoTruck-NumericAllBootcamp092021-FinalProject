@@ -18,13 +18,13 @@ Route::middleware('isProvider')->group(function () {
 
 
     // Show the form to update a  equipment
-    Route::get('/update/equipment/{id}', [EquipmentController::class, 'edit'])->name('update.equipment-update');
-    Route::post('/update/equipment/{id}', [EquipmentController::class, 'update']);
+    Route::get('/update/{id}', [EquipmentController::class, 'edit'])->name('update.equipment-update');
+    Route::post('/update/{id}', [EquipmentController::class, 'update']);
     // to delete a  equipment
     Route::get('/delete/equipment/{id}', [EquipmentController::class, 'destroy'])->name('delete.equipment');
 
     // ROUTE TO DISPLAY ONE SPECIFIC equipment
-    Route::get('/show/equipment/{id}', [EquipmentController::class, 'show'])->name('equipment.equipment-show');
+    Route::get('/show/{id}', [EquipmentController::class, 'show'])->name('equipment.equipment-show');
 
 });
 

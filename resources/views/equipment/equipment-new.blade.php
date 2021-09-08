@@ -1,100 +1,133 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard Equipment Register') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    Equipment Register Form
+@extends('layouts.dashProvider')
+@section('title', 'Update Profile')
+@section('content')
+<div class="boxed_wrapper">
+   <div class="boxed_wrapper">
+      <section class="theme_menu stricky">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-3">
+                  <div class="main-logo">
+                     <a href="index.html"><img src="images/logo/logo.png" alt=""></a>
+                  </div>
+               </div>
+               <div class="col-md-9 menu-column">
+                  <!-- nav -->
+               </div>
+               <div class="right-column">
+                  <div class="right-area">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </div>
+   <div class="inner-banner has-base-color-overlay text-center" style="background: url(images/background/4.jpg); height:50px;">
+      <div class="container">
+         <div class="box">
+            <!-- <h1>Book a breath for earth</h1> -->
+         </div>
+      </div>
+   </div>
+   <section class="register-section sec-padd-top">
+      <div class="container">
+          <div class="center">
+          <span class="adon-icon"><span class="fas fa-truck"></span></span>
+              <h3>Equipment Register Form</h3>
+          </div>
+         <div class="row">
+            <!--Form Column-->
+            <div class="form-column column col-lg-6 col-md-6 col-sm-12 col-xs-12">
+               <form method="post" id="updateProfile" >
+                   @csrf
+                  <div class="section-title style-2"></div>                    
+                  
+                  <!--Login Form-->
+                  <div class="styled-form login-form">
+                     <div class="form-group">
+                        <label>Truck Type</label>
+                            <select class="form-control" id="truck_type" name="truck_type" placeholder="" value="{{ $equipment->truck_type ?? '' }}">
+                                <option>Select One</option>
+                                <option value="Standard">Standard</option>
+                                <option value="Semi Trailer">Semi Trailer</option>
+                                <option value="Dump Truck">Dump Truck</option>
+                                <option value="Truck Pup">Truck Pup</option>
+                            </select>
+                     </div>
+                     <div class="form-group">
+                     <label>Brand</label>                        
+                        <input type="text" name="brand" value="">
+                     </div>
+                     <div class="form-group">
+                     <label>Model</label>                        
+                        <input type="text" name="model" value="">
+                     </div>
+                     <div class="form-group">
+                     <label>Year</label>                        
+                        <input type="text" name="year" value="">
+                     </div>
+                     <div class="form-group">
+                     <label>Fuel</label>                        
+                        <input type="text" name="fuel" value="">
+                     </div>                     
+               </div>
+            </div>
+            <!--Form Column-->
+            <div class="form-column column col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="section-title style-2">
+                </div>
+            <!--Login Form-->
+                <div class="styled-form register-form">
+                    
+                <div class="form-group">
+                    <label>Mileage</label>                        
+                        <input type="text" name="mileage" value="">
+                    </div>
+                <div class="form-group">
+                    <label>Capacity in volume m&sup3</label>                        
+                        <input type="text" name="capacity" value="">
+                </div>
+                <div class="form-group">
+                    <label>Truck Location</label>                        
+                        <input type="text" name="truck_location" value="">
+                </div>
+                <div class="form-group">
+                    <label>City</label>                        
+                        <input type="text" name="city" value="">
+                </div>
+                <div class="form-group">
+                    <label>Postal Code</label>                        
+                        <input type="text" name="postal_code" value="">
+                </div>
+                <div class="form-group">
+                    <label>Specification</label>                        
+                        <input type="text" name="specification" value="">
                 </div>
             </div>
-        </div>
-    </div>
-            <div class="p-6 bg-white border-b border-gray-200">
-                <form method="POST" action="">
-                    @csrf
-
-                        <!-- Truck Details -->
-                        <h3>Welcome Provider</h3>
-                    <!--
-                        <label for="truck_type">Truck Type: </label><input type="text" value="Truck Type"><br>
-                        <label for="brand">Brand: </label><input type="text" value="Brand"><br>
-                        <label for="truck_type">Model: </label><input type="text" value="Model"><br>
-                        <label for="year">Year: </label><input type="text" value="Year"><br>
-                        <label for="truck_type">Model: </label><input type="text" value="Model"><br> -->
-
-                        <div>
-                            <x-label for="truck_type" :value="__('Truck Type')" />
-
-                            <x-input id="truck_type" class="block mt-1 w-full" type="text" name="truck_type" :value="old('truck_type')" required autofocus />
-                        </div>
-                        <div>
-                            <x-label for="brand" :value="__('Brand')" />
-
-                            <x-input id="brand" class="block mt-1 w-full" type="text" name="brand" :value="old('brand')"/>
-                        </div>
-                        <div>
-                            <x-label for="model" :value="__('Model')" />
-
-                            <x-input id="model" class="block mt-1 w-full" type="text" name="model" :value="old('model')"/>
-                        </div>
-                        <div>
-                            <x-label for="year" :value="__('Year')" />
-
-                            <x-input id="year" class="block mt-1 w-full" type="text" name="year" :value="old('year')" required autofocus />
-                        </div>
-                        <div>
-                            <x-label for="fuel" :value="__('Fuel')" />
-
-                            <x-input id="fuel" class="block mt-1 w-full" type="text" name="fuel" :value="old('fuel')"/>
-                        </div>
-                        <div>
-                            <x-label for="mileage" :value="__('Mileage')" />
-
-                            <x-input id="mileage" class="block mt-1 w-full" type="text" name="mileage" :value="old('mileage')" required autofocus />
-                        </div>
-                        <div>
-                            <x-label for="capacity" :value="__('Capacity')" />
-
-                            <x-input id="capacity" class="block mt-1 w-full" type="text" name="capacity" :value="old('capacity')" required autofocus />
-                        </div>
-                        <!-- Address -->
-                        <div>
-                            <x-label for="located_place" :value="__('Located Place')" />
-
-                            <x-input id="located_place" class="block mt-1 w-full" type="text" name="located_place" :value="old('located_place')"/>
-                        </div>
-
-                        <div>
-                            <x-label for="city" :value="__('City')" />
-
-                            <x-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" required autofocus />
-                        </div>
-                        <div>
-                            <x-label for="postal_code" :value="__('Postal Code')" />
-
-                            <x-input id="postal_code" class="block mt-1 w-full" type="text" name="postal_code" :value="old('postal_code')" required autofocus />
-                        </div>
-                        <div>
-                            <x-label for="specification" :value="__('Specification')" />
-
-                            <x-input id="specification" class="block mt-1 w-full" type="text" name="specification" :value="old('specification')"/>
-                        </div>
-
-                        <div class="flex items-center justify-end mt-4">
-
-                            <x-button class="ml-4">
-                                {{ __('Add equipment') }}
-                            </x-button>
-                        </div>
-                    </form>
-                </div>
             </div>
-        </div>
-    </div>
-</x-app-layout>
+         </div>
+         <div class="clearfix">
+            <div class="form-group center">
+                <button  id="btn-form" type="submit" class="thm-btn thm-tran-bg">Add Equipment</button>
+             </div>
+         </div>
+         </form> <br><br>
+      </div>
+   </section>
+   <section class="call-out">
+      <div class="container">
+         <div class="text-center">
+            <h4>Our mission: Reducing CO&sup2; emission!</h4>
+         </div>
+      </div>
+   </section>
+   <!-- Scroll Top  -->
+   <button class="scroll-top tran3s color2_bg"><span class="fa fa-angle-up"></span></button>
+</div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+//   
+</script>
+@endsection

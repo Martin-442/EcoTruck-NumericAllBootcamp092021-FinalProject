@@ -1,72 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('css/equi-update.css') }}">
-</head>
-
-<body>
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Equipment') }}
-        </h2>
-    </x-slot>
-
-        @if($message = Session::get('success'))
-            <p style="color:green">{{$message}}</p>
-        @endif
-
-    <a href="{{ URL::route('equipment.equipment-new') }}">Add new equipment</a><br>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    Available Equipments:
-                </div>
+@extends('layouts.dashProvider')
+@section('title', 'Dashboard')
+@section('css')
+<link href="{{ asset('css/display-profile.css') }}" rel="stylesheet">    
+@endsection
+@section('content')
+<div class="boxed_wrapper">
+   <div class="boxed_wrapper">
+      <section class="theme_menu stricky">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-3">
+                  <div class="main-logo">
+                     <a href="index.html"><img src="images/logo/logo.png" alt=""></a>
+                  </div>
+               </div>
+               <div class="col-md-9 menu-column">
+                  <!-- nav -->
+               </div>
+               <div class="right-column">
+                  <div class="right-area">
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            @foreach ($equipments as $equipment)
-            <div class="p-6 bg-white border-b border-gray-200">
+         </div>
+      </section>
+   </div>
+   <div class="inner-banner has-base-color-overlay text-center" style="background: url(images/background/4.jpg); height:50px;">
+      <div class="container">
+         <div class="box">
+            <!-- <h1>Book a breath for earth</h1> -->
+         </div>
+      </div>
+   </div>
+   <section class="register-section sec-padd-top">
+      <div class="container">
+         <div class="row">
+            <!-- Equipments -->
+            <div class="form-column column col-lg-6 col-md-6 col-sm-12 col-xs-12">
+               @csrf
+                  <div class="section-title style-2">
+                     <h3>Equipments </h3>
+                  </div>
+                  
+                  <div class="styled-form login-form">
+                     @foreach ($equipments as $equipment)
+                     <div class="form-group">
+                     <li class="list-group-item d-flex justify-content-between align-items-start" style= "margin-bottom:5px;">
+                        <span class="adon-icon"><span class="fas fa-truck"></span></span>
+                           <p><strong>Brand: </strong> {{$equipment->brand}}</p>
+                           <p><strong>Model: </strong> {{$equipment->model}}</p>
+                           <p><strong>Mileage: </strong> {{$equipment->mileage}}</p>
+                           <p><strong>City: </strong> {{ $equipment->city }}</p>
+                           <br>
+                           <!-- creating link using the name of the route (check equipment.php file)  -->
+                           <a class="btn btn-primary btn-sm"  href="{{ route('equipment.equipment-show', [$equipment->id])}}">Details</a>
+                           <a class="btn btn-info btn-sm"  href="{{ route('update.equipment-update', [$equipment->id])}}">Edit</a>
+                           <a class="btn btn-danger btn-sm" href="{{ route('delete.equipment', [$equipment->id])}}">Delete this equipment ?</a>
+</li>
+                        </div>
+                     <br>
+                     @endforeach 
+                        @if($message = Session::get('success'))
+                           <p style="color:green">{{$message}}</p>
+                        @endif
+                  </div>
+                     <a class="btn btn-secondary btn-lg btn-block" href="{{ URL::route('equipment.equipment-new') }}">Add new equipment</a><br>
+         </div>
+                <!-- Booking -->
+         <div class="form-column column col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="section-title style-2">
+               <h3>Bookings</h3>                      
+            </div>           
+               <div class="styled-form register-form">
+                  <div class="form-group">
+                    @foreach ($bookings as $booking)
+                  <li class="list-group-item d-flex justify-content-between align-items-start" style= "margin-bottom:5px;">
+                  <span class="adon-icon"><span class="far fa-file-alt"></span></span>  
+                     <div class="ms-2 me-auto">         
+                        <p><strong>construction site : </strong> {{ $booking->construction_site }}</p>
+                        <p><strong>Dump site : </strong> {{ $booking->dump_site }}</p>
+                        <p><strong>Booking date: </strong> {{ $booking->booking_date }}</p>
+                     </div>
+                  </li>    
+                     @endforeach
+                  </div>               
+         </div>
+      </div>
+   </div>
+         <div class="clearfix">
+            <div class="form-group center">         
+            </div>
+         </div>
+         <br><br>
+</div>
+</section>
+<section class="call-out">
+   <div class="container">
+      <div class="text-center">
+         <h4>Our mission: Reducing CO&sup2; emission!</h4>
+      </div>
+   </div>
+</section>
+   <!-- Scroll Top  -->
+   <button class="scroll-top tran3s color2_bg"><span class="fa fa-angle-up"></span></button>
+</div>
 
-                    <p><strong>Brand: </strong> {{$equipment->brand}}</p>
-                    <p><strong>Model: </strong> {{$equipment->model}}</p>
-                    <p><strong>Mileage: </strong> {{$equipment->mileage}}</p>
-                    <p><strong>City: </strong> {{ $equipment->city }}</p>
-                    <!-- creating link using the name of the route (check equipment.php file)  -->
-                    <a style="padding:5px; color: green" href="{{ route('equipment.equipment-show', [$equipment->id])}}">Details</a>
-                    <a style="padding:5px; color:orange" href="{{ route('update.equipment-update', [$equipment->id])}}">Edit</a>
-                    <a style="color:red; margin: 200px;" href="{{ route('delete.equipment', [$equipment->id])}}">Delete this equipment ?</a>
-                    <hr>
-                </div>
-                @endforeach
-        </div>
-    </div>
-    <hr>
-    <div class="booking">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-        @foreach ($bookings as $booking)
-        <p><strong>construction site : </strong> {{ $booking->construction_site }}</p>
-        <p><strong>Dump site : </strong> {{ $booking->dump_site }}</p>
-        <p><strong>Booking date: </strong> {{ $booking->booking_date }}</p>
-
-        <hr>
-    @endforeach
-
-
-</x-app-layout>
-
-</body>
-</html>
-
-
-
-
-
+@endsection
