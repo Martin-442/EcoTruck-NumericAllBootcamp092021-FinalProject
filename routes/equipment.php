@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProviderController;
-use App\Http\Controllers\ContractorController;
 use App\Http\Controllers\EquipmentController;
 
 Route::middleware('isProvider')->group(function () {
