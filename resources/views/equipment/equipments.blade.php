@@ -1,7 +1,7 @@
 @extends('layouts.dashProvider')
 @section('title', 'Dashboard')
 @section('css')
-<link href="{{ asset('css/display-profile.css') }}" rel="stylesheet">    
+<link href="{{ asset('css/display-profile.css') }}" rel="stylesheet">
 @endsection
 @section('content')
 <div class="boxed_wrapper">
@@ -11,7 +11,7 @@
             <div class="row">
                <div class="col-md-3">
                   <div class="main-logo">
-                     <a href="index.html"><img src="images/logo/logo.png" alt=""></a>
+                     <a href="{{ route('homepage') }}"><img src="images/logo/logo.png" alt=""></a>
                   </div>
                </div>
                <div class="col-md-9 menu-column">
@@ -41,7 +41,7 @@
                   <div class="section-title style-2">
                      <h3>Equipments </h3>
                   </div>
-                  
+
                   <div class="styled-form login-form">
                      @foreach ($equipments as $equipment)
                      <div class="form-group">
@@ -59,7 +59,7 @@
 </li>
                         </div>
                      <br>
-                     @endforeach 
+                     @endforeach
                         @if($message = Session::get('success'))
                            <p style="color:green">{{$message}}</p>
                         @endif
@@ -69,26 +69,26 @@
                 <!-- Booking -->
          <div class="form-column column col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="section-title style-2">
-               <h3>Bookings</h3>                      
-            </div>           
+               <h3>Bookings</h3>
+            </div>
                <div class="styled-form register-form">
                   <div class="form-group">
                     @foreach ($bookings as $booking)
                   <li class="list-group-item d-flex justify-content-between align-items-start" style= "margin-bottom:5px;">
-                  <span class="adon-icon"><span class="far fa-file-alt"></span></span>  
-                     <div class="ms-2 me-auto">         
+                  <span class="adon-icon"><span class="far fa-file-alt"></span></span>
+                     <div class="ms-2 me-auto">
                         <p><strong>construction site : </strong> {{ $booking->construction_site }}</p>
                         <p><strong>Dump site : </strong> {{ $booking->dump_site }}</p>
                         <p><strong>Booking date: </strong> {{ $booking->booking_date }}</p>
                      </div>
-                  </li>    
+                  </li>
                      @endforeach
-                  </div>               
+                  </div>
          </div>
       </div>
    </div>
          <div class="clearfix">
-            <div class="form-group center">         
+            <div class="form-group center">
             </div>
          </div>
          <br><br>

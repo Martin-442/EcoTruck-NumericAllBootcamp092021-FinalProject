@@ -16,7 +16,7 @@
                 <div class="card-body d-flex flex-column align-items-start">
                     <strong class="d-inline-block mb-2 text-primary">As a Provider</strong>
                     <h3 class="mb-0">
-                        Join the Pool
+                        <a href="{{ route('dashboard_provider') }}">Join the Pool</a>
                     </h3>
                     <p class="card-text mb-auto">You want to contribute to the idea. <br> Reduce CO&sup2; emission and add your Truck to the pool.</p>
                     <div class="col-md-10 cta-button">
@@ -34,7 +34,7 @@
                 <div class="card-body d-flex flex-column align-items-start">
                     <strong class="d-inline-block mb-2 text-success">As a Contractor</strong>
                     <h3 class="mb-0">
-                    Responsible construction planning
+                    <a href="/dashboard">Responsible construction planning</a>
                     </h3>
                     <p class="card-text mb-auto">Your construction site needs material to be removed? Join the platform and choose the nearest truck available to your construction site.</p>
                     <div class="col-md-10 cta-button">

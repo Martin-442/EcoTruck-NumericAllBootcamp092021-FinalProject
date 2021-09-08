@@ -19,7 +19,7 @@
          <div class="row">
             <div class="col-md-3">
                <div class="main-logo">
-                  <a href="{{url('/dashboard-contractor') }}"><img src="images/logo/logo.png" alt=""></a>
+                  <a href="{{ route('homepage') }}"><img src="images/logo/logo.png" alt=""></a>
                </div>
             </div>
             <div class="col-md-9 menu-column">

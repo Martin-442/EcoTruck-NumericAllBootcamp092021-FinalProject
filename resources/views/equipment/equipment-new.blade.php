@@ -8,7 +8,7 @@
             <div class="row">
                <div class="col-md-3">
                   <div class="main-logo">
-                     <a href="index.html"><img src="images/logo/logo.png" alt=""></a>
+                     <a href="{{ route('homepage') }}"><img src="images/logo/logo.png" alt=""></a>
                   </div>
                </div>
                <div class="col-md-9 menu-column">
@@ -40,8 +40,8 @@
             <div class="form-column column col-lg-6 col-md-6 col-sm-12 col-xs-12">
                <form method="post" id="updateProfile" >
                    @csrf
-                  <div class="section-title style-2"></div>                    
-                  
+                  <div class="section-title style-2"></div>
+
                   <!--Login Form-->
                   <div class="styled-form login-form">
                      <div class="form-group">
@@ -55,21 +55,21 @@
                             </select>
                      </div>
                      <div class="form-group">
-                     <label>Brand</label>                        
+                     <label>Brand</label>
                         <input type="text" name="brand" value="">
                      </div>
                      <div class="form-group">
-                     <label>Model</label>                        
+                     <label>Model</label>
                         <input type="text" name="model" value="">
                      </div>
                      <div class="form-group">
-                     <label>Year</label>                        
+                     <label>Year</label>
                         <input type="text" name="year" value="">
                      </div>
                      <div class="form-group">
-                     <label>Fuel</label>                        
+                     <label>Fuel</label>
                         <input type="text" name="fuel" value="">
-                     </div>                     
+                     </div>
                </div>
             </div>
             <!--Form Column-->
@@ -78,29 +78,29 @@
                 </div>
             <!--Login Form-->
                 <div class="styled-form register-form">
-                    
+
                 <div class="form-group">
-                    <label>Mileage</label>                        
+                    <label>Mileage</label>
                         <input type="text" name="mileage" value="">
                     </div>
                 <div class="form-group">
-                    <label>Capacity in volume m&sup3</label>                        
+                    <label>Capacity in volume m&sup3</label>
                         <input type="text" name="capacity" value="">
                 </div>
                 <div class="form-group">
-                    <label>Truck Location</label>                        
+                    <label>Truck Location</label>
                         <input type="text" name="truck_location" value="">
                 </div>
                 <div class="form-group">
-                    <label>City</label>                        
+                    <label>City</label>
                         <input type="text" name="city" value="">
                 </div>
                 <div class="form-group">
-                    <label>Postal Code</label>                        
+                    <label>Postal Code</label>
                         <input type="text" name="postal_code" value="">
                 </div>
                 <div class="form-group">
-                    <label>Specification</label>                        
+                    <label>Specification</label>
                         <input type="text" name="specification" value="">
                 </div>
             </div>
@@ -128,6 +128,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
-//   
+//
 </script>
 @endsection

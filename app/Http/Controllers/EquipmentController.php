@@ -26,10 +26,15 @@ class EquipmentController extends Controller
         $equipments = DB::table('equipment')
         ->where('company_id', '=', $company_id)
         ->get();
+        $dumpSiteQuery = "SELECT stop.stop as dump_site  FROM `bookings`,stop WHERE bookings.dump_site_id=stop.id AND bookings.company_id='$company_id'";
         $dump_sites=DB::select("SELECT stop.stop as dump_site  FROM `bookings`,stop WHERE bookings.dump_site_id=stop.id AND bookings.company_id='$company_id'");
+
+        $bookingListQuery ="SELECT bookings.*,stop.stop as construction_site  FROM `bookings`,stop WHERE bookings.construction_site_id=stop.id AND bookings.company_id='$company_id'";
+        $bookingListQuery = " SELECT e.* FROM equipment e INNER JOIN bookings b ON e.id= b.equipment_id WHERE e.company_id = '6138f7d131d4d' ";
         $bookingList=DB::select("SELECT bookings.*,stop.stop as construction_site  FROM `bookings`,stop WHERE bookings.construction_site_id=stop.id AND bookings.company_id='$company_id'");
 
-        //dd($bookingList);
+
+dd($bookingListQuery);
         for ($i=0; $i < count($bookingList); $i++) {
             $bookingList[$i]->dump_site=$dump_sites[$i]->dump_site;
         }

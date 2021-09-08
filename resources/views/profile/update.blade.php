@@ -8,13 +8,13 @@
             <div class="row">
                <div class="col-md-3">
                   <div class="main-logo">
-                     <a href="{{url('/dashboard-contractor') }}"><img src="images/logo/logo.png" alt=""></a>
+                     <a href="{{url('/homepage') }}"><img src="images/logo/logo.png" alt=""></a>
                   </div>
                </div>
                <div class="col-md-9 menu-column">
                 <nav class="menuzord" id="main_menu">
                    <ul class="menuzord-menu">
-                        <li><a href="{{ url('/dashboard-contractor') }}">Dashboard</a></li>
+                        <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                         <li><a href="{{url('/profile') }}">Profile</a></li>
                         <li><a href="{{ url('/logout') }}">Logout</a></li>
                     </ul>
@@ -64,7 +64,7 @@
                      </div>
                      <div class="form-group">
                         <span class="adon-icon"><span class="fas fa-map-marker-alt"></span></span>
-                        <input type="text" name="city" value="{{$userDetails->city}}">
+                        <input type="text" name="city" value="{{$companyDetails->city}}">
                      </div>
                      <!-- <div class="form-group">
                         <span class="adon-icon"><span class="fa fa-unlock-alt"></span></span>
@@ -121,7 +121,7 @@
    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
 //    $('#btn-form').on('submit', function (e) {
-   
+
 //            e.preventDefault();
 //            let formData = new FormData(this);
 //            // Ajax call
@@ -147,7 +147,7 @@
 //                .fail(function(result) {
 //                    console.log('AJAX FAILED');
 //                })
-       
+
 //    });
 </script>
 @endsection

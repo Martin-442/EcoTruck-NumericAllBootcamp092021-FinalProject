@@ -16,17 +16,17 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $userDetails=DB::table('users')                 
+    {   $userDetails=DB::table('users')
         ->where('id', '=',auth()->user()->id)
         ->get();
 
 
         $company_id= auth()->user()->company_id ;
-        $companyDetails = DB::table('company')                 
+        $companyDetails = DB::table('company')
         ->where('id', '=', $company_id)
         ->get();
-        
-        
+
+
 
         // To display a specific view :
         return view('profile.display-profile', ['companyDetails' => $companyDetails[0]],['userDetails'=>$userDetails[0]]);
@@ -39,13 +39,13 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        $userDetails=DB::table('users')                 
+        $userDetails=DB::table('users')
         ->where('id', '=',auth()->user()->id)
         ->get();
 
 
         $company_id= auth()->user()->company_id ;
-        $companyDetails = DB::table('company')                 
+        $companyDetails = DB::table('company')
         ->where('id', '=', $company_id)
         ->get();
         return view('profile.update', ['companyDetails' => $companyDetails[0]],['userDetails'=>$userDetails[0]]);
@@ -81,7 +81,7 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        
+
     }
 
     /**
@@ -92,22 +92,22 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {   
+    {
         // + Validations
         $validations = Validator::make($request->all(), [
             'firstName' => 'required|max:50',
             'lastName' => 'required|max:50',
-            'city'=>'required',
+//            'city'=>'required',
             'email'=>'required',
             'companyName'=>'required',
             'address'=>'required',
             'zip_code'=>'numeric',
             'companyEmail'=>'required',
-            
+
         ]);
 
 
-        
+
         $companyId=auth()->user()->company_id;
         $userId=auth()->user()->id;
 
@@ -117,7 +117,7 @@ class CompanyController extends Controller
         //update user info
         $user->first_name = $request->firstName;
         $user->last_name = $request->lastName;
-        $user->city = $request->city;
+        $user->city = auth()->user()->city;
         $user->email = $request->email;
         //update company info
         $company->company_name = $request->companyName;
@@ -127,12 +127,12 @@ class CompanyController extends Controller
 
         $company->save();
         $user->save();
-        
+
 
         // Message
         if ($validations->fails())
             return response()->json(['errors' => $validations->errors()->all()]);
-        
+
         //return response()->json(['success' => 'Profile successfully updated ']);
         return redirect('profile')->with('success', $request->name . ' was updated successfully');
     }

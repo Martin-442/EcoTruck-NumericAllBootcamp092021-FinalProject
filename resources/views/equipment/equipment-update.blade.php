@@ -7,11 +7,11 @@
          <div class="container">
             <div class="row">
                <div class="col-md-3">
-                  <div class="main-logo">       
+                  <div class="main-logo">
 
-                     <a href="index.html"><img src="{{asset('images/logo/logo.png')}}" alt=""></a>
-                        <!-- <img src="{{ asset ('')}}" alt=""> -->              
-                 
+                     <a href="{{ route('homepage') }}"><img src="{{asset('images/logo/logo.png')}}" alt=""></a>
+                        <!-- <img src="{{ asset ('')}}" alt=""> -->
+
                   </div>
                </div>
                <div class="col-md-9 menu-column">
@@ -34,7 +34,7 @@
    </div>
    <section class="register-section sec-padd-top">
       <div class="container">
-          <div class="center">              
+          <div class="center">
               <span class="adon-icon"><span class="fas fa-truck"></span></span>
               <h3>Equipment Update Form</h3>
             </div>
@@ -43,8 +43,8 @@
             <div class="form-column column col-lg-6 col-md-6 col-sm-12 col-xs-12">
                <form method="post" id="updateProfile" >
                    @csrf
-                  <div class="section-title style-2"></div>                    
-                  
+                  <div class="section-title style-2"></div>
+
                   <!-- Collating Update data Form -->
                   <div class="styled-form login-form">
                      <div class="form-group">
@@ -58,21 +58,21 @@
                             </select>
                      </div>
                      <div class="form-group">
-                     <label>Brand</label>                        
+                     <label>Brand</label>
                         <input type="text" name="brand" value="{{$equipment->brand ?? ''}}">
                      </div>
                      <div class="form-group">
-                     <label>Model</label>                        
+                     <label>Model</label>
                         <input type="text" name="model" value="{{$equipment->model ?? ''}}">
                      </div>
                      <div class="form-group">
-                     <label>Year</label>                        
+                     <label>Year</label>
                         <input type="text" name="year" value="{{$equipment->year ?? ''}}">
                      </div>
                      <div class="form-group">
-                     <label>Fuel</label>                        
+                     <label>Fuel</label>
                         <input type="text" name="fuel" value="{{$equipment->fuel ?? ''}}">
-                     </div>                     
+                     </div>
                </div>
             </div>
             <!--Form Column Left Side-->
@@ -81,29 +81,29 @@
                </div>
             <!--Collating Update data Form-->
                <div class="styled-form register-form">
-                    
+
                   <div class="form-group">
-                    <label>Mileage</label>                        
+                    <label>Mileage</label>
                         <input type="text" name="mileage" value="{{$equipment->mileage ?? ''}}">
                   </div>
                   <div class="form-group">
-                    <label>Capacity in volume m&sup3</label>                        
+                    <label>Capacity in volume m&sup3</label>
                         <input type="text" name="capacity" value="{{$equipment->capacity ?? ''}}">
                   </div>
                   <div class="form-group">
-                    <label>Truck Location</label>                        
+                    <label>Truck Location</label>
                         <input type="text" name="truck_location" value="{{$equipment->truck_location ?? ''}}">
                   </div>
                   <div class="form-group">
-                    <label>City</label>                        
+                    <label>City</label>
                         <input type="text" name="city" value="{{$equipment->city ?? ''}}">
                   </div>
                   <div class="form-group">
-                    <label>Postal Code</label>                        
+                    <label>Postal Code</label>
                         <input type="text" name="postal_code" value="{{$equipment->postal_code ?? ''}}">
                   </div>
                   <div class="form-group">
-                    <label>Specification</label>                        
+                    <label>Specification</label>
                         <input type="text" name="specification" value="{{$equipment->specification ?? ''}}">
                   </div>
             </div>
@@ -131,14 +131,14 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
-//   
+//
 </script>
 @endsection
 
 
     <!--form action="" method="post"> -->
       <!-- @csrf CSRF Use for sequrity in Laravel> -->
-        <!-- Submit buttun 
+        <!-- Submit buttun
         <div class="md-12">
                 <a href="{{ URL::route('dashboard_provider') }}" class="btn btn-outline-light">Cancel</a>
                 <button type="submit" class="btn btn-outline-light">update Equipment</button>
@@ -158,4 +158,4 @@
         <input type="submit" value="Update Equipment">
     </form -->
 
-  
+
