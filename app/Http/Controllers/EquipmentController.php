@@ -29,15 +29,28 @@ class EquipmentController extends Controller
         $dumpSiteQuery = "SELECT stop.stop as dump_site  FROM `bookings`,stop WHERE bookings.dump_site_id=stop.id AND bookings.company_id='$company_id'";
         $dump_sites=DB::select("SELECT stop.stop as dump_site  FROM `bookings`,stop WHERE bookings.dump_site_id=stop.id AND bookings.company_id='$company_id'");
 
-        $bookingListQuery ="SELECT bookings.*,stop.stop as construction_site  FROM `bookings`,stop WHERE bookings.construction_site_id=stop.id AND bookings.company_id='$company_id'";
+        $bookingListQuery ="SELECT bookings.*,stop.stop as construction_site  FROM `bookings`,stop WHERE bookings.construction_site_id=stop.id AND bookings.company_id='$company_id'"; // org
         $bookingListQuery = " SELECT e.* FROM equipment e INNER JOIN bookings b ON e.id= b.equipment_id WHERE e.company_id = '6138f7d131d4d' ";
-        $bookingList=DB::select("SELECT bookings.*,stop.stop as construction_site  FROM `bookings`,stop WHERE bookings.construction_site_id=stop.id AND bookings.company_id='$company_id'");
+        $bookingListQuery = "SELECT (SELECT s.stop FROM stop s WHERE id= b.construction_site_id) as construction_site, (SELECT s.stop FROM stop s WHERE id= b.dump_site_id) AS dump_site, b.booking_date AS booking_date FROM `bookings` b WHERE b.equipment_id = 3" ;
+        $bookingList = DB::select($bookingListQuery);
+        // $bookingList = array([
+        //     'construction_site' => 'Holler',
+        //     'dump_site' => 'Bourglinster - Château',
+        //     'booking_date' => '2021-09-30'
+        // ],[
+        //     'construction_site' => 'Elvange',
+        //     'dump_site' => 'Bourglinster - Château',
+        //     'booking_date' => '2021-10-29'
+        // ],[
+        //     'construction_site' => 'Huldange',
+        //     'dump_site' => 'Bourglinster - Château',
+        //     'booking_date' => '2021-11-08'
+        // ]);
 
-
-dd($bookingListQuery);
-        for ($i=0; $i < count($bookingList); $i++) {
-            $bookingList[$i]->dump_site=$dump_sites[$i]->dump_site;
-        }
+//dd($bookingList[0]->dump_site);
+        // for ($i=0; $i < count($bookingList); $i++) {
+        //     $bookingList[$i]->dump_site=$dump_sites[$i]->dump_site;
+        // }
 
             return view('equipment.equipments', ['equipments' => $equipments], ['bookings' => $bookingList]);
     }
